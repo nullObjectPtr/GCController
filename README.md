@@ -1,1 +1,1 @@
-GCController
+GCControllerPlugin

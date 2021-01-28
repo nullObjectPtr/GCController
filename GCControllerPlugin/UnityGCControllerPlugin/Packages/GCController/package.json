@@ -1,0 +1,26 @@
+{
+	"name":"com.hovelhouse.gccontroller",
+	"version":"0.0.1",
+	"displayName":"GC Controller Plugin",
+	"description":"An Apple Arcade ready Game Controller plugin for iOS, macOS and TVOS.",
+	"unity":"2018.4",
+	"unityRelease":"7f1",
+	"dependencies":{},
+	"keywords":
+	[
+		"Controller",
+		"Apple",
+		"Arcade",
+		"Apple Arcade",
+		"Native",
+		"iOS",
+		"TVOS",
+		"macOS"
+	],
+	"author":
+	{
+		"name":"Jonathan Culp",
+		"email":"support@hovelhouse.com",
+		"url":"http://www.hovelhouse.com/"
+	}
+}

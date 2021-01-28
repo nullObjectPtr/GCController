@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:release" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="02978903-2f1b-4438-be11-cc084cf29ca9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityGCControllerPlugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityGCControllerPlugin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RewiredExtendedGamepadAdapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RewiredExtendedGamepadAdapter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GCController/Runtime/UnmanagedObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/GCController/Runtime/UnmanagedObject.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/30595361-4D7E-4CB4-A70A-B1B39FE96E3E/1a/3e9e7b75/BuildPipelineInterfaces.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GameControllerException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCDualShockGamepad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MySample.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/UIImageSymbolWeight.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ESFSymbol.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerElement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Scripts/LunarConsoleAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerDirectionPad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AppleControllerGlyphHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rewired/Integration/UnityUI/Editor/RewiredStandaloneInputModuleInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rewired/Internal/Scripts/Misc/ExternalTools.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/UIImage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerTouchpad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FallbackGlyphHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/NSException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/IGlyphHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/UnmanagedObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PNGExporter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/NSError.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6288A274-7959-4AEB-8DB8-C0A744CC944A/75/3f12da17/SafeDelegate`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/IRewiredAppleControllerAdapter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerCallbacks.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Editor/BuildProcess.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerAxisInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCMicroGamepad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/UIImageSymbolConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCPhysicalInputProfile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerButtonInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99258562-0D64-4271-98DD-F3A0E1467733/61/de3ab2b9/IntPtr.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCXboxGamepad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/UIImageSymbolScale.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6288A274-7959-4AEB-8DB8-C0A744CC944A/6b/b71b1be6/CustomController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/UIImageConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6288A274-7959-4AEB-8DB8-C0A744CC944A/2d/152ccec9/Player.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/UITraitCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AbstractRewiredAppleControllerAdapter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rewired/Integration/UnityUI/RewiredPointerInputModule.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GCController/Runtime/GCExtendedGamepad.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rewired/Examples/PressAnyButtonToJoin/Scripts/PressAnyButtonToJoinExample_GamePlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RewiredExtendedGamepadAdapter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RewiredSiriRemoteAdapter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GCControllerUtilities.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Editor/SimpleJSON.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Sample.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ElementMap.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerButtonInput.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCXboxGamepad.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCDualShockGamepad.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerTouchpad.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ElementGlyphMap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GlyphHelper2.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerDirectionPad.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ControllerElementToSpriteMap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ESFSymbol.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/UIImageSymbolConfiguration.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/UIImageConfiguration.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GlyphHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FallbackGlyphHelper.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Editor/BuildProcess.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCPhysicalInputProfile.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/UIImage.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCExtendedGamepad.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GameControllerException.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/UIImageSymbolWeight.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/UIImageSymbolScale.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerAxisInput.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/ExecutionContext.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/NSError.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/NSException.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GCExtendedControllerGlyphHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PNGExporter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RewiredToAppleControllerElementMap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RewiredAppleGameControllerAdapter.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerElement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/IRewiredAppleControllerAdapter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GCExtendedGamepadGlyphHelper.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCMicroGamepad.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCControllerCallbacks.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AbstractRewiredAppleControllerAdapter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MySample.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RewiredSiriRemoteAdapter.cs" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/GCController.cs" />
+        <option value="$PROJECT_DIR$/Assets/GCControllerUtilities.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AppleControllerGlyphHelper.cs" />
+        <option value="$PROJECT_DIR$/Packages/GCController/Runtime/UnmanagedObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RewiredExtendedGamepadAdapter.cs" />
+=======
+        <option value="$PROJECT_DIR$/Assets/Scripts/MySample.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AppleControllerGlyphHelper.cs" />
+>>>>>>> v0.0.1
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1mfJQHjZ7urKMAl3vDakbK1uhro" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34962717" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29991716" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.build.unityPlugin" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="02978903-2f1b-4438-be11-cc084cf29ca9" name="Default Changelist" comment="" />
+      <created>1609878694906</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609878694906</updated>
+      <workItem from="1609878729310" duration="739000" />
+      <workItem from="1610402374136" duration="9222000" />
+      <workItem from="1610473954869" duration="3533000" />
+      <workItem from="1610660723273" duration="1238000" />
+      <workItem from="1610744917828" duration="7541000" />
+      <workItem from="1610999256217" duration="5593000" />
+      <workItem from="1611010701025" duration="2914000" />
+      <workItem from="1611066479508" duration="6338000" />
+      <workItem from="1611076242001" duration="13428000" />
+      <workItem from="1611168582998" duration="1966000" />
+      <workItem from="1611184432523" duration="552000" />
+      <workItem from="1611187189525" duration="1076000" />
+      <workItem from="1611192654686" duration="4199000" />
+      <workItem from="1611199905828" duration="124000" />
+      <workItem from="1611244963148" duration="440000" />
+      <workItem from="1611245776121" duration="5304000" />
+      <workItem from="1611257147489" duration="4862000" />
+      <workItem from="1611274649504" duration="714000" />
+      <workItem from="1611276474148" duration="84000" />
+      <workItem from="1611277241233" duration="257000" />
+      <workItem from="1611327546126" duration="8470000" />
+      <workItem from="1611507695244" duration="3531000" />
+      <workItem from="1611588749529" duration="4085000" />
+<<<<<<< HEAD
+      <workItem from="1611598691026" duration="8344000" />
+      <workItem from="1611619470646" duration="3641000" />
+=======
+      <workItem from="1611598691026" duration="2700000" />
+>>>>>>> v0.0.1
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="104" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611501581627">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="104" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.777@0.23.1280.777" timestamp="1611501581627" />
+    <state width="478" height="438" key="DebuggerActiveHint" timestamp="1611510163003">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="478" height="438" key="DebuggerActiveHint/0.23.1280.777@0.23.1280.777" timestamp="1611510163003" />
+    <state width="1238" height="97" key="GridCell.Tab.0.bottom" timestamp="1611515359058">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1611256787472" />
+    <state width="1238" height="97" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1611515359058" />
+    <state width="1238" height="97" key="GridCell.Tab.0.center" timestamp="1611515359057">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1611256787471" />
+    <state width="1238" height="97" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1611515359057" />
+    <state width="1238" height="97" key="GridCell.Tab.0.left" timestamp="1611515359056">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1611256787469" />
+    <state width="1238" height="97" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1611515359056" />
+    <state width="1238" height="97" key="GridCell.Tab.0.right" timestamp="1611515359057">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1611256787472" />
+    <state width="1238" height="97" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1611515359057" />
+    <state width="1238" height="97" key="GridCell.Tab.1.bottom" timestamp="1611515358748">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1611256787474" />
+    <state width="1238" height="97" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1611515358748" />
+    <state width="1238" height="97" key="GridCell.Tab.1.center" timestamp="1611515358747">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1611256787473" />
+    <state width="1238" height="97" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1611515358747" />
+    <state width="1238" height="97" key="GridCell.Tab.1.left" timestamp="1611515358747">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1611256787473" />
+    <state width="1238" height="97" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1611515358747" />
+    <state width="1238" height="97" key="GridCell.Tab.1.right" timestamp="1611515358748">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1611256787474" />
+    <state width="1238" height="97" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1611515358748" />
+    <state width="1238" height="97" key="GridCell.Tab.2.bottom" timestamp="1611515358750">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.2.bottom/0.0.1280.800@0.0.1280.800" timestamp="1611256787476" />
+    <state width="1238" height="97" key="GridCell.Tab.2.bottom/0.23.1280.777@0.23.1280.777" timestamp="1611515358750" />
+    <state width="1238" height="97" key="GridCell.Tab.2.center" timestamp="1611515358749">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.2.center/0.0.1280.800@0.0.1280.800" timestamp="1611256787475" />
+    <state width="1238" height="97" key="GridCell.Tab.2.center/0.23.1280.777@0.23.1280.777" timestamp="1611515358749" />
+    <state width="1238" height="97" key="GridCell.Tab.2.left" timestamp="1611515358749">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.2.left/0.0.1280.800@0.0.1280.800" timestamp="1611256787475" />
+    <state width="1238" height="97" key="GridCell.Tab.2.left/0.23.1280.777@0.23.1280.777" timestamp="1611515358749" />
+    <state width="1238" height="97" key="GridCell.Tab.2.right" timestamp="1611515358749">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.2.right/0.0.1280.800@0.0.1280.800" timestamp="1611256787475" />
+    <state width="1238" height="97" key="GridCell.Tab.2.right/0.23.1280.777@0.23.1280.777" timestamp="1611515358749" />
+    <state width="1238" height="97" key="GridCell.Tab.3.bottom" timestamp="1611515358752">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.3.bottom/0.0.1280.800@0.0.1280.800" timestamp="1611256787478" />
+    <state width="1238" height="97" key="GridCell.Tab.3.bottom/0.23.1280.777@0.23.1280.777" timestamp="1611515358752" />
+    <state width="1238" height="97" key="GridCell.Tab.3.center" timestamp="1611515358751">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.3.center/0.0.1280.800@0.0.1280.800" timestamp="1611256787477" />
+    <state width="1238" height="97" key="GridCell.Tab.3.center/0.23.1280.777@0.23.1280.777" timestamp="1611515358751" />
+    <state width="1238" height="97" key="GridCell.Tab.3.left" timestamp="1611515358750">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.3.left/0.0.1280.800@0.0.1280.800" timestamp="1611256787476" />
+    <state width="1238" height="97" key="GridCell.Tab.3.left/0.23.1280.777@0.23.1280.777" timestamp="1611515358750" />
+    <state width="1238" height="97" key="GridCell.Tab.3.right" timestamp="1611515358751">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="104" key="GridCell.Tab.3.right/0.0.1280.800@0.0.1280.800" timestamp="1611256787477" />
+    <state width="1238" height="97" key="GridCell.Tab.3.right/0.23.1280.777@0.23.1280.777" timestamp="1611515358751" />
+    <state x="141" y="39" key="SettingsEditor" timestamp="1611076109959">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="141" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1611076109959" />
+    <state x="100" y="103" width="1080" height="595" key="VCS.FileHistoryDialog" timestamp="1611085427061">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="100" y="103" width="1080" height="595" key="VCS.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1611085427061" />
+    <state x="100" y="123" width="1080" height="577" key="VCS.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1610413095492" />
+    <state x="255" y="174" width="770" height="490" key="find.popup" timestamp="1611624474102">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="255" y="155" width="770" height="490" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1611194094181" />
+    <state x="255" y="174" width="770" height="490" key="find.popup/0.23.1280.777@0.23.1280.777" timestamp="1611624474102" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1611624007860">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="305" y="104" width="670" height="158" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1611331096683" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.23.1280.777@0.23.1280.777" timestamp="1611624007860" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/GCController/Runtime/UIImage.cs</url>
+          <line>92</line>
+          <properties documentPath="$PROJECT_DIR$/Packages/GCController/Runtime/UIImage.cs" initialLine="98">
+            <startOffsets>
+              <option value="2927" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3023" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/GCController/Editor/BuildProcess.cs</url>
+          <line>46</line>
+          <properties documentPath="$PROJECT_DIR$/Packages/GCController/Editor/BuildProcess.cs" initialLine="46">
+            <startOffsets>
+              <option value="1474" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1510" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

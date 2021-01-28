@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/jonathan/Development/GCControllerPlugin/GCControllerPlugin/LibraryProject/HHGameKitTVOS/HHGCControllerTVOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jonathan/Development/GCControllerPlugin/GCControllerPlugin/LibraryProject/HHGameKitIOS/HHGCControllerIOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jonathan/Development/GCControllerPlugin/GCControllerPlugin/LibraryProject/HHGameKitMacOS/HHGCControllerMacOS.xcodeproj">
+   </FileRef>
+</Workspace>

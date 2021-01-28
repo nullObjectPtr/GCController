@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a1871a63-bac4-4425-bacb-d73786e15938" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityGameKitPlugin/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityGameKitPlugin/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityGameKitPlugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityGameKitPlugin/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/437BA245-D840-4784-B9FB-AB9B439AC908/d0/ed11d4cc/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Editor/BuildPostProcessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Runtime/GKTurnBasedMatch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Sample2_Leaderboards.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Runtime/UIViewController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99258562-0D64-4271-98DD-F3A0E1467733/16/2bdd2930/HandleRef.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AE22A4E8-F83C-41D6-9684-AE7F557133D9/b0/3eb7f2fa/Queue`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../guildlingslfs/Assets/AppleArcadeSplash/UnitySplashScreen.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Runtime/GKLeaderboard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/AbstractSample.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Runtime/GKAchievementDescription.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99258562-0D64-4271-98DD-F3A0E1467733/61/de3ab2b9/IntPtr.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Editor/LunarConsoleEditorAnalytics.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Scripts/LunarConsole.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Runtime/GKTurnBasedMatchmakerViewController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Scripts/LunarConsoleAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Editor/MenuItems.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/LunarConsole/Editor/LunarConsoleActionEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Runtime/GKAchievement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/437BA245-D840-4784-B9FB-AB9B439AC908/f4/7d925689/MemoryStream.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Network/IConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Editor/BuildProcess.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/GameKit/Runtime/GameKitCallbacks.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Network/LocalPipe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99258562-0D64-4271-98DD-F3A0E1467733/3a/305fd913/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/ICopyable.cs" />
+        <option value="$PROJECT_DIR$/Assets/SentQueue.cs" />
+        <option value="$PROJECT_DIR$/Assets/Network/LocalPipe.cs" />
+        <option value="$PROJECT_DIR$/Assets/GameClient.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DebugAckBufferView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MySimulation2.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/InputFrame.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/InputSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TimeSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Input/InputSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/TouchLine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SimulatedComponent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Setup.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LocalSetup.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Setup/Setup.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Setup/MatchFinding.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Network/NullConnection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Setup/NetworkedSetup.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Network/GameKitConnection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SwipeGesture.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MySimulation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Network/ICopyable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameState.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Input/LocalInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TouchLine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Simulation.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PongGame.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/IStreamable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/IBinaryWritable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Input/InputFrame.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SentQueue.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Setup/LocalSetup.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameClient.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/GKLocalPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/QuickTest.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/GameKitInitializer.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/MatchDelegate.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyMatchDelegate.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/GKPlayer.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/InvocationRecord.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Editor/BuildProcess.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/GKLeaderboard.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/GameKitCallbacks.cs" />
+        <option value="$PROJECT_DIR$/Packages/CloudKit/Editor/BuildProcess.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/UIViewController.cs" />
+        <option value="$PROJECT_DIR$/Assets/AbstractSample.cs" />
+        <option value="$PROJECT_DIR$/Packages/GameKit/Runtime/GKAchievementDescription.cs" />
+        <option value="$PROJECT_DIR$/Assets/Sample3_Achievements.cs" />
+        <option value="$PROJECT_DIR$/Assets/Sample2_Leaderboards.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hpf8AARb5BVoG16dhQsMHqfY0B" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34962717" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29991716" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a1871a63-bac4-4425-bacb-d73786e15938" name="Default Changelist" comment="" />
+      <created>1600712794861</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600712794861</updated>
+      <workItem from="1600712837337" duration="1552000" />
+      <workItem from="1600729312647" duration="628000" />
+      <workItem from="1600782538732" duration="1859000" />
+      <workItem from="1600784579752" duration="5060000" />
+      <workItem from="1600808318431" duration="4157000" />
+      <workItem from="1600876671225" duration="9544000" />
+      <workItem from="1600955796858" duration="4221000" />
+      <workItem from="1600974442172" duration="17524000" />
+      <workItem from="1601309931339" duration="557000" />
+      <workItem from="1601310626517" duration="7771000" />
+      <workItem from="1601395281575" duration="4109000" />
+      <workItem from="1601412574841" duration="7226000" />
+      <workItem from="1601477508538" duration="3661000" />
+      <workItem from="1601485520492" duration="1547000" />
+      <workItem from="1601489706059" duration="32109000" />
+      <workItem from="1601582970263" duration="3220000" />
+      <workItem from="1601664772350" duration="4891000" />
+      <workItem from="1601671524652" duration="47590000" />
+      <workItem from="1601994800740" duration="20291000" />
+      <workItem from="1602165134291" duration="2946000" />
+      <workItem from="1602168446987" duration="4394000" />
+      <workItem from="1604099650611" duration="4480000" />
+      <workItem from="1607438620695" duration="897000" />
+      <workItem from="1607439978410" duration="5983000" />
+      <workItem from="1607532433204" duration="9887000" />
+      <workItem from="1607903017927" duration="666000" />
+      <workItem from="1608145051539" duration="1662000" />
+      <workItem from="1609697735430" duration="105000" />
+      <workItem from="1609697853816" duration="19000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="576" height="431" key="DebuggerActiveHint" timestamp="1602017964169">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="576" height="443" key="DebuggerActiveHint/0.0.1280.800@0.0.1280.800" timestamp="1601943401148" />
+    <state width="576" height="431" key="DebuggerActiveHint/0.23.1280.777@0.23.1280.777" timestamp="1602017964169" />
+    <state width="1238" height="147" key="GridCell.Tab.0.bottom" timestamp="1602168904780">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1601994993564" />
+    <state width="1238" height="147" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602168904780" />
+    <state width="1238" height="147" key="GridCell.Tab.0.center" timestamp="1602168904779">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1601994993560" />
+    <state width="1238" height="147" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1602168904779" />
+    <state width="1238" height="147" key="GridCell.Tab.0.left" timestamp="1602168904778">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1601994993558" />
+    <state width="1238" height="147" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1602168904778" />
+    <state width="1238" height="147" key="GridCell.Tab.0.right" timestamp="1602168904780">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1601994993562" />
+    <state width="1238" height="147" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1602168904780" />
+    <state width="1238" height="147" key="GridCell.Tab.1.bottom" timestamp="1602168922869">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1601995005790" />
+    <state width="1238" height="147" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602168922869" />
+    <state width="1238" height="147" key="GridCell.Tab.1.center" timestamp="1602168922868">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1601995005789" />
+    <state width="1238" height="147" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1602168922868" />
+    <state width="1238" height="147" key="GridCell.Tab.1.left" timestamp="1602168922868">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1601995005788" />
+    <state width="1238" height="147" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1602168922868" />
+    <state width="1238" height="147" key="GridCell.Tab.1.right" timestamp="1602168922868">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1601995005790" />
+    <state width="1238" height="147" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1602168922868" />
+    <state width="1238" height="147" key="GridCell.Tab.2.bottom" timestamp="1602168904283">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.2.bottom/0.0.1280.800@0.0.1280.800" timestamp="1601993490645" />
+    <state width="1238" height="147" key="GridCell.Tab.2.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602168904283" />
+    <state width="1238" height="147" key="GridCell.Tab.2.center" timestamp="1602168904281">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.2.center/0.0.1280.800@0.0.1280.800" timestamp="1601993490644" />
+    <state width="1238" height="147" key="GridCell.Tab.2.center/0.23.1280.777@0.23.1280.777" timestamp="1602168904281" />
+    <state width="1238" height="147" key="GridCell.Tab.2.left" timestamp="1602168904281">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.2.left/0.0.1280.800@0.0.1280.800" timestamp="1601993490643" />
+    <state width="1238" height="147" key="GridCell.Tab.2.left/0.23.1280.777@0.23.1280.777" timestamp="1602168904281" />
+    <state width="1238" height="147" key="GridCell.Tab.2.right" timestamp="1602168904282">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.2.right/0.0.1280.800@0.0.1280.800" timestamp="1601993490644" />
+    <state width="1238" height="147" key="GridCell.Tab.2.right/0.23.1280.777@0.23.1280.777" timestamp="1602168904282" />
+    <state width="1238" height="147" key="GridCell.Tab.3.bottom" timestamp="1602168904287">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.3.bottom/0.0.1280.800@0.0.1280.800" timestamp="1601993490646" />
+    <state width="1238" height="147" key="GridCell.Tab.3.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602168904287" />
+    <state width="1238" height="147" key="GridCell.Tab.3.center" timestamp="1602168904284">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.3.center/0.0.1280.800@0.0.1280.800" timestamp="1601993490645" />
+    <state width="1238" height="147" key="GridCell.Tab.3.center/0.23.1280.777@0.23.1280.777" timestamp="1602168904284" />
+    <state width="1238" height="147" key="GridCell.Tab.3.left" timestamp="1602168904283">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.3.left/0.0.1280.800@0.0.1280.800" timestamp="1601993490645" />
+    <state width="1238" height="147" key="GridCell.Tab.3.left/0.23.1280.777@0.23.1280.777" timestamp="1602168904283" />
+    <state width="1238" height="147" key="GridCell.Tab.3.right" timestamp="1602168904286">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state width="1238" height="291" key="GridCell.Tab.3.right/0.0.1280.800@0.0.1280.800" timestamp="1601993490646" />
+    <state width="1238" height="147" key="GridCell.Tab.3.right/0.23.1280.777@0.23.1280.777" timestamp="1602168904286" />
+    <state x="420" y="122" key="RiderGenerateDialog" timestamp="1601920377803">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="420" y="122" key="RiderGenerateDialog/0.0.1280.800@0.0.1280.800" timestamp="1601920377803" />
+    <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog" timestamp="1601942713120">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="100" y="100" width="1080" height="600" key="VCS.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1601942713120" />
+    <state x="200" y="166" width="949" height="518" key="find.popup" timestamp="1602004335768">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="200" y="147" width="949" height="534" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1601991030558" />
+    <state x="200" y="166" width="949" height="518" key="find.popup/0.23.1280.777@0.23.1280.777" timestamp="1602004335768" />
+    <state x="305" y="186" key="run.anything.popup" timestamp="1600876914702">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="305" y="186" key="run.anything.popup/0.23.1280.777@0.23.1280.777" timestamp="1600876914702" />
+    <state x="305" y="104" width="670" height="697" key="search.everywhere.popup" timestamp="1608145155240">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="305" y="104" width="670" height="697" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1608145155240" />
+    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.23.1280.777@0.23.1280.777" timestamp="1604104061565" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../../../guildlingslfs/Assets/AppleArcadeSplash/UnitySplashScreen.cs</url>
+          <line>120</line>
+          <properties documentPath="$PROJECT_DIR$/../../../guildlingslfs/Assets/AppleArcadeSplash/UnitySplashScreen.cs" initialLine="120">
+            <startOffsets>
+              <option value="3573" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3620" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../../../guildlingslfs/Assets/AppleArcadeSplash/UnitySplashScreen.cs</url>
+          <line>123</line>
+          <properties documentPath="$PROJECT_DIR$/../../../guildlingslfs/Assets/AppleArcadeSplash/UnitySplashScreen.cs" initialLine="123">
+            <startOffsets>
+              <option value="3645" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3741" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/GKLocalPlayer.cs</url>
+          <line>405</line>
+          <properties documentPath="$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/GKLocalPlayer.cs" initialLine="414" />
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/GKBasePlayer.cs</url>
+          <line>116</line>
+          <properties documentPath="$PROJECT_DIR$/Packages/GameKit/Runtime/Plugin/GKBasePlayer.cs" initialLine="121" />
+          <option name="timeStamp" value="137" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="next" language="C#" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

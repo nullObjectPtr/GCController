@@ -1,0 +1,173 @@
+//
+//  GCInput.cs
+//
+//  Created by Jonathan Culp <jonathanculp@gmail.com> on
+//  Copyright © 2021 HovelHouseApps. All rights reserved.
+//  Unauthorized copying of this file, via any medium is strictly prohibited
+//  Proprietary and confidential
+//
+
+using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using AOT;
+using UnityEngine;
+
+namespace HovelHouse.GameKit
+{
+    public class GCInput
+    {
+        public static string XBoxPaddleOne = "Paddle 1";
+        public static string XBoxPaddleTwo = "Paddle 2";
+        public static string XBoxPaddleThree = "Paddle 3";
+        public static string XBoxPaddleFour = "Paddle 4";
+        public static string GCInputDualShockTouchpadButton = "Touchpad Button";
+        public static string GCInputDualShockTouchpadOne = "Touchpad 1";
+        public static string GCInputDualShockTouchpadTwo = "Touchpad 2";
+        public static string GCInputButtonA = "Button A";
+        public static string GCInputButtonB = "Button B";
+        public static string GCInputButtonHome = "Button Home";
+        public static string GCInputButtonMenu = "Button Menu";
+        public static string GCInputButtonOptions = "Button Options";
+        public static string GCInputButtonX = "Button X";
+        public static string GCInputButtonY = "Button Y";
+        public static string GCInputDirectionPad = "Direction Pad";
+        public static string GCInputLeftShoulder = "Left Shoulder";
+        public static string GCInputLeftThumbstick = "Left Thumbstick";
+        public static string GCInputLeftThumbstickButton = "Left Thumbstick Button";
+        public static string GCInputLeftTrigger = "Left Trigger";
+        public static string GCInputRightShoulder = "Right Shoulder";
+        public static string GCInputRightThumbstick = "Right Thumbstick";
+        public static string GCInputRightThumbstickButton = "Right Thumbstick Button";
+        public static string GCInputRightTrigger = "Right Trigger";
+        public static double GCHapticDurationInfinite = 4696837146684686336;
+        public static string GCKeyA = "A";
+        public static string GCKeyApplication = "Application";
+        public static string GCKeyB = "B";
+        public static string GCKeyBackslash = "Backslash";
+        public static string GCKeyC = "C";
+        public static string GCKeyCapsLock = "CapsLock";
+        public static string GCKeyCloseBracket = "CloseBracket";
+        public static string GCKeyComma = "Comma";
+        public static string GCKeyD = "D";
+        public static string GCKeyDeleteForward = "DeleteForward";
+        public static string GCKeyDeleteOrBackspace = "DeleteOrBackspace";
+        public static string GCKeyDownArrow = "DownArrow";
+        public static string GCKeyE = "E";
+        public static string GCKeyEight = "Eight";
+        public static string GCKeyEnd = "End";
+        public static string GCKeyEqualSign = "EqualSign";
+        public static string GCKeyEscape = "Escape";
+        public static string GCKeyF = "F";
+        public static string GCKeyF1 = "F1";
+        public static string GCKeyF10 = "F10";
+        public static string GCKeyF11 = "F11";
+        public static string GCKeyF12 = "F12";
+        public static string GCKeyF2 = "F2";
+        public static string GCKeyF3 = "F3";
+        public static string GCKeyF4 = "F4";
+        public static string GCKeyF5 = "F5";
+        public static string GCKeyF6 = "F6";
+        public static string GCKeyF7 = "F7";
+        public static string GCKeyF8 = "F8";
+        public static string GCKeyF9 = "F9";
+        public static string GCKeyFive = "Five";
+        public static string GCKeyFour = "Four";
+        public static string GCKeyG = "G";
+        public static string GCKeyGraveAccentAndTilde = "GraveAccentAndTilde";
+        public static string GCKeyH = "H";
+        public static string GCKeyHome = "Home";
+        public static string GCKeyHyphen = "Hyphen";
+        public static string GCKeyI = "I";
+        public static string GCKeyInsert = "Insert";
+        public static string GCKeyInternational1 = "International1";
+        public static string GCKeyInternational2 = "International2";
+        public static string GCKeyInternational3 = "International3";
+        public static string GCKeyInternational4 = "International4";
+        public static string GCKeyInternational5 = "International5";
+        public static string GCKeyInternational6 = "International6";
+        public static string GCKeyInternational7 = "International7";
+        public static string GCKeyInternational8 = "International8";
+        public static string GCKeyInternational9 = "International9";
+        public static string GCKeyJ = "J";
+        public static string GCKeyK = "K";
+        public static string GCKeyKeypad0 = "Keypad0";
+        public static string GCKeyKeypad1 = "Keypad1";
+        public static string GCKeyKeypad2 = "Keypad2";
+        public static string GCKeyKeypad3 = "Keypad3";
+        public static string GCKeyKeypad4 = "Keypad4";
+        public static string GCKeyKeypad5 = "Keypad5";
+        public static string GCKeyKeypad6 = "Keypad6";
+        public static string GCKeyKeypad7 = "Keypad7";
+        public static string GCKeyKeypad8 = "Keypad8";
+        public static string GCKeyKeypad9 = "Keypad9";
+        public static string GCKeyKeypadAsterisk = "KeypadAsterisk";
+        public static string GCKeyKeypadEnter = "KeypadEnter";
+        public static string GCKeyKeypadEqualSign = "KeypadEqualSign";
+        public static string GCKeyKeypadHyphen = "KeypadHyphen";
+        public static string GCKeyKeypadNumLock = "KeypadNumLock";
+        public static string GCKeyKeypadPeriod = "KeypadPeriod";
+        public static string GCKeyKeypadPlus = "KeypadPlus";
+        public static string GCKeyKeypadSlash = "KeypadSlash";
+        public static string GCKeyL = "L";
+        public static string GCKeyLANG1 = "LANG1";
+        public static string GCKeyLANG2 = "LANG2";
+        public static string GCKeyLANG3 = "LANG3";
+        public static string GCKeyLANG4 = "LANG4";
+        public static string GCKeyLANG5 = "LANG5";
+        public static string GCKeyLANG6 = "LANG6";
+        public static string GCKeyLANG7 = "LANG7";
+        public static string GCKeyLANG8 = "LANG8";
+        public static string GCKeyLANG9 = "LANG9";
+        public static string GCKeyLeftAlt = "LeftAlt";
+        public static string GCKeyLeftArrow = "LeftArrow";
+        public static string GCKeyLeftControl = "LeftControl";
+        public static string GCKeyLeftGUI = "LeftGUI";
+        public static string GCKeyLeftShift = "LeftShift";
+        public static string GCKeyM = "M";
+        public static string GCKeyN = "N";
+        public static string GCKeyNine = "Nine";
+        public static string GCKeyNonUSBackslash = "NonUSBackslash";
+        public static string GCKeyNonUSPound = "NonUSPound";
+        public static string GCKeyO = "O";
+        public static string GCKeyOne = "One";
+        public static string GCKeyOpenBracket = "OpenBracket";
+        public static string GCKeyP = "P";
+        public static string GCKeyPageDown = "PageDown";
+        public static string GCKeyPageUp = "PageUp";
+        public static string GCKeyPause = "Pause";
+        public static string GCKeyPeriod = "Period";
+        public static string GCKeyPower =     "Power";
+        public static string GCKeyPrintScreen = "PrintScreen";
+        public static string GCKeyQ = "Q";
+        public static string GCKeyQuote = "Quote";
+        public static string GCKeyR = "R";
+        public static string GCKeyReturnOrEnter = "ReturnOrEnter";
+        public static string GCKeyRightAlt = "RightAlt";
+        public static string GCKeyRightArrow = "RightArrow";
+        public static string GCKeyRightControl = "RightControl";
+        public static string GCKeyRightGUI = "RightGUI";
+        public static string GCKeyRightShift = "RightShift";
+        public static string GCKeyS = "S";
+        public static string GCKeyScrollLock = "ScrollLock";
+        public static string GCKeySemicolon = "Semicolon";
+        public static string GCKeySeven = "Seven";
+        public static string GCKeySix = "Six";
+        public static string GCKeySlash = "Slash";
+        public static string GCKeySpacebar = "Spacebar";
+        public static string GCKeyT = "T";
+        public static string GCKeyTab = "Tab";
+        public static string GCKeyThree = "Three";
+        public static string GCKeyTwo = "Two";
+        public static string GCKeyU = "U";
+        public static string GCKeyUpArrow = "UpArrow";
+        public static string GCKeyV = "V";
+        public static string GCKeyW = "W";
+        public static string GCKeyX = "X";
+        public static string GCKeyY = "Y";
+        public static string GCKeyZ = "Z";
+        public static string GCKeyZero = "Zero";
+    }
+}
