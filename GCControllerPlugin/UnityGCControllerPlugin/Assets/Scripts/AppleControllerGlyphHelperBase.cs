@@ -20,40 +20,40 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
         _glyphSet = glyphSet ?? throw new ArgumentNullException(nameof(glyphSet));
     }
     
-    public Sprite GetFirstGlyphForRewiredAction(Player player, string actionName)
+    public Sprite GetFirstGlyphForRewiredAction(Player player, string actionName, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionName);
         if(action == null)
             throw new ArgumentException($"no such rewired action with name: '{actionName}'");
 
-        return GetGlyphForRewiredAction(player, action).FirstOrDefault();
+        return GetGlyphForRewiredAction(player, action, filled).FirstOrDefault();
     }
 
-    public Sprite GetFirstGlyphForRewiredAction(Player player, int actionId)
+    public Sprite GetFirstGlyphForRewiredAction(Player player, int actionId, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionId);
         if(action == null)
             throw new ArgumentException($"no such rewired action with id: '{actionId}'");
 
-        return GetGlyphForRewiredAction(player, action).FirstOrDefault();
+        return GetGlyphForRewiredAction(player, action, filled).FirstOrDefault();
     }
 
-    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, int actionId)
+    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, int actionId, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionId);
         if(action == null)
             throw new ArgumentException($"no such rewired action with id: '{actionId}'");
 
-        return GetGlyphForRewiredAction(player, action);
+        return GetGlyphForRewiredAction(player, action, filled);
     }
 
-    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, string actionName)
+    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, string actionName, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionName);
         if(action == null)
             throw new ArgumentException($"no such rewired action with name: '{actionName}'");
         
-        return GetGlyphForRewiredAction(player, action);
+        return GetGlyphForRewiredAction(player, action, filled);
     }
     
     public GCControllerElement GetControllerElementForRewiredAction(Player player, int actionId)
@@ -71,7 +71,7 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
         return _adapter.GetGCElementForRewiredElementName(actionElementMap.elementIdentifierName);
     }
 
-    private IEnumerable<Sprite> GetGlyphForRewiredAction(Player player, InputAction action)
+    private IEnumerable<Sprite> GetGlyphForRewiredAction(Player player, InputAction action, bool filled)
     {
         if(player == null)
             throw new ArgumentNullException(nameof(player));
@@ -85,7 +85,7 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
 
         return maps.Select(aem =>
         {
-            return GetSymbolForRewiredElementId(aem, _adapter);
+            return GetSymbolForRewiredElementId(aem, _adapter, filled);
         });
     }
 
@@ -114,7 +114,9 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
     }
 
     private Sprite GetSymbolForRewiredElementId(
-        ActionElementMap actionElementMap, IRewiredAppleControllerAdapter adapter)
+        ActionElementMap actionElementMap, 
+        IRewiredAppleControllerAdapter adapter,
+        bool filled)
     {
         // maps a rewired element to an apple element so we can access the
         // symbol name property, which changes at run-time when the user remaps their
@@ -134,7 +136,7 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
         
         return string.IsNullOrEmpty(symbolName) 
             ? null 
-            : _glyphSet.getSprite(symbolName);
+            : _glyphSet.getSprite(symbolName, filled);
     }
 
     // for a given controller element, return the sfsymbol name for it

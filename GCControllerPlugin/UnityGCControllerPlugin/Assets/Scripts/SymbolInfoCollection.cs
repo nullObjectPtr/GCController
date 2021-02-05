@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class SymbolInfoCollection
 {
@@ -1700,7 +1701,7 @@ public class SymbolInfoCollection
 	{
 		LazyInitBimap();
 		
-		if(filled.TryGetValue(symbolName, out var symbolInfo))
+		if(unfilled.TryGetValue(symbolName, out var symbolInfo))
 		{
 			if (symbolInfo.hasFill)
 			{
@@ -1722,17 +1723,16 @@ public class SymbolInfoCollection
 
 	private void LazyInitBimap()
 	{
-		if (filled == null)
-		{
-			filled = new Dictionary<string, SFSymbolInfo>();
-			unfilled = new Dictionary<string, SFSymbolInfo>();
+		if (filled != null) return;
+		
+		filled = new Dictionary<string, SFSymbolInfo>();
+		unfilled = new Dictionary<string, SFSymbolInfo>();
 			
-			foreach (var symbolInfo in Symbols)
-			{
-				unfilled[symbolInfo.symbolName] = symbolInfo;
-				if (symbolInfo.hasFill)
-					filled[symbolInfo.filledSymbolName] = symbolInfo;
-			}
+		foreach (var symbolInfo in Symbols)
+		{
+			unfilled[symbolInfo.symbolName] = symbolInfo;
+			if (symbolInfo.hasFill)
+				filled[symbolInfo.filledSymbolName] = symbolInfo;
 		}
 	}
 }

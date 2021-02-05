@@ -4,10 +4,10 @@ using UnityEngine;
 
 public interface IGlyphHelper
 {
-    Sprite GetFirstGlyphForRewiredAction(Player player, int actionId);
-    Sprite GetFirstGlyphForRewiredAction(Player player, string actionName);
+    Sprite GetFirstGlyphForRewiredAction(Player player, int actionId, bool filled);
+    Sprite GetFirstGlyphForRewiredAction(Player player, string actionName, bool filled);
 
-    IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, int actionId);
+    IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, int actionId, bool filled);
 
-    IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, string actionName);
+    IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, string actionName, bool filled);
 }

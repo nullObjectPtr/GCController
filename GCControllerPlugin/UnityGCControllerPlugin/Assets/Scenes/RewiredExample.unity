@@ -719,6 +719,9 @@ MonoBehaviour:
     type: 2}
   ExtendedGamepadElementMap: {fileID: 11400000, guid: 3c88075971b714562bbeca092071fb64,
     type: 2}
+  xBoxFallbackMap: {fileID: 0}
+  dualShockFallbackMap: {fileID: 0}
+  ForceFallbackGlyphHelper: 0
   xboxFallbackGlyphs: {fileID: 11400000, guid: dc516d937e93942c986177939cbab992, type: 2}
   ps4FallbackGlyphs: {fileID: 11400000, guid: 904832f5d94da4c12addd5be9a783d47, type: 2}
 --- !u!4 &1494212475
@@ -1710,7 +1713,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 1
         _elementType: 1
         _elementIdentifierId: 22
         _axisRange: 0
@@ -1721,7 +1724,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 2
         _elementType: 1
         _elementIdentifierId: 23
         _axisRange: 0
@@ -1732,7 +1735,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 3
         _elementType: 1
         _elementIdentifierId: 24
         _axisRange: 0
@@ -1743,7 +1746,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 0
         _elementType: 1
         _elementIdentifierId: 25
         _axisRange: 0

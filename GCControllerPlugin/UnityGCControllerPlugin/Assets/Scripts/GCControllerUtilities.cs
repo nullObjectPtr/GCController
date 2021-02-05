@@ -46,6 +46,7 @@ public class SFSymbolSet
     private Dictionary<string, Texture2D> _textures;
     private Dictionary<string, Sprite> _sprites;
     private UIImageSymbolConfiguration _traits;
+    private SymbolInfoCollection _symbolInfoCollection;
     
     public SFSymbolSet()
     {
@@ -72,16 +73,20 @@ public class SFSymbolSet
         _traits = UIImageSymbolConfiguration.ConfigurationWithPointSize(pointSize, weight);
     }
 
-    public Sprite getSprite(string id)
+    public Sprite getSprite(string id, bool filled)
     {
-        Debug.Log("getSprite: " + id);
-        
         if(string.IsNullOrEmpty(id))
             throw new ArgumentNullException(nameof(id));
 
+        if (filled
+            && SymbolInfoCollection.AllControllerSymbols.TryGetFilledVariant(id, out var filledId))
+        {
+            id = filledId;
+        }
+
         if (_sprites.TryGetValue(id, out var sprite))
         {
-            Debug.Log($"GOT sprite {id}");
+            Debug.Log($"Got sprite {id}");
             return sprite;
         }
 
@@ -89,10 +94,16 @@ public class SFSymbolSet
         return null;
     }
     
-    public Texture2D getTexture(string id)
+    public Texture2D getTexture(string id, bool filled)
     {
         if(string.IsNullOrEmpty(id))
             throw new ArgumentNullException(nameof(id));
+        
+        if (filled
+            && SymbolInfoCollection.AllControllerSymbols.TryGetFilledVariant(id, out var filledId))
+        {
+            id = filledId;
+        }
 
         if (_textures.TryGetValue(id, out var texture))
             return texture;
@@ -144,6 +155,9 @@ public class SFSymbolSet
         if(controller == null)
             throw new ArgumentNullException(nameof(controller));
     
+        // Code smell - refactor this line
+        _symbolInfoCollection = SymbolInfoCollection.AllControllerSymbols;
+        
         Debug.Log($"Loading textures for controller {controller.VendorName}");
     
         var textureNames = controller.PhysicalInputProfile.Elements
@@ -160,13 +174,15 @@ public class SFSymbolSet
     /// <param name="loadFills"></param>
     public void LoadAllControllerGlyphs(bool loadFills, LoadMode loadMode = LoadMode.Replace)
     {
-        LoadTexturesInternal(SymbolInfoCollection.AllControllerSymbols.Symbols.Select(g => g.symbolName), loadMode);
-        if (loadFills)
-        {
-	        var fillSymbolNames = SymbolInfoCollection.AllControllerSymbols.Symbols
-		        .Where(g => g.hasFill)
-		        .Select(g => g.filledSymbolName);
-	        LoadTexturesInternal(fillSymbolNames, loadMode);
-        }
+        // Code smell - refactor this line
+        _symbolInfoCollection = SymbolInfoCollection.AllControllerSymbols;
+        
+        LoadTexturesInternal(_symbolInfoCollection.Symbols.Select(g => g.symbolName), loadMode);
+        if (!loadFills) return;
+        
+        var fillSymbolNames = SymbolInfoCollection.AllControllerSymbols.Symbols
+            .Where(g => g.hasFill)
+            .Select(g => g.filledSymbolName);
+        LoadTexturesInternal(fillSymbolNames, loadMode);
     }
 }

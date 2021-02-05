@@ -156,7 +156,10 @@ public class MySample : MonoBehaviour
         // A single action can be bound to multiple buttons, so there could
         // be multiple appropriate glyphs
         var glyphs = _glyphHelper
-            .GetAllGlyphsForRewiredAction(inputActionEventData.player, inputActionEventData.actionId)
+            .GetAllGlyphsForRewiredAction(
+                inputActionEventData.player, 
+                inputActionEventData.actionId, 
+                true)
             .ToList();
         
         // We're going to pick one at random for the moment

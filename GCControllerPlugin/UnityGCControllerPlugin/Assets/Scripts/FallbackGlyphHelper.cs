@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Rewired;
@@ -15,43 +14,43 @@ public class FallbackGlyphHelper : IGlyphHelper
         _fallbackMap = fallbackMap ?? throw new ArgumentNullException(nameof(fallbackMap));
     }
     
-    public Sprite GetFirstGlyphForRewiredAction(Player player, string actionName)
+    public Sprite GetFirstGlyphForRewiredAction(Player player, string actionName, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionName);
         if(action == null)
             throw new ArgumentException($"no such rewired action with name: '{actionName}'");
 
-        return GetGlyphsForRewiredAction(player, action).FirstOrDefault();
+        return GetGlyphsForRewiredAction(player, action, filled).FirstOrDefault();
     }
 
-    public Sprite GetFirstGlyphForRewiredAction(Player player, int actionId)
+    public Sprite GetFirstGlyphForRewiredAction(Player player, int actionId, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionId);
         if(action == null)
             throw new ArgumentException($"no such rewired action with id: '{actionId}'");
 
-        return GetGlyphsForRewiredAction(player, action).FirstOrDefault();
+        return GetGlyphsForRewiredAction(player, action, filled).FirstOrDefault();
     }
 
-    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, int actionId)
+    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, int actionId, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionId);
         if(action == null)
             throw new ArgumentException($"no such rewired action with id: '{actionId}'");
 
-        return GetGlyphsForRewiredAction(player, action);
+        return GetGlyphsForRewiredAction(player, action, filled);
     }
 
-    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, string actionName)
+    public IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, string actionName, bool filled)
     {
         var action = ReInput.mapping.GetAction(actionName);
         if(action == null)
             throw new ArgumentException($"no such rewired action with name: '{actionName}'");
 
-        return GetGlyphsForRewiredAction(player, action);
+        return GetGlyphsForRewiredAction(player, action, filled);
     }
 
-    public IEnumerable<Sprite> GetGlyphsForRewiredAction(Player player, InputAction action)
+    public IEnumerable<Sprite> GetGlyphsForRewiredAction(Player player, InputAction action, bool filled)
     {
         if(player == null)
             throw new ArgumentNullException(nameof(player));
