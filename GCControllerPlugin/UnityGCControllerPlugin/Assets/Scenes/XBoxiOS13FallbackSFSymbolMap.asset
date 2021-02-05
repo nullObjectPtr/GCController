@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c0234dd415b418f9796d8b8327626d, type: 3}
+  m_Name: XBoxiOS13FallbackSFSymbolMap
+  m_EditorClassIdentifier: 
+  Records:
+  - elementType: ButtonA
+    sfSymbolName: 
+  - elementType: ButtonB
+    sfSymbolName: 
+  - elementType: ButtonX
+    sfSymbolName: 
+  - elementType: ButtonY
+    sfSymbolName: 
+  - elementType: LeftShoulder
+    sfSymbolName: 
+  - elementType: RightShoulder
+    sfSymbolName: 
+  - elementType: LeftTrigger
+    sfSymbolName: 
+  - elementType: RightTrigger
+    sfSymbolName: 
+  - elementType: LeftThumbstickButton
+    sfSymbolName: 
+  - elementType: RightThumbstickButton
+    sfSymbolName: 
+  - elementType: DPad
+    sfSymbolName: 
+  - elementType: DPadLeft
+    sfSymbolName: 
+  - elementType: DPadRight
+    sfSymbolName: 
+  - elementType: DPadUp
+    sfSymbolName: 
+  - elementType: DPadDown
+    sfSymbolName: 
+  - elementType: ButtonHome
+    sfSymbolName: 
+  - elementType: ButtonMenu
+    sfSymbolName: 
+  - elementType: ButtonOptions
+    sfSymbolName: 
+  - elementType: LeftThumbstick
+    sfSymbolName: 
+  - elementType: LeftThumbstickX
+    sfSymbolName: 
+  - elementType: LeftThumbstickY
+    sfSymbolName: 
+  - elementType: RightThumbstick
+    sfSymbolName: 
+  - elementType: RightThumbstickX
+    sfSymbolName: 
+  - elementType: RightThumbstickY
+    sfSymbolName: 
+  - elementType: PaddleButton1
+    sfSymbolName: 
+  - elementType: PaddleButton2
+    sfSymbolName: 
+  - elementType: PaddleButton3
+    sfSymbolName: 
+  - elementType: PaddleButton4
+    sfSymbolName: 
+  - elementType: TouchpadButton
+    sfSymbolName: 
+  - elementType: TouchpadPrimary
+    sfSymbolName: 
+  - elementType: TouchpadPrimaryX
+    sfSymbolName: 
+  - elementType: TouchpadPrimaryY
+    sfSymbolName: 
+  - elementType: TouchpadSecondary
+    sfSymbolName: 
+  - elementType: TouchpadSecondaryX
+    sfSymbolName: 
+  - elementType: TouchpadSecondarY
+    sfSymbolName: 

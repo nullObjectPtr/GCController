@@ -31,13 +31,10 @@ namespace HovelHouse.GameController
         #endif
 
         // Class Methods
-        
 
-        
+        [DllImport(dll)]
+        private static extern bool GCControllerElement_SupportsSFSymbols();
 
-        
-
-        
 
         // Properties
         
@@ -101,6 +98,11 @@ namespace HovelHouse.GameController
         internal GCControllerElement(IntPtr ptr) : base(ptr) {}
         internal GCControllerElement(IntPtr ptr, ERetainPolicy retainPolicy) : base(ptr, retainPolicy){}
 
+        public static bool SupportsSFSymbols()
+        {
+            return GCControllerElement_SupportsSFSymbols();
+        }
+        
         /// <value>LocalizedName</value>
         public string LocalizedName
         {
@@ -303,6 +305,5 @@ namespace HovelHouse.GameController
             GC.SuppressFinalize(this);
         }
         #endregion
-        
     }
 }

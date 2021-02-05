@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using HovelHouse.GameController;
 using Rewired;
 using UnityEngine;
@@ -9,8 +11,13 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
     public event Action<GCControllerAxisInput, float> OnAxisValueChanged;
     
     private readonly GCMicroGamepad _microGamepad;
+    
+    private readonly RewiredToGCMicroGamepadElementMap ElementConverterMap;
 
-    public RewiredSiriRemoteAdapter(GCController controller, int profileId)
+    public RewiredSiriRemoteAdapter(
+        GCController controller, 
+        int profileId, 
+        RewiredToGCMicroGamepadElementMap elementConverterMap)
     : base(controller, profileId)
     {
         _microGamepad = controller.MicroGamepad;
@@ -35,70 +42,108 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
 
         if (btnElement != null)
         {
-            HandleButtonValueChanged(GetElementId(btnElement), btnElement);
+            HandleButtonValueChanged(btnElement);
         }
 
         if (padElement != null && padElement == _microGamepad.Dpad)
         {
-            HandleAxisValueChanged(0, padElement.XAxis);
-            HandleAxisValueChanged(1, padElement.YAxis);
+            HandleAxisValueChanged(padElement.XAxis);
+            HandleAxisValueChanged(padElement.YAxis);;
         }
     }
 
-    public override GCControllerElement GetGCElementForRewiredElementId(
-        ControllerElementType elementType, int elementId)
+    public override GCControllerElement GetGCElementForRewiredElementName(string rewiredElementName)
     {
-        if (elementType == ControllerElementType.Button)
+        Debug.Log($"GetGCElementForRewiredElementName:{rewiredElementName}");
+
+        var record = ElementConverterMap.Records.FirstOrDefault(r => r.RewiredElementName == rewiredElementName);
+        if (record != null) return GetGCElement(record.microGamepadElementType);
+
+        Debug.LogWarning($"no entry for rewired element named:'{rewiredElementName}' found in element map");
+        return null;
+    }
+
+    private GCControllerElement GetGCElement(GCMicroGamepadElementType elementType)
+    {
+        switch (elementType)
         {
-            if (elementId == 1)
+            case GCMicroGamepadElementType.ButtonA:
                 return _microGamepad.ButtonA;
-            if (elementId == 2)
+            case GCMicroGamepadElementType.ButtonX:
                 return _microGamepad.ButtonX;
-            if (elementId == 3)
+            case GCMicroGamepadElementType.ButtonMenu:
                 return _microGamepad.ButtonMenu;
-        }
-        else if (elementType == ControllerElementType.Axis)
-        {
-            if (elementId == 0)
+            case GCMicroGamepadElementType.DPad:
+                return _microGamepad.Dpad;
+            case GCMicroGamepadElementType.DPadX:
                 return _microGamepad.Dpad.XAxis;
-            if (elementId == 4)
+            case GCMicroGamepadElementType.DPadY:
                 return _microGamepad.Dpad.YAxis;
+            default:
+                throw new InvalidEnumArgumentException(nameof(elementType));
         }
-
-        throw new ArgumentOutOfRangeException(nameof(elementId));
     }
 
-    private int GetElementId(GCControllerElement element)
+    private void HandleButtonValueChanged(GCControllerButtonInput buttonInput)
     {
-        if (element == _microGamepad.ButtonA)
-        {
-            return 0;
-        }
-
-        if (element == _microGamepad.ButtonX)
-        {
-            return 1;
-        }
-
-        if (element == _microGamepad.ButtonMenu)
-        {
-            return 2;
-        }
-
-        return -1;
-    }
-
-    private void HandleButtonValueChanged(int rewiredElementIndex, GCControllerButtonInput buttonInput)
-    {
+        var elementType = GetElementType(buttonInput);
+        var record = ElementConverterMap.Records
+            .FirstOrDefault( r => r.microGamepadElementType == elementType);
+        
+        if(record == null)
+            throw new Exception($"could not find an element map entry for controller element: {buttonInput.LocalizedName}");
+        
+        // hrm - apple buttons are also PRESSURE sensitive
+        // var value = buttonInput.Value; 
+        // is a float between 0 and 1 
+        // Interesting...
         var pressed = buttonInput.Pressed;
-        VirtualController.SetButtonValue(rewiredElementIndex, pressed);
+        VirtualController.SetButtonValue(record.RewiredElementName, pressed);
         OnButtonValueChanged?.Invoke(buttonInput, pressed);
     }
 
-    private void HandleAxisValueChanged(int rewiredElementIndex, GCControllerAxisInput axisInput)
+    private void HandleAxisValueChanged(GCControllerAxisInput axisInput)
     {
+        var elementType = GetElementType(axisInput);
+        var record = ElementConverterMap.Records
+            .FirstOrDefault( r => r.microGamepadElementType == elementType);
+        
+        if(record == null)
+            throw new Exception($"could not find an element map entry for controller element: {axisInput.LocalizedName}");
+        
+        // hrm - apple buttons are also PRESSURE sensitive
+        // var value = buttonInput.Value; 
+        // is a float between 0 and 1 
+        // Interesting...
         var value = axisInput.Value;
-        VirtualController.SetAxisValue(rewiredElementIndex, value);
+        VirtualController.SetAxisValue(record.RewiredElementName, value);
         OnAxisValueChanged?.Invoke(axisInput, value);
+    }
+
+    public override string GetElementName(GCControllerElement element)
+    {
+        if (element == null)
+            throw new ArgumentNullException(nameof(element));
+
+        var type = GetElementType(element);
+        return type.ToString();
+    }
+
+    private GCMicroGamepadElementType GetElementType(GCControllerElement element)
+    {
+        if (element == _microGamepad.ButtonA)
+            return GCMicroGamepadElementType.ButtonA;
+        if (element == _microGamepad.ButtonX)
+            return GCMicroGamepadElementType.ButtonX;
+        if (element == _microGamepad.ButtonMenu)
+            return GCMicroGamepadElementType.ButtonMenu;
+        if (element == _microGamepad.Dpad)
+            return GCMicroGamepadElementType.DPad;
+        if (element == _microGamepad.Dpad.Left)
+            return GCMicroGamepadElementType.DPadX;
+        if (element == _microGamepad.Dpad.Right)
+            return GCMicroGamepadElementType.DPadY;
+        
+        throw new ArgumentException($"unhandled element: {element}");
     }
 }

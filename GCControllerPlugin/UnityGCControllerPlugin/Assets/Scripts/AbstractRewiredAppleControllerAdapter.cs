@@ -22,6 +22,6 @@ public abstract class AbstractRewiredAdapter : IRewiredAppleControllerAdapter
         _appleController = appleController;
     }
 
-    public abstract GCControllerElement GetGCElementForRewiredElementId(ControllerElementType elementType,
-        int elementId);
+    public abstract GCControllerElement GetGCElementForRewiredElementName(string rewiredElementName);
+    public abstract string GetElementName(GCControllerElement element);
 }

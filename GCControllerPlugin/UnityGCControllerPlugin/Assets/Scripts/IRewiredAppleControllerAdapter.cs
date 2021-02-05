@@ -6,7 +6,6 @@ public interface IRewiredAppleControllerAdapter
     CustomController VirtualController { get; }
     GCController AppleController { get; }
 
-    GCControllerElement GetGCElementForRewiredElementId(
-        ControllerElementType elementType,
-        int elementId);
+    GCControllerElement GetGCElementForRewiredElementName(string rewiredElementName);
+    string GetElementName(GCControllerElement element);
 }

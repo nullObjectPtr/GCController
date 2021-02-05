@@ -1,7 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using HovelHouse.GameController;
 using Rewired;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RewiredExtendedGamepadAdapter : AbstractRewiredAdapter
 {
@@ -10,13 +13,17 @@ public class RewiredExtendedGamepadAdapter : AbstractRewiredAdapter
     public event Action<GCControllerButtonInput, bool> OnButtonValueChanged;
     public event Action<GCControllerAxisInput, float> OnAxisValueChanged;
 
-    public RewiredExtendedGamepadAdapter(GCController controller, int profileId)
+    private readonly RewiredToGCExtendedGamepadElementMap ElementConverterMap;
+
+    public RewiredExtendedGamepadAdapter(
+        GCController controller, 
+        int profileId, 
+        RewiredToGCExtendedGamepadElementMap elementConverterMap)
         : base(controller, profileId)
     {
-        gamepad = controller.ExtendedGamepad;
-        if(gamepad == null)
-            throw new ArgumentException("controller must implement GCExtended gamepad");
-
+        gamepad = controller.ExtendedGamepad ?? throw new ArgumentException("controller must implement GCExtended gamepad");
+        ElementConverterMap = elementConverterMap;
+        
         Debug.Log($"gamepad is: {gamepad.GetType().Name}");
         Debug.Log("attaching value changed handler");
         
@@ -27,255 +34,384 @@ public class RewiredExtendedGamepadAdapter : AbstractRewiredAdapter
     {
         var btnElement = element as GCControllerButtonInput;
         var dPadElement = element as GCControllerDirectionPad;
-        
+
         Debug.Log(element.LocalizedName);
         Debug.Log(element.UnmappedLocalizedName);
+        
+        if (btnElement != null)
+        {
+            if (btnElement == gamepad.Dpad)
+            {
+                HandleButtonValueChanged(gamepad.Dpad.Left);
+                HandleButtonValueChanged(gamepad.Dpad.Right);
+                HandleButtonValueChanged(gamepad.Dpad.Up);
+                HandleButtonValueChanged(gamepad.Dpad.Down);
+            }
+            else
+            {
+                HandleButtonValueChanged(btnElement);
+            }
+        }
+        else if (dPadElement != null)
+        {
+            if (dPadElement == gamepad.LeftThumbstick)
+            {
+                HandleAxisValueChanged(gamepad.LeftThumbstick.XAxis);
+                HandleAxisValueChanged(gamepad.LeftThumbstick.YAxis);
+            }
+            else if (dPadElement == gamepad.RightThumbstick)
+            {
+                HandleAxisValueChanged(gamepad.RightThumbstick.XAxis);
+                HandleAxisValueChanged(gamepad.RightThumbstick.YAxis);
+            }
+            else if(gamepad is GCDualShockGamepad ps4Gamepad)
+            {
+                if (dPadElement == ps4Gamepad.TouchpadPrimary)
+                {
+                    HandleAxisValueChanged(ps4Gamepad.TouchpadPrimary.XAxis);
+                    HandleAxisValueChanged(ps4Gamepad.TouchpadPrimary.YAxis);
+                }
+                else if (dPadElement == ps4Gamepad.TouchpadSecondary)
+                {
+                    HandleAxisValueChanged(ps4Gamepad.TouchpadSecondary.XAxis);
+                    HandleAxisValueChanged(ps4Gamepad.TouchpadSecondary.YAxis);
+                }
+            }
+        }
+    }
 
+    private GCExtendedGamepadElementType GetElementType(GCControllerElement element)
+    {
         // find the element in the map
         if (element == gamepad.ButtonA)
         {
-            HandleButtonValueChanged(0, btnElement);
+            return GCExtendedGamepadElementType.ButtonA;
         }
-        else if (element == gamepad.ButtonB)
+        if (element == gamepad.ButtonB)
         {
-            HandleButtonValueChanged(1, btnElement);
+            return GCExtendedGamepadElementType.ButtonB;
         }
-        else if (element == gamepad.ButtonX)
+        if (element == gamepad.ButtonX)
         {
-            HandleButtonValueChanged(2, btnElement);
+            return GCExtendedGamepadElementType.ButtonX;
         }
-        else if (element == gamepad.ButtonY)
+        if (element == gamepad.ButtonY)
         {
-            HandleButtonValueChanged(3, btnElement);
+            return GCExtendedGamepadElementType.ButtonY;
         }
-        else if (element == gamepad.LeftShoulder)
+        if (element == gamepad.LeftShoulder)
         {
-            HandleButtonValueChanged(4, btnElement);
+            return GCExtendedGamepadElementType.LeftShoulder;
         }
-        else if (element == gamepad.RightShoulder)
+        if (element == gamepad.RightShoulder)
         {
-            HandleButtonValueChanged(5, btnElement);
+            return GCExtendedGamepadElementType.RightShoulder;
         }
-        else if (element == gamepad.LeftTrigger)
+        if (element == gamepad.LeftTrigger)
         {
-            HandleButtonValueChanged(6, btnElement);
+            return GCExtendedGamepadElementType.LeftTrigger;
         }
-        else if (element == gamepad.RightTrigger)
+        if (element == gamepad.RightTrigger)
         {
-            HandleButtonValueChanged(7, btnElement);
+            return GCExtendedGamepadElementType.RightTrigger;
         }
-        else if (element == gamepad.LeftThumbstickButton)
+        if (element == gamepad.LeftThumbstickButton)
         {
-            HandleButtonValueChanged(8, btnElement);
+            return GCExtendedGamepadElementType.LeftThumbstickButton;
         }
-        else if (element == gamepad.RightThumbstickButton)
+        if (element == gamepad.RightThumbstickButton)
         {
-            HandleButtonValueChanged(9, btnElement);
+            return GCExtendedGamepadElementType.RightThumbstickButton;
         }
-        else if (element == gamepad.Dpad)
+        if (element == gamepad.Dpad)
         {
-            HandleButtonValueChanged(10, gamepad.Dpad.Left);
-            HandleButtonValueChanged(11, gamepad.Dpad.Right);
-            HandleButtonValueChanged(12, gamepad.Dpad.Up);
-            HandleButtonValueChanged(13, gamepad.Dpad.Down);
+            return GCExtendedGamepadElementType.DPad;
         }
-        else if (element == gamepad.ButtonHome)
+        if (element == gamepad.Dpad.Left)
         {
-            HandleButtonValueChanged(14, btnElement);
+            return GCExtendedGamepadElementType.DPadLeft;
         }
-        else if (element == gamepad.ButtonMenu)
+        if (element == gamepad.Dpad.Right)
         {
-            HandleButtonValueChanged(15, btnElement);
+            return GCExtendedGamepadElementType.DPadRight;
         }
-        else if (element == gamepad.ButtonOptions)
+        if (element == gamepad.Dpad.Up)
         {
-            HandleButtonValueChanged(16, btnElement);
+            return GCExtendedGamepadElementType.DPadUp;
         }
-        else if (element == gamepad.LeftThumbstick)
+        if (element == gamepad.Dpad.Down)
         {
-            HandleAxisValueChanged(0, dPadElement.XAxis);
-            HandleAxisValueChanged(1, dPadElement.YAxis);
+            return GCExtendedGamepadElementType.DPadDown;
         }
-        else if (element == gamepad.RightThumbstick)
+        if (element == gamepad.ButtonHome)
         {
-            HandleAxisValueChanged(2, dPadElement.XAxis);
-            HandleAxisValueChanged(3, dPadElement.YAxis);
+            return GCExtendedGamepadElementType.ButtonHome;
+        }
+        if (element == gamepad.ButtonMenu)
+        {
+            return GCExtendedGamepadElementType.ButtonMenu;
+        }
+        if (element == gamepad.ButtonOptions)
+        {
+            return GCExtendedGamepadElementType.ButtonOptions;
+        }
+        
+        if (element == gamepad.LeftThumbstick)
+        {
+            return GCExtendedGamepadElementType.LeftThumbstick;
+        }
+
+        if (element == gamepad.LeftThumbstick.XAxis)
+        {
+            return GCExtendedGamepadElementType.LeftThumbstickX;
+        }
+
+        if (element == gamepad.LeftThumbstick.YAxis)
+        {
+            return GCExtendedGamepadElementType.LeftThumbstickY;
+        }
+
+        if (element == gamepad.RightThumbstick)
+        {
+            return GCExtendedGamepadElementType.RightThumbstick;
+        }
+        
+        if (element == gamepad.RightThumbstick.XAxis)
+        {
+            return GCExtendedGamepadElementType.RightThumbstickX;
+        }
+        
+        if (element == gamepad.RightThumbstick.YAxis)
+        {
+            return GCExtendedGamepadElementType.RightThumbstickY;
         }
         
         // Support for special controller buttons
-        else if(gamepad is GCXboxGamepad xboxGamepad)
+        if(gamepad is GCXboxGamepad xboxGamepad)
         {
             if (element == xboxGamepad.PaddleButton1)
             {
-                HandleButtonValueChanged(17, btnElement);
+                return GCExtendedGamepadElementType.PaddleButton1;
             }
-            else if (element == xboxGamepad.PaddleButton2)
+
+            if (element == xboxGamepad.PaddleButton2)
             {
-                HandleButtonValueChanged(18, btnElement);
+                return GCExtendedGamepadElementType.PaddleButton2;
             }
-            else if (element == xboxGamepad.PaddleButton3)
+
+            if (element == xboxGamepad.PaddleButton3)
             {
-                HandleButtonValueChanged(19, btnElement);
+                return GCExtendedGamepadElementType.PaddleButton3;
             }
-            else if (element == xboxGamepad.PaddleButton4)
+
+            if (element == xboxGamepad.PaddleButton4)
             {
-                HandleButtonValueChanged(20, btnElement);
+                return GCExtendedGamepadElementType.PaddleButton4;
             }
         }
         else if (gamepad is GCDualShockGamepad dualShockGamepad)
         {
             if (element == dualShockGamepad.TouchpadButton)
             {
-                HandleButtonValueChanged(21, btnElement);
+                return GCExtendedGamepadElementType.TouchpadButton;
             }
-            else if (element == dualShockGamepad.TouchpadPrimary)
+
+            if (element == dualShockGamepad.TouchpadPrimary)
             {
-                HandleAxisValueChanged(4, dPadElement.XAxis);
-                HandleAxisValueChanged(5, dPadElement.YAxis);
+                return GCExtendedGamepadElementType.TouchpadPrimary;
             }
-            else if (element == dualShockGamepad.TouchpadSecondary)
+            
+            if (element == dualShockGamepad.TouchpadPrimary.XAxis)
             {
-                HandleAxisValueChanged(6, dPadElement.XAxis);
-                HandleAxisValueChanged(7, dPadElement.YAxis);
+                return GCExtendedGamepadElementType.TouchpadPrimaryX;
+            }
+            
+            if (element == dualShockGamepad.TouchpadPrimary.YAxis)
+            {
+                return GCExtendedGamepadElementType.TouchpadPrimaryY;
+            }
+
+            if (element == dualShockGamepad.TouchpadSecondary)
+            {
+                return GCExtendedGamepadElementType.TouchpadSecondary;
+            }
+            
+            if (element == dualShockGamepad.TouchpadSecondary.XAxis)
+            {
+                return GCExtendedGamepadElementType.TouchpadSecondaryX;
+            }
+            
+            if (element == dualShockGamepad.TouchpadSecondary.YAxis)
+            {
+                return GCExtendedGamepadElementType.TouchpadSecondaryY;
             }
         }
+        
+        throw new ArgumentException($"unknown controller element :{element}");
     }
 
-    private void HandleButtonValueChanged(int idx, GCControllerButtonInput buttonInput)
+    public override string GetElementName(GCControllerElement element)
     {
+        if(element == null)
+            throw new ArgumentNullException(nameof(element));
+
+        var type = GetElementType(element);
+        return type.ToString();
+    }
+
+    private void HandleButtonValueChanged(GCControllerButtonInput buttonInput)
+    {
+        var elementType = GetElementType(buttonInput);
+        var record = ElementConverterMap.Records
+            .FirstOrDefault( r => r.extendedGamepadElementType == elementType);
+        
+        if(record == null)
+            throw new Exception($"could not find an element map entry for controller element: {buttonInput.LocalizedName}");
+        
         // hrm - apple buttons are also PRESSURE sensitive
         // var value = buttonInput.Value; 
         // is a float between 0 and 1 
         // Interesting...
-        if(buttonInput == null)
-            Debug.LogError($"rewired id {idx} is a null element");
-        
         var pressed = buttonInput.Pressed;
-        VirtualController.SetButtonValue(idx, pressed);
+        VirtualController.SetButtonValue(record.RewiredElementName, pressed);
         OnButtonValueChanged?.Invoke(buttonInput, pressed);
     }
 
-    private void HandleAxisValueChanged(int idx, GCControllerAxisInput axisInput)
+    private void HandleAxisValueChanged(GCControllerAxisInput axisInput)
     {
+        var elementType = GetElementType(axisInput);
+        var record = ElementConverterMap.Records
+            .FirstOrDefault( r => r.extendedGamepadElementType == elementType);
+        
+        if(record == null)
+            throw new Exception($"could not find an element map entry for controller element: {axisInput.LocalizedName}");
+        
         var value = axisInput.Value;
-        VirtualController.SetAxisValue(idx, value);
+        VirtualController.SetAxisValue(record.RewiredElementName, value);
         OnAxisValueChanged?.Invoke(axisInput, value);
     }
 
-    public override GCControllerElement GetGCElementForRewiredElementId(
-        ControllerElementType elementType,
-        int elementId)
+    public override GCControllerElement GetGCElementForRewiredElementName(string rewiredElementName)
     {
-        Debug.Log($"GetGCElementForRewiredElementId: {elementType}:{elementId}");
-        if (elementType == ControllerElementType.Button)
-        {
-            switch (elementId)
-            {
-                case 0:
-                    return gamepad.ButtonA;
-                case 1:
-                    return gamepad.ButtonB;
-                case 2:
-                    return gamepad.ButtonX;
-                case 3:
-                    return gamepad.ButtonY;
-                case 4:
-                    return gamepad.LeftShoulder;
-                case 5:
-                    return gamepad.RightShoulder;
-                case 6:
-                    return gamepad.LeftTrigger;
-                case 7:
-                    return gamepad.RightTrigger;
-                case 8:
-                    return gamepad.LeftThumbstickButton;
-                case 9:
-                    return gamepad.RightThumbstickButton;
-                case 10:
-                    return gamepad.Dpad.Left;
-                case 11:
-                    return gamepad.Dpad.Right;
-                case 12:
-                    return gamepad.Dpad.Up;
-                case 13:
-                    return gamepad.Dpad.Down;
-                case 14:
-                    return gamepad.ButtonHome;
-                case 15:
-                    return gamepad.ButtonMenu;
-                case 16:
-                    return gamepad.ButtonOptions;
-                case 22:
-                {
-                    var xBoxGamepad = gamepad as GCXboxGamepad;
-                    return xBoxGamepad != null ? xBoxGamepad.PaddleButton1 : null;
-                }
-                case 23:
-                {
-                    var xBoxGamepad = gamepad as GCXboxGamepad;
-                    return xBoxGamepad != null ? xBoxGamepad.PaddleButton2 : null;
-                }
-                case 24:
-                {
-                    var xBoxGamepad = gamepad as GCXboxGamepad;
-                    return xBoxGamepad != null ? xBoxGamepad.PaddleButton3 : null;
-                }
-                case 25:
-                {
-                    var xBoxGamepad = gamepad as GCXboxGamepad;
-                    return xBoxGamepad != null ? xBoxGamepad.PaddleButton4 : null;
-                }
-                case 26:
-                {
-                    var dualShockGamepad = gamepad as GCDualShockGamepad;
-                    return dualShockGamepad != null ? dualShockGamepad.TouchpadButton : null;
-                }
-                // default:
-                //     throw new ArgumentOutOfRangeException(nameof(elementId));
-            }
-        }
+        Debug.Log($"GetGCElementForRewiredElementName:{rewiredElementName}");
 
-        if (elementType == ControllerElementType.Axis)
-        {
-            // TODO: Why do these start at 18?
-            switch (elementId)
-            {
-                // some split rewired element get mapped back to a parent element
-                case 18:
-                    return gamepad.LeftThumbstick.XAxis;
-                case 19:
-                    return gamepad.LeftThumbstick.YAxis;
+        var record = ElementConverterMap.Records.FirstOrDefault(r => r.RewiredElementName == rewiredElementName);
+        if (record != null) return GetGCElement(record.extendedGamepadElementType);
 
-                case 20:
-                    return gamepad.RightThumbstick.XAxis;
-                case 21:
-                    return gamepad.RightThumbstick.YAxis;
-
-                case 29:
-                {
-                    var dualShockGamepad = gamepad as GCDualShockGamepad;
-                    return dualShockGamepad != null ? dualShockGamepad.TouchpadPrimary.XAxis : null;
-                }
-                case 30:
-                {
-                    var dualShockGamepad = gamepad as GCDualShockGamepad;
-                    return dualShockGamepad != null ? dualShockGamepad.TouchpadPrimary.YAxis : null;
-                }
-                case 31:
-                {
-                    var dualShockGamepad = gamepad as GCDualShockGamepad;
-                    return dualShockGamepad != null ? dualShockGamepad.TouchpadSecondary.XAxis : null;
-                }
-                case 32:
-                {
-                    var dualShockGamepad = gamepad as GCDualShockGamepad;
-                    return dualShockGamepad != null ? dualShockGamepad.TouchpadSecondary.YAxis : null;
-                }
-                // default:
-                //     throw new ArgumentOutOfRangeException(nameof(elementId));
-            }
-        }
-
+        Debug.LogWarning($"no entry for rewired element named:'{rewiredElementName}' found in element map");
         return null;
+    }
+
+    public GCControllerElement GetGCElement(GCExtendedGamepadElementType elementType)
+    {
+        switch (elementType)
+        {
+            case GCExtendedGamepadElementType.ButtonA:
+                return gamepad.ButtonA;
+            case GCExtendedGamepadElementType.ButtonB:
+                return gamepad.ButtonB;
+            case GCExtendedGamepadElementType.ButtonX:
+                return gamepad.ButtonX;
+            case GCExtendedGamepadElementType.ButtonY:
+                return gamepad.ButtonY;
+            case GCExtendedGamepadElementType.LeftShoulder:
+                return gamepad.LeftShoulder;
+            case GCExtendedGamepadElementType.RightShoulder:
+                return gamepad.RightShoulder;
+            case GCExtendedGamepadElementType.LeftTrigger:
+                return gamepad.LeftTrigger;
+            case GCExtendedGamepadElementType.RightTrigger:
+                return gamepad.RightTrigger;
+            case GCExtendedGamepadElementType.LeftThumbstickButton:
+                return gamepad.LeftThumbstickButton;
+            case GCExtendedGamepadElementType.RightThumbstickButton:
+                return gamepad.RightThumbstickButton;
+            case GCExtendedGamepadElementType.DPad:
+                return gamepad.Dpad;
+            case GCExtendedGamepadElementType.DPadLeft:
+                return gamepad.Dpad.Left;
+            case GCExtendedGamepadElementType.DPadRight:
+                return gamepad.Dpad.Right;
+            case GCExtendedGamepadElementType.DPadUp:
+                return gamepad.Dpad.Up;
+            case GCExtendedGamepadElementType.DPadDown:
+                return gamepad.Dpad.Down;
+            case GCExtendedGamepadElementType.ButtonHome:
+                return gamepad.ButtonHome;
+            case GCExtendedGamepadElementType.ButtonMenu:
+                return gamepad.ButtonMenu;
+            case GCExtendedGamepadElementType.ButtonOptions:
+                return gamepad.ButtonOptions;
+            case GCExtendedGamepadElementType.LeftThumbstick:
+                return gamepad.LeftThumbstick;
+            case GCExtendedGamepadElementType.LeftThumbstickX:
+                return gamepad.LeftThumbstick.XAxis;
+            case GCExtendedGamepadElementType.LeftThumbstickY:
+                return gamepad.LeftThumbstick.YAxis;
+            case GCExtendedGamepadElementType.RightThumbstick:
+                return gamepad.RightThumbstick;
+            case GCExtendedGamepadElementType.RightThumbstickX:
+                return gamepad.RightThumbstick.XAxis;
+            case GCExtendedGamepadElementType.RightThumbstickY:
+                return gamepad.RightThumbstick.YAxis;
+
+            case GCExtendedGamepadElementType.TouchpadPrimary:
+            {
+                var dualShockGamepad = gamepad as GCDualShockGamepad;
+                return dualShockGamepad != null ? dualShockGamepad.TouchpadPrimary.XAxis : null;
+            }
+            case GCExtendedGamepadElementType.TouchpadPrimaryX:
+            {
+                var dualShockGamepad = gamepad as GCDualShockGamepad;
+                return dualShockGamepad != null ? dualShockGamepad.TouchpadPrimary.XAxis : null;
+            }
+            case GCExtendedGamepadElementType.TouchpadPrimaryY:
+            {
+                var dualShockGamepad = gamepad as GCDualShockGamepad;
+                return dualShockGamepad != null ? dualShockGamepad.TouchpadPrimary.YAxis : null;
+            }
+            case GCExtendedGamepadElementType.TouchpadSecondary:
+            {
+                var dualShockGamepad = gamepad as GCDualShockGamepad;
+                return dualShockGamepad != null ? dualShockGamepad.TouchpadSecondary : null;
+            }
+            case GCExtendedGamepadElementType.TouchpadSecondaryX:
+            {
+                var dualShockGamepad = gamepad as GCDualShockGamepad;
+                return dualShockGamepad != null ? dualShockGamepad.TouchpadSecondary.XAxis : null;
+            }
+            case GCExtendedGamepadElementType.TouchpadSecondaryY:
+            {
+                var dualShockGamepad = gamepad as GCDualShockGamepad;
+                return dualShockGamepad != null ? dualShockGamepad.TouchpadSecondary.YAxis : null;
+            }
+            case GCExtendedGamepadElementType.PaddleButton1:
+            {
+                var xBoxGamepad = gamepad as GCXboxGamepad;
+                return xBoxGamepad != null ? xBoxGamepad.PaddleButton1 : null;
+            }
+            case GCExtendedGamepadElementType.PaddleButton2:
+            {
+                var xBoxGamepad = gamepad as GCXboxGamepad;
+                return xBoxGamepad != null ? xBoxGamepad.PaddleButton2 : null;
+            }
+            case GCExtendedGamepadElementType.PaddleButton3:
+            {
+                var xBoxGamepad = gamepad as GCXboxGamepad;
+                return xBoxGamepad != null ? xBoxGamepad.PaddleButton3 : null;
+            }
+            case GCExtendedGamepadElementType.PaddleButton4:
+            {
+                var xBoxGamepad = gamepad as GCXboxGamepad;
+                return xBoxGamepad != null ? xBoxGamepad.PaddleButton4 : null;
+            }
+            case GCExtendedGamepadElementType.TouchpadButton:
+            {
+                var dualShockGamepad = gamepad as GCDualShockGamepad;
+                return dualShockGamepad != null ? dualShockGamepad.TouchpadButton : null;
+            }
+            default:
+                throw new ArgumentOutOfRangeException(nameof(elementType));
+        }
     }
 }

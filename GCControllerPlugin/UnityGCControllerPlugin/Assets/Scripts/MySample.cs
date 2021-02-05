@@ -14,13 +14,24 @@ public class MySample : MonoBehaviour
     public float symbolPointSize;
     public UIImageSymbolWeight symbolWeight;
     public bool loadFilledSymbolVariants;
+
+    // These define how we map the rewierd custom controller elements to the adapters
+    public RewiredToGCMicroGamepadElementMap MicroGamepadElementMap;
+    public RewiredToGCExtendedGamepadElementMap ExtendedGamepadElementMap;
+    
+    // This maps the GCController element name to a SFSymbol name for the fallback glyph helper
+    // which is used on iOS 13
+    public GCControllerElementToSFSymbolNameMap xBoxFallbackMap;
+    public GCControllerElementToSFSymbolNameMap dualShockFallbackMap;
+        
+    // Set this to true to test the fallback system on iOS 14
+    // I don't know about you, but I don't have any iOS 13 devices to test with
+    public bool ForceFallbackGlyphHelper;
     
     public ControllerElementToSpriteMap xboxFallbackGlyphs;
     public ControllerElementToSpriteMap ps4FallbackGlyphs;
     
     private GCController controller;
-    private GCPhysicalInputProfile profile;
-
     private SFSymbolSet _symbolSet;
     private IGlyphHelper _glyphHelper;
     
@@ -45,6 +56,9 @@ public class MySample : MonoBehaviour
         var isControllerAssigned = ReInput.controllers.IsControllerAssigned(ControllerType.Joystick, controller);
         Debug.Log($"is controller assigned? {(isControllerAssigned ? "YES" : "NO")}");
         
+        var isPS4Controller = CultureInfo.InvariantCulture.CompareInfo.IndexOf(controller.name, "dualshock",
+            CompareOptions.OrdinalIgnoreCase) >= 0;
+        
         // Determine which glyph helper were gonna use
         if (UIImage.SFSymbolsAreAvailable())
         {
@@ -64,11 +78,11 @@ public class MySample : MonoBehaviour
             
             if (extendedGamepad != null)
             {
-                adapter = new RewiredExtendedGamepadAdapter(appleController, 0);
+                adapter = new RewiredExtendedGamepadAdapter(appleController, 0, ExtendedGamepadElementMap);
             }
             else if (siriRemote != null)
             {
-                adapter = new RewiredSiriRemoteAdapter(appleController, 1);
+                adapter = new RewiredSiriRemoteAdapter(appleController, 1, MicroGamepadElementMap);
             }
             
             // Debug log the controller map, in case there is a misconfiguration
@@ -76,14 +90,33 @@ public class MySample : MonoBehaviour
             
             Debug.Log("SF Symbols are available - using default runtime glyphs from OS");
             player.controllers.AddController(adapter.VirtualController, true);
-            _glyphHelper = new AppleControllerGlyphHelper(adapter, _symbolSet);
+
+            // Input remapping and the code for getting the SFSymbol name from a GCController element
+            // wasn't added to iOS until version 14.0. So if were not iOS 14.0 yet, we won't be able
+            // to query the controller element for it's symbol at runtime. In that case, we have to
+            // use a fallback method
+            if (GCControllerElement.SupportsSFSymbols() == false || ForceFallbackGlyphHelper)
+            {
+                // Because we can't query the controller element for it's SFSymbol name in iOS 13
+                // we have to rely on a fallback map
+                // this also means we need two different fallback maps one for PS4 and one for XBox
+                
+                _glyphHelper = new AppleControllerFallbackGlyphHelper(
+                    adapter, 
+                    _symbolSet,
+                    isPS4Controller ? dualShockFallbackMap : xBoxFallbackMap);
+            }
+            else
+            {
+                _glyphHelper = new AppleControllerGlyphHelper(adapter, _symbolSet);
+            }
         }
+        
+        // iOS 13 - use a fallback system because SF Symbols 2 are not available
+        // This is here for demonstration purposes only, you'll want to handle this in your own way
         else
         {
             Debug.Log("SF Symbols are not available on the current system - using fallback glyph map");
-            
-            var isPS4Controller = CultureInfo.InvariantCulture.CompareInfo.IndexOf(controller.name, "dualshock",
-                                      CompareOptions.OrdinalIgnoreCase) >= 0;
 
             // If were using the fallback system, we need to know which of the supported extended gamepad
             // controllers were using in order to display the correct glyphs

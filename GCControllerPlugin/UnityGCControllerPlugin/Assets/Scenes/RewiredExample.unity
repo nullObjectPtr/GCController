@@ -715,6 +715,10 @@ MonoBehaviour:
   symbolPointSize: 150
   symbolWeight: 3
   loadFilledSymbolVariants: 1
+  MicroGamepadElementMap: {fileID: 11400000, guid: 8a6484536695a4282849970f1ad17515,
+    type: 2}
+  ExtendedGamepadElementMap: {fileID: 11400000, guid: 3c88075971b714562bbeca092071fb64,
+    type: 2}
   xboxFallbackGlyphs: {fileID: 11400000, guid: dc516d937e93942c986177939cbab992, type: 2}
   ps4FallbackGlyphs: {fileID: 11400000, guid: 904832f5d94da4c12addd5be9a783d47, type: 2}
 --- !u!4 &1494212475

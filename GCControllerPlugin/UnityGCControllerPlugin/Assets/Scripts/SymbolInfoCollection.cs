@@ -68,6 +68,7 @@ public class SymbolInfoCollection
 			new SFSymbolInfo("capsule", "capsule.fill"),
 			new SFSymbolInfo("capsule.portrait", "capsule.portrait.fill"),
 			new SFSymbolInfo("hand.draw", "hand.draw.fill"),
+			new SFSymbolInfo("plus.rectangle","plus.rectangle.fill"),
 		});
 	
 	public static readonly SymbolInfoCollection AllSymbols = new SymbolInfoCollection(
