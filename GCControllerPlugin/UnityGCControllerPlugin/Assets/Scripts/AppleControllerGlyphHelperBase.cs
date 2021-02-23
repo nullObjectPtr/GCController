@@ -9,15 +9,15 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
 {
     protected readonly IRewiredAppleControllerAdapter _adapter;
 
-    private readonly SFSymbolSet _glyphSet;
+    private readonly IGlyphProvider _glyphProvider;
     private readonly List<ActionElementMap> results = new List<ActionElementMap>();
     
     public AppleControllerGlyphHelperBase(
         IRewiredAppleControllerAdapter adapter,
-        SFSymbolSet glyphSet)
+        IGlyphProvider glyphProvider)
     {
         _adapter = adapter ?? throw new ArgumentNullException(nameof(adapter));
-        _glyphSet = glyphSet ?? throw new ArgumentNullException(nameof(glyphSet));
+        _glyphProvider = glyphProvider ?? throw new ArgumentNullException(nameof(glyphProvider));
     }
     
     public Sprite GetFirstGlyphForRewiredAction(Player player, string actionName, bool filled)
@@ -83,10 +83,7 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
 
         var maps = GetActionElementMap(player, action);
 
-        return maps.Select(aem =>
-        {
-            return GetSymbolForRewiredElementId(aem, _adapter, filled);
-        });
+        return maps.Select(aem => GetSymbolForRewiredElementId(aem, _adapter, filled));
     }
 
     private List<ActionElementMap> GetActionElementMap(Player player, InputAction action)
@@ -128,7 +125,7 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
         // Nothing bound to this - did someone change the controller definition?
         if (element == null)
         {
-            Debug.LogWarning("GCExtendedGamepad does not contain an element of type {type} mapped to id {id}");
+            Debug.LogWarning($"GCExtendedGamepad does not contain an element mapped to id {actionElementMap.elementIdentifierName}");
             return null;
         }
 
@@ -136,7 +133,7 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
         
         return string.IsNullOrEmpty(symbolName) 
             ? null 
-            : _glyphSet.getSprite(symbolName, filled);
+            : _glyphProvider.GetSprite(symbolName, filled);
     }
 
     // for a given controller element, return the sfsymbol name for it

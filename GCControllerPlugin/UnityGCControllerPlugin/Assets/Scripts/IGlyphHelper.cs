@@ -11,3 +11,8 @@ public interface IGlyphHelper
 
     IEnumerable<Sprite> GetAllGlyphsForRewiredAction(Player player, string actionName, bool filled);
 }
+
+public interface IGlyphProvider
+{
+    Sprite GetSprite(string name, bool filled);
+}

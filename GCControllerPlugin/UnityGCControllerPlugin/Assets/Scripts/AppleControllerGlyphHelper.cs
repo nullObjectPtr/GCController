@@ -5,8 +5,8 @@ public class AppleControllerGlyphHelper : AppleControllerGlyphHelperBase
 {
     public AppleControllerGlyphHelper(
         IRewiredAppleControllerAdapter adapter,
-        SFSymbolSet glyphSet) 
-        : base (adapter, glyphSet)
+        IGlyphProvider glyphProvider) 
+        : base (adapter, glyphProvider)
     {
     }
 

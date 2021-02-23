@@ -5,8 +5,8 @@ public class AppleControllerFallbackGlyphHelper : AppleControllerGlyphHelperBase
 {
     private GCControllerElementToSFSymbolNameMap _symbolNameMap;
     public AppleControllerFallbackGlyphHelper(
-        IRewiredAppleControllerAdapter adapter, SFSymbolSet glyphSet, GCControllerElementToSFSymbolNameMap fallbackMap)
-        : base(adapter, glyphSet)
+        IRewiredAppleControllerAdapter adapter, IGlyphProvider glyphProvider, GCControllerElementToSFSymbolNameMap fallbackMap)
+        : base(adapter, glyphProvider)
     {
         _symbolNameMap = fallbackMap;
     }

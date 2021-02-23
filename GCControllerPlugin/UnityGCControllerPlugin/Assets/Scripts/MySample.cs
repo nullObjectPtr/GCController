@@ -8,14 +8,22 @@ using Rewired;
 
 public class MySample : MonoBehaviour
 {
+    public enum EGlyphLoadMode
+    {
+        Precached,
+        OnDemand
+    };
+
+    public EGlyphLoadMode GlyphLoadMode;
     public UnityEngine.UI.Image anImage;
     public TMP_Text statusTextMesh;
 
     public float symbolPointSize;
     public UIImageSymbolWeight symbolWeight;
-    public bool loadFilledSymbolVariants;
+    public bool showFilled = true;
+    public CachedGlyphProvider.LoadFillOption LoadFillOption;
 
-    // These define how we map the rewierd custom controller elements to the adapters
+    // These define how we map the rewired custom controller elements to the adapters
     public RewiredToGCMicroGamepadElementMap MicroGamepadElementMap;
     public RewiredToGCExtendedGamepadElementMap ExtendedGamepadElementMap;
     
@@ -32,16 +40,26 @@ public class MySample : MonoBehaviour
     public ControllerElementToSpriteMap ps4FallbackGlyphs;
     
     private GCController controller;
-    private SFSymbolSet _symbolSet;
+    private IGlyphProvider _glyphProvider;
     private IGlyphHelper _glyphHelper;
     
     void Awake()
     {
-        // Load symbols early - it's an expensive process
-        _symbolSet = new SFSymbolSet();
-        _symbolSet = new SFSymbolSet(symbolPointSize, symbolWeight);
-        _symbolSet.LoadAllControllerGlyphs(loadFilledSymbolVariants);
-        
+        statusTextMesh.text = "waiting for controller...";
+
+        if (GlyphLoadMode == EGlyphLoadMode.Precached)
+        {
+            // Load symbols early - it's an expensive process
+            var symbolSet = new CachedGlyphProvider(symbolPointSize, symbolWeight);
+            symbolSet.LoadAllControllerGlyphs(LoadFillOption);
+            _glyphProvider = symbolSet;
+        }
+        else
+        {
+            var onDemandProvider = new OnDemandGlyphProvider(symbolPointSize, symbolWeight);
+            _glyphProvider = onDemandProvider;
+        }
+
         ReInput.ControllerConnectedEvent += OnControllerConnected;
     }
 
@@ -103,12 +121,12 @@ public class MySample : MonoBehaviour
                 
                 _glyphHelper = new AppleControllerFallbackGlyphHelper(
                     adapter, 
-                    _symbolSet,
+                    _glyphProvider,
                     isPS4Controller ? dualShockFallbackMap : xBoxFallbackMap);
             }
             else
             {
-                _glyphHelper = new AppleControllerGlyphHelper(adapter, _symbolSet);
+                _glyphHelper = new AppleControllerGlyphHelper(adapter, _glyphProvider);
             }
         }
         
@@ -159,7 +177,8 @@ public class MySample : MonoBehaviour
             .GetAllGlyphsForRewiredAction(
                 inputActionEventData.player, 
                 inputActionEventData.actionId, 
-                true)
+                showFilled)
+            .Where( g => g != null )
             .ToList();
         
         // We're going to pick one at random for the moment

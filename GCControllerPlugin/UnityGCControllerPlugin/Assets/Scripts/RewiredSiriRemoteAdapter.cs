@@ -22,7 +22,7 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
     {
         _microGamepad = controller.MicroGamepad;
         
-        Debug.Log("attaching value changed handler");
+        ElementConverterMap = elementConverterMap;
         
         _microGamepad.ValueChangedHandler = OnValueChanged;
     }
