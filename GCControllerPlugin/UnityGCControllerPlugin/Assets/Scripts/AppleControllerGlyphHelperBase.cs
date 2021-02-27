@@ -91,9 +91,7 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
         // Why isn't this working with the x-box elite controller?
         var count = player.controllers.maps.GetElementMapsWithAction(
             ControllerType.Custom, action.id, true, results);
-
-        // var count = player.controllers.maps.GetElementMapsWithAction(action.id, true, results);
-
+        
         foreach (var mpe in results)
         {
             var controller = mpe.controllerMap.controller;

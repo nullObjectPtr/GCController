@@ -6,4 +6,8 @@
     DPad,
     DPadX,
     DPadY,
+    DPadLeft,
+    DPadRight,
+    DPadUp,
+    DPadDown,
 }

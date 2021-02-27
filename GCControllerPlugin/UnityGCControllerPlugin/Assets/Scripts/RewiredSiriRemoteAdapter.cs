@@ -29,7 +29,6 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
 
     private void OnValueChanged(GCMicroGamepad arg1, GCControllerElement arg2)
     {
-        Debug.Log("OnValueChanged");
         var elem = arg2;
         var parentElem = arg2.Collection;
 
@@ -45,11 +44,21 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
             HandleButtonValueChanged(btnElement);
         }
 
-        if (padElement != null && padElement == _microGamepad.Dpad)
+        if (padElement == null)
         {
-            HandleAxisValueChanged(padElement.XAxis);
-            HandleAxisValueChanged(padElement.YAxis);;
+            return; 
         }
+
+        if (padElement != _microGamepad.Dpad) return;
+        
+        HandleAxisValueChanged(padElement.XAxis);
+        HandleAxisValueChanged(padElement.YAxis);
+
+        // Modify this if you need to treat the touchpad like an digital DPad
+        // HandleButtonValueChanged(_microGamepad.Dpad.Left);
+        // HandleButtonValueChanged(_microGamepad.Dpad.Right);
+        // HandleButtonValueChanged(_microGamepad.Dpad.Up);
+        // HandleButtonValueChanged(_microGamepad.Dpad.Down);
     }
 
     public override GCControllerElement GetGCElementForRewiredElementName(string rewiredElementName)
@@ -79,6 +88,14 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
                 return _microGamepad.Dpad.XAxis;
             case GCMicroGamepadElementType.DPadY:
                 return _microGamepad.Dpad.YAxis;
+            case GCMicroGamepadElementType.DPadLeft:
+                return _microGamepad.Dpad.Left;
+            case GCMicroGamepadElementType.DPadRight:
+                return _microGamepad.Dpad.Right;
+            case GCMicroGamepadElementType.DPadUp:
+                return _microGamepad.Dpad.Up;
+            case GCMicroGamepadElementType.DPadDown:
+                return _microGamepad.Dpad.Down;
             default:
                 throw new InvalidEnumArgumentException(nameof(elementType));
         }
@@ -87,17 +104,20 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
     private void HandleButtonValueChanged(GCControllerButtonInput buttonInput)
     {
         var elementType = GetElementType(buttonInput);
+        
         var record = ElementConverterMap.Records
             .FirstOrDefault( r => r.microGamepadElementType == elementType);
         
         if(record == null)
             throw new Exception($"could not find an element map entry for controller element: {buttonInput.LocalizedName}");
-        
+
         // hrm - apple buttons are also PRESSURE sensitive
         // var value = buttonInput.Value; 
         // is a float between 0 and 1 
         // Interesting...
         var pressed = buttonInput.Pressed;
+        
+        Debug.Log($"SetButtonValue {elementType}/{record.RewiredElementName} pressed:{pressed}");
         VirtualController.SetButtonValue(record.RewiredElementName, pressed);
         OnButtonValueChanged?.Invoke(buttonInput, pressed);
     }
@@ -105,6 +125,7 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
     private void HandleAxisValueChanged(GCControllerAxisInput axisInput)
     {
         var elementType = GetElementType(axisInput);
+        
         var record = ElementConverterMap.Records
             .FirstOrDefault( r => r.microGamepadElementType == elementType);
         
@@ -115,6 +136,7 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
         // var value = buttonInput.Value; 
         // is a float between 0 and 1 
         // Interesting...
+        
         var value = axisInput.Value;
         VirtualController.SetAxisValue(record.RewiredElementName, value);
         OnAxisValueChanged?.Invoke(axisInput, value);
@@ -139,10 +161,18 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
             return GCMicroGamepadElementType.ButtonMenu;
         if (element == _microGamepad.Dpad)
             return GCMicroGamepadElementType.DPad;
-        if (element == _microGamepad.Dpad.Left)
+        if (element == _microGamepad.Dpad.XAxis)
             return GCMicroGamepadElementType.DPadX;
-        if (element == _microGamepad.Dpad.Right)
+        if (element == _microGamepad.Dpad.YAxis)
             return GCMicroGamepadElementType.DPadY;
+        if (element == _microGamepad.Dpad.Left)
+            return GCMicroGamepadElementType.DPadLeft;
+        if (element == _microGamepad.Dpad.Right)
+            return GCMicroGamepadElementType.DPadRight;
+        if (element == _microGamepad.Dpad.Up)
+            return GCMicroGamepadElementType.DPadUp;
+        if (element == _microGamepad.Dpad.Down)
+            return GCMicroGamepadElementType.DPadDown;
         
         throw new ArgumentException($"unhandled element: {element}");
     }

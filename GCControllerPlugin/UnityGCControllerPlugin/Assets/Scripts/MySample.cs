@@ -87,10 +87,10 @@ public class MySample : MonoBehaviour
             // Use the extended gamepad property to skip past physicalInputProfile
             // which was only added in macOS 11.0+
             var extendedGamepad = appleController.ExtendedGamepad;
-            var siriRemote = appleController.MicroGamepad;
-
-            Debug.Log("extended gamepad: " + extendedGamepad);
-            Debug.Log("siriRemote: " + siriRemote);
+            var microGamepad = appleController.MicroGamepad;
+            
+            Debug.Log($"extended gamepad {(extendedGamepad != null ? "YES" : "NO")}");
+            Debug.Log($"micro gamepad {(microGamepad != null ? "YES" : "NO")}");
             
             IRewiredAppleControllerAdapter adapter = null;
             
@@ -98,8 +98,9 @@ public class MySample : MonoBehaviour
             {
                 adapter = new RewiredExtendedGamepadAdapter(appleController, 0, ExtendedGamepadElementMap);
             }
-            else if (siriRemote != null)
+            else if (microGamepad != null)
             {
+                UnityEngine.tvOS.Remote.allowExitToHome = false;
                 adapter = new RewiredSiriRemoteAdapter(appleController, 1, MicroGamepadElementMap);
             }
             
