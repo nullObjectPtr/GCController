@@ -14,6 +14,9 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
     
     private readonly RewiredToGCMicroGamepadElementMap ElementConverterMap;
 
+    private bool MenuButtonWasPressedThisUpdate;
+    private bool MenuButtonIsPressed;
+
     public RewiredSiriRemoteAdapter(
         GCController controller, 
         int profileId, 
@@ -24,24 +27,72 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
         
         ElementConverterMap = elementConverterMap;
         
+        // Special case handling for the menu button
+        // Which is reporting incorrect values in the OnValueChanged handler
+        // when you set allowExitToHome to false in unity
+        _microGamepad.ButtonMenu.PressedChangedHandler = OnMenuButtonPressed;
         _microGamepad.ValueChangedHandler = OnValueChanged;
+
+        ReInput.InputSourceUpdateEvent += OnInputSourceUpdated;
     }
 
+    private void OnInputSourceUpdated()
+    {
+        UpdateButton(GCMicroGamepadElementType.ButtonA);
+        UpdateButton(GCMicroGamepadElementType.ButtonX);
+        UpdateButton(GCMicroGamepadElementType.DPadLeft);
+        UpdateButton(GCMicroGamepadElementType.DPadRight);
+        UpdateButton(GCMicroGamepadElementType.DPadUp);
+        UpdateButton(GCMicroGamepadElementType.DPadDown);
+        
+        // Special handling for the menuButton
+        var record =
+            ElementConverterMap.Records.FirstOrDefault(r => r.microGamepadElementType == GCMicroGamepadElementType.ButtonMenu);
+
+        if (record == null) { return; }
+        VirtualController.SetButtonValue(record.RewiredElementName, MenuButtonWasPressedThisUpdate || MenuButtonIsPressed);
+        MenuButtonWasPressedThisUpdate = false;
+    }
+
+    private void UpdateButton(GCMicroGamepadElementType elementType)
+    {
+        var record =
+            ElementConverterMap.Records.FirstOrDefault(r => r.microGamepadElementType == elementType);
+        
+        // If the rewired element isn't in the map, then the rewired virtual controller does not process this
+        // element and we can skip it
+        if (record == null) { return; }
+
+        var element = (GCControllerButtonInput) GetGCElement(elementType);
+        VirtualController.SetButtonValue(record.RewiredElementName, element.Pressed);
+    }
+
+    private void OnMenuButtonPressed(GCControllerButtonInput arg1, float buttonValue, bool buttonPressed)
+    {
+        var buttonInput = _microGamepad.ButtonMenu;
+
+        Debug.Log($"On Menu Button Pressed: {buttonPressed}");
+        
+        // We may get pressed/not-pressed events from iOS in a single update, so we have to check if the button
+        // was down at any-point in a single input update
+        MenuButtonWasPressedThisUpdate |= buttonPressed;
+        MenuButtonIsPressed = buttonPressed;
+        
+        OnButtonValueChanged?.Invoke(buttonInput, buttonPressed);
+    }
+    
     private void OnValueChanged(GCMicroGamepad arg1, GCControllerElement arg2)
     {
         var elem = arg2;
-        var parentElem = arg2.Collection;
-
-        Debug.Log($"element symbols: {elem.SfSymbolsName}:{elem.UnmappedSfSymbolsName}");
-        if (parentElem != null)
-            Debug.Log($"parent element symbols {parentElem.SfSymbolsName}:{parentElem.UnmappedSfSymbolsName}");
 
         var btnElement = arg2 as GCControllerButtonInput;
         var padElement = arg2 as GCControllerDirectionPad;
 
-        if (btnElement != null)
+        // Special Case Handling for the menu button is handled by OnMenuButtonPressed
+        // The menu buttons pressed value is overwritten by unity when allowExitToHome == false
+        if (btnElement != null && btnElement != _microGamepad.ButtonMenu)
         {
-            HandleButtonValueChanged(btnElement);
+            OnButtonValueChanged?.Invoke(btnElement, btnElement.Pressed);
         }
 
         if (padElement == null)
@@ -53,12 +104,6 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
         
         HandleAxisValueChanged(padElement.XAxis);
         HandleAxisValueChanged(padElement.YAxis);
-
-        // Modify this if you need to treat the touchpad like an digital DPad
-        // HandleButtonValueChanged(_microGamepad.Dpad.Left);
-        // HandleButtonValueChanged(_microGamepad.Dpad.Right);
-        // HandleButtonValueChanged(_microGamepad.Dpad.Up);
-        // HandleButtonValueChanged(_microGamepad.Dpad.Down);
     }
 
     public override GCControllerElement GetGCElementForRewiredElementName(string rewiredElementName)
@@ -99,27 +144,6 @@ public class RewiredSiriRemoteAdapter : AbstractRewiredAdapter
             default:
                 throw new InvalidEnumArgumentException(nameof(elementType));
         }
-    }
-
-    private void HandleButtonValueChanged(GCControllerButtonInput buttonInput)
-    {
-        var elementType = GetElementType(buttonInput);
-        
-        var record = ElementConverterMap.Records
-            .FirstOrDefault( r => r.microGamepadElementType == elementType);
-        
-        if(record == null)
-            throw new Exception($"could not find an element map entry for controller element: {buttonInput.LocalizedName}");
-
-        // hrm - apple buttons are also PRESSURE sensitive
-        // var value = buttonInput.Value; 
-        // is a float between 0 and 1 
-        // Interesting...
-        var pressed = buttonInput.Pressed;
-        
-        Debug.Log($"SetButtonValue {elementType}/{record.RewiredElementName} pressed:{pressed}");
-        VirtualController.SetButtonValue(record.RewiredElementName, pressed);
-        OnButtonValueChanged?.Invoke(buttonInput, pressed);
     }
 
     private void HandleAxisValueChanged(GCControllerAxisInput axisInput)
