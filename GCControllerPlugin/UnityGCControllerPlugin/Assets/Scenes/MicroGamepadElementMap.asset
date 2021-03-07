@@ -23,3 +23,11 @@ MonoBehaviour:
     microGamepadElementType: 4
   - RewiredElementName: DPad Vertical
     microGamepadElementType: 5
+  - RewiredElementName: DPad Left
+    microGamepadElementType: 6
+  - RewiredElementName: DPad Right
+    microGamepadElementType: 7
+  - RewiredElementName: DPad Up
+    microGamepadElementType: 8
+  - RewiredElementName: DPad Down
+    microGamepadElementType: 9

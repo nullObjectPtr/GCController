@@ -715,6 +715,7 @@ MonoBehaviour:
   statusTextMesh: {fileID: 1719348127}
   symbolPointSize: 150
   symbolWeight: 3
+  showFilled: 1
   LoadFillOption: 1
   MicroGamepadElementMap: {fileID: 11400000, guid: 8a6484536695a4282849970f1ad17515,
     type: 2}
@@ -1768,6 +1769,112 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+    - id: 1
+      categoryId: 0
+      layoutId: 0
+      name: 
+      hardwareGuidString: 
+      customControllerUid: 1
+      actionElementMaps:
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 1
+        _elementIdentifierId: 1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: 2
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 4
+        _elementType: 1
+        _elementIdentifierId: 3
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 13
+        _elementType: 1
+        _elementIdentifierId: 5
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 14
+        _elementType: 1
+        _elementIdentifierId: 6
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 18
+        _elementType: 1
+        _elementIdentifierId: 7
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 19
+        _elementType: 1
+        _elementIdentifierId: 8
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 5
+        _elementType: 0
+        _elementIdentifierId: 0
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 6
+        _elementType: 0
+        _elementIdentifierId: 4
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     customControllers:
     - _name: GCExtendedGamepad
       _descriptiveName: GCExtendedGamepad
@@ -2327,7 +2434,7 @@ MonoBehaviour:
       _typeGuidString: 011eb184-678e-491d-b54d-31ecaa9b90e8
       _elementIdentifiers:
       - _id: 0
-        _name: DPad Horizonal
+        _name: DPad Horizontal
         _positiveName: 
         _negativeName: 
         _elementType: 0
@@ -2356,9 +2463,33 @@ MonoBehaviour:
         _negativeName: 
         _elementType: 0
         _compoundElementType: 0
+      - _id: 5
+        _name: DPad Left
+        _positiveName: 
+        _negativeName: 
+        _elementType: 1
+        _compoundElementType: 0
+      - _id: 6
+        _name: DPad Right
+        _positiveName: 
+        _negativeName: 
+        _elementType: 1
+        _compoundElementType: 0
+      - _id: 7
+        _name: DPad Up
+        _positiveName: 
+        _negativeName: 
+        _elementType: 1
+        _compoundElementType: 0
+      - _id: 8
+        _name: DPad Down
+        _positiveName: 
+        _negativeName: 
+        _elementType: 1
+        _compoundElementType: 0
       _axes:
       - elementIdentifierId: 0
-        name: DPad Horizonal
+        name: DPad Horizontal
         range: 0
         invert: 0
         deadZone: 0
@@ -2444,7 +2575,15 @@ MonoBehaviour:
         name: Button X
       - elementIdentifierId: 3
         name: Button Menu
-      _elementIdentifierIdCounter: 5
+      - elementIdentifierId: 5
+        name: DPad Left
+      - elementIdentifierId: 6
+        name: DPad Right
+      - elementIdentifierId: 7
+        name: DPad Up
+      - elementIdentifierId: 8
+        name: DPad Down
+      _elementIdentifierIdCounter: 9
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 2
@@ -2459,7 +2598,7 @@ MonoBehaviour:
     joystickMapIdCounter: 4
     keyboardMapIdCounter: 0
     mouseMapIdCounter: 0
-    customControllerMapIdCounter: 1
+    customControllerMapIdCounter: 2
     customControllerIdCounter: 2
     controllerMapLayoutManagerSetIdCounter: 0
     controllerMapEnablerSetIdCounter: 0
