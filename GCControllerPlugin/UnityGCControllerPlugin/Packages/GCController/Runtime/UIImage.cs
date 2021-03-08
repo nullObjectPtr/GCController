@@ -57,20 +57,24 @@ namespace HovelHouse.GameController
         
         
         [DllImport(dll)]
-        private static extern void UIImage_PNGRepresentation(
+        private static extern IntPtr UIImage_PNGRepresentation_GetData(
             IntPtr image,
-            out IntPtr buffer,
             out long bufferLen,
             out IntPtr exceptionPtr);
 
 
         [DllImport(dll)]
-        private static extern void UIImage_JPEGRepresentation(
+        private static extern IntPtr UIImage_JPEGRepresentation_GetData(
             IntPtr image,
             float compressionQuality,
-            out IntPtr buffer,
             out long bufferLen,
             out IntPtr exceptionPtr);
+
+        [DllImport(dll)]
+        private static extern void UIImage_CopyBufferAndReleaseData(
+            IntPtr nsDataPtr,
+            byte[] buffer
+            );
         
         [DllImport(dll)]
         private static extern bool UIImage_SFSymbolsAreAvailable();
@@ -162,21 +166,21 @@ namespace HovelHouse.GameController
             UIImage image)
         { 
             
-            UIImage_PNGRepresentation(
+            var dataPtr = UIImage_PNGRepresentation_GetData(
                 image != null ? HandleRef.ToIntPtr(image.Handle) : IntPtr.Zero,
-                out var buffer,
                 out var bufferLen,
                 out var exceptionPtr);
-
-            var bytes = new byte[bufferLen];
-            Marshal.Copy(buffer, bytes, 0, (int)bufferLen);
             
             if(exceptionPtr != IntPtr.Zero)
             {
                 var nativeException = new NSException(exceptionPtr);
                 throw new GameControllerException(nativeException, nativeException.Reason);
             }
-            
+
+            var bytes = new byte[bufferLen];
+
+            UIImage_CopyBufferAndReleaseData(dataPtr, bytes);
+
             return bytes;
         }
         
@@ -190,22 +194,22 @@ namespace HovelHouse.GameController
             UIImage image,
             float compressionQuality)
         { 
-            UIImage_JPEGRepresentation(
+            var nsDataPtr = UIImage_JPEGRepresentation_GetData(
                 image != null ? HandleRef.ToIntPtr(image.Handle) : IntPtr.Zero,
                 compressionQuality,
-                out var buffer,
                 out var bufferLen,
                 out var exceptionPtr);
-
-            var bytes = new byte[bufferLen];
-            Marshal.Copy(buffer, bytes, 0, (int)bufferLen);
-
+            
             if(exceptionPtr != IntPtr.Zero)
             {
                 var nativeException = new NSException(exceptionPtr);
                 throw new GameControllerException(nativeException, nativeException.Reason);
             }
+
+            var bytes = new byte[bufferLen];
             
+            UIImage_CopyBufferAndReleaseData(nsDataPtr, bytes);
+
             return bytes;
         }
 
