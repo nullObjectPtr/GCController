@@ -119,13 +119,13 @@ void* GCController_GetPropPhysicalInputProfile(const void* ptr, long* const type
             {
                 *typeToken = 2;
             }
-            else if([val isKindOfClass:[GCMicroGamepad class]])
-            {
-                *typeToken = 3;
-            }
             else if([val isKindOfClass:[GCExtendedGamepad class]])
             {
                 *typeToken = 4;
+            }
+            else if([val isKindOfClass:[GCMicroGamepad class]])
+            {
+                *typeToken = 3;
             }
             // Default case - unspecified profile
             else

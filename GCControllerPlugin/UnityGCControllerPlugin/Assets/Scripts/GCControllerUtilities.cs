@@ -70,7 +70,7 @@ public class OnDemandGlyphProvider : IGlyphProvider
             return null;
         }
             
-        Debug.Log($"loaded image for id: {name}");
+        //Debug.Log($"loaded image for id: {name}");
 
         var texture = new Texture2D(1, 1);
         texture.LoadImage(UIImage.PNGRepresentation(image));
