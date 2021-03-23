@@ -11,6 +11,7 @@
 #import "GCControllerConverters.h"
 
 
+
 extern "C" {
 
 //ClassMethods
@@ -21,13 +22,16 @@ extern "C" {
 
 
 void GCDeviceCursor_Dispose(void* ptr)
-{
-    GCDeviceCursor* val = (__bridge GCDeviceCursor*) ptr;
-    if(val != nil)
-    {
-        CFRelease(ptr);
-    }
-    NSLog(@"Dispose...GCDeviceCursor");
+{ 
+    if(@available(macOS 11.0, tvOS 14.0, iOS 14.0, * ))
+    { 
+        GCDeviceCursor* val = (__bridge GCDeviceCursor*) ptr;
+        if(val != nil)
+        {
+            CFRelease(ptr);
+        }
+        //NSLog(@"Dispose...GCDeviceCursor");
+    } 
 }
 
 }

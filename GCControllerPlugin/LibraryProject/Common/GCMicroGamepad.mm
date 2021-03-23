@@ -148,6 +148,9 @@ void* GCMicroGamepad_GetPropButtonX(const void* ptr, const void** exceptionPtr)
 
 void* GCMicroGamepad_GetPropButtonMenu(const void* ptr, const void** exceptionPtr)
 {
+
+    if(@available(macOS 11.0, tvOS 14.0, iOS 14.0, * ))
+    { 
     @try
     {
         GCMicroGamepad* iGCMicroGamepad = (__bridge GCMicroGamepad*) ptr;
@@ -158,7 +161,7 @@ void* GCMicroGamepad_GetPropButtonMenu(const void* ptr, const void** exceptionPt
     {
         *exceptionPtr = (__bridge_retained void*) ex;
     }
-    
+    } 
     return nil;
 }
 
@@ -180,17 +183,21 @@ void GCMicroGamepad_SetPropValueChangedHandler(const void* ptr, GCMicroGamepadVa
                 {
                     elementClassType = 2;
                 }
-                else if([element isKindOfClass:[GCDeviceCursor class]])
-                {
-                    elementClassType = 3;
-                }
                 else if([element isKindOfClass:[GCControllerDirectionPad class]])
                 {
                     elementClassType = 4;
                 }
-                else if([element isKindOfClass:[GCControllerTouchpad class]])
+            
+                if(@available(iOS 14, macOS 11, tvOS 14, *))
                 {
-                    elementClassType = 5;
+                    if([element isKindOfClass:[GCDeviceCursor class]])
+                    {
+                        elementClassType = 3;
+                    }
+                    else if([element isKindOfClass:[GCControllerTouchpad class]])
+                    {
+                        elementClassType = 5;
+                    }
                 }
             
 				valueChangedHandler(ptr, (__bridge_retained void*) gamepad, (__bridge_retained void*) element, elementClassType);

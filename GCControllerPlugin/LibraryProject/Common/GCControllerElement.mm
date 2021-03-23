@@ -14,6 +14,11 @@
 extern "C" {
 
 //ClassMethods
+bool GCControllerElement_SupportsSFSymbols()
+{
+    return [[GCControllerElement class] instancesRespondToSelector:@selector(sfSymbolsName)];
+}
+
 //InitMethods
 //InstanceMethods
 //VoidMethods

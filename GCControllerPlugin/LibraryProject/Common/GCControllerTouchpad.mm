@@ -22,12 +22,15 @@ extern "C" {
 
 void GCControllerTouchpad_Dispose(void* ptr)
 {
-    GCControllerTouchpad* val = (__bridge GCControllerTouchpad*) ptr;
-    if(val != nil)
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        CFRelease(ptr);
+        GCControllerTouchpad* val = (__bridge GCControllerTouchpad*) ptr;
+        if(val != nil)
+        {
+            CFRelease(ptr);
+        }
+        //NSLog(@"Dispose...GCControllerTouchpad");
     }
-    NSLog(@"Dispose...GCControllerTouchpad");
 }
 
 }

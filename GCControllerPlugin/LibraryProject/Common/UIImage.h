@@ -32,19 +32,22 @@ extern "C" void* UIImage_systemImageNamed_withConfiguration(
     );
 #endif
 
-extern "C" void UIImage_PNGRepresentation(
+extern "C" void* UIImage_PNGRepresentation_GetData(
     const void* image,
-    const void** buffer,
     long* const bufferLen,
     void** exception
     );
 
-extern "C" void UIImage_JPEGRepresentation(
-	void* image,
+extern "C" void* UIImage_JPEGRepresentation_GetData(
+	const void* image,
     float compressionQuality,
-    const void** buffer,
     long* const bufferLen,
     void** exception
+    );
+
+extern "C" void UIImage_CopyBufferAndReleaseData(
+    const void* data,
+    Byte* buffer
     );
 
 extern "C" bool UIImage_SFSymbolsAreAvailable();

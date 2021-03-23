@@ -37,15 +37,18 @@ void* GCController_controllerWithExtendedGamepad(
 	void** exception
     )
 {
-	@try {
-		NSLog(@"GCController_controllerWithExtendedGamepad()");
-	    GCController* val = [GCController controllerWithExtendedGamepad];
-		return (__bridge_retained void*) val;
-	}
-	@catch(NSException* ex)
-	{
-		*exception = (__bridge_retained void*) ex;
-	}
+    if(@available(macOS 10.15, iOS 13, tvOS 13, *))
+    {
+        @try {
+            NSLog(@"GCController_controllerWithExtendedGamepad()");
+            GCController* val = [GCController controllerWithExtendedGamepad];
+            return (__bridge_retained void*) val;
+        }
+        @catch(NSException* ex)
+        {
+            *exception = (__bridge_retained void*) ex;
+        }
+    }
 
 	return nil;
 }
@@ -56,15 +59,18 @@ void* GCController_controllerWithMicroGamepad(
 	void** exception
     )
 {
-	@try {
-		NSLog(@"GCController_controllerWithMicroGamepad()");
-	    GCController* val = [GCController controllerWithMicroGamepad];
-		return (__bridge_retained void*) val;
-	}
-	@catch(NSException* ex)
-	{
-		*exception = (__bridge_retained void*) ex;
-	}
+    if(@available(macOS 10.15, iOS 13, tvOS 13, *))
+    {
+        @try {
+            NSLog(@"GCController_controllerWithMicroGamepad()");
+            GCController* val = [GCController controllerWithMicroGamepad];
+            return (__bridge_retained void*) val;
+        }
+        @catch(NSException* ex)
+        {
+            *exception = (__bridge_retained void*) ex;
+        }
+    }
 
 	return nil;
 }
@@ -78,15 +84,18 @@ void* GCController_capture(
     void** exception
     )
 {
-    @try
+    if(@available(macOS 10.15, iOS 13, tvOS 13, *))
     {
-        GCController* iGCController = (__bridge GCController*) ptr;
-        GCController* val = [iGCController capture];
-        return (__bridge_retained void*) val;
-    }
-    @catch(NSException* ex)
-    {
-        *exception = (__bridge_retained void*) ex;
+        @try
+        {
+            GCController* iGCController = (__bridge GCController*) ptr;
+            GCController* val = [iGCController capture];
+            return (__bridge_retained void*) val;
+        }
+        @catch(NSException* ex)
+        {
+            *exception = (__bridge_retained void*) ex;
+        }
     }
     return nil;
 }
@@ -95,38 +104,41 @@ void* GCController_capture(
 //Properties
 void* GCController_GetPropPhysicalInputProfile(const void* ptr, long* const typeToken, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 11, iOS 14, tvOS 14,*))
     {
-        GCController* iGCController = (__bridge GCController*) ptr;
-        id val = [iGCController physicalInputProfile];
-        
-        if([val isKindOfClass:[GCDualShockGamepad class]])
+        @try
         {
-            *typeToken = 1;
+            GCController* iGCController = (__bridge GCController*) ptr;
+            id val = [iGCController physicalInputProfile];
+            
+            if([val isKindOfClass:[GCDualShockGamepad class]])
+            {
+                *typeToken = 1;
+            }
+            else if([val isKindOfClass:[GCXboxGamepad class]])
+            {
+                *typeToken = 2;
+            }
+            else if([val isKindOfClass:[GCMicroGamepad class]])
+            {
+                *typeToken = 3;
+            }
+            else if([val isKindOfClass:[GCExtendedGamepad class]])
+            {
+                *typeToken = 4;
+            }
+            // Default case - unspecified profile
+            else
+            {
+                *typeToken = 0;
+            }
+            
+            return (__bridge_retained void*) val;
         }
-        else if([val isKindOfClass:[GCXboxGamepad class]])
+        @catch(NSException* ex)
         {
-            *typeToken = 2;
+            *exceptionPtr = (__bridge_retained void*) ex;
         }
-        else if([val isKindOfClass:[GCMicroGamepad class]])
-        {
-            *typeToken = 3;
-        }
-        else if([val isKindOfClass:[GCExtendedGamepad class]])
-        {
-            *typeToken = 4;
-        }
-        // Default case - unspecified profile
-        else
-        {
-            *typeToken = 0;
-        }
-        
-        return (__bridge_retained void*) val;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
     }
     
     return nil;
@@ -152,15 +164,18 @@ bool GCController_GetPropAttachedToDevice(const void* ptr, const void** exceptio
 
 bool GCController_GetPropSnapshot(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.15, iOS 13, tvOS 13, *))
     {
-        GCController* iGCController = (__bridge GCController*) ptr;
-        BOOL snapshot = [iGCController isSnapshot];
-        return snapshot;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCController* iGCController = (__bridge GCController*) ptr;
+            BOOL snapshot = [iGCController isSnapshot];
+            return snapshot;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return NO;
@@ -174,17 +189,23 @@ void* GCController_GetPropExtendedGamepad(const void* ptr, long* const typeToken
         GCController* iGCController = (__bridge GCController*) ptr;
         id extendedGamepad = [iGCController extendedGamepad];
         
-        if([extendedGamepad isKindOfClass:[GCDualShockGamepad class]])
+        if(@available(iOS 14, macOS 11, tvOS 14, *))
         {
-            *typeToken = 1;
+            if([extendedGamepad isKindOfClass:[GCDualShockGamepad class]])
+            {
+                *typeToken = 1;
+            }
+            else if([extendedGamepad isKindOfClass:[GCXboxGamepad class]])
+            {
+                *typeToken = 2;
+            }
         }
-        else if([extendedGamepad isKindOfClass:[GCXboxGamepad class]])
+        else
         {
-            *typeToken = 2;
-        }
-        else if([extendedGamepad isKindOfClass:[GCExtendedGamepad class]])
-        {
-            *typeToken = 4;
+            if([extendedGamepad isKindOfClass:[GCExtendedGamepad class]])
+            {
+                *typeToken = 4;
+            }
         }
         
         return (__bridge void*) extendedGamepad;
@@ -217,15 +238,18 @@ void* GCController_GetPropMicroGamepad(const void* ptr, const void** exceptionPt
 
 const char* GCController_GetPropProductCategory(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(iOS 13, macOS 10.15, tvOS 13, *))
     {
-        GCController* iGCController = (__bridge GCController*) ptr;
-        NSString* productCategory = [iGCController productCategory];
-        return [productCategory UTF8String];
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCController* iGCController = (__bridge GCController*) ptr;
+            NSString* productCategory = [iGCController productCategory];
+            return [productCategory UTF8String];
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -251,20 +275,21 @@ const char* GCController_GetPropVendorName(const void* ptr, const void** excepti
 
 void* GCController_GetPropCurrent(const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        GCController* current = [GCController current];
-        return (__bridge void*) current;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCController* current = [GCController current];
+            return (__bridge void*) current;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
 }
-
-
 
 
 void GCController_Dispose(void* ptr)

@@ -20,15 +20,18 @@ extern "C" {
 //Properties
 void* GCDualShockGamepad_GetPropTouchpadButton(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        GCDualShockGamepad* iGCDualShockGamepad = (__bridge GCDualShockGamepad*) ptr;
-        GCControllerButtonInput* touchpadButton = [iGCDualShockGamepad touchpadButton];
-        return (__bridge void*) touchpadButton;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCDualShockGamepad* iGCDualShockGamepad = (__bridge GCDualShockGamepad*) ptr;
+            GCControllerButtonInput* touchpadButton = [iGCDualShockGamepad touchpadButton];
+            return (__bridge void*) touchpadButton;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -37,15 +40,18 @@ void* GCDualShockGamepad_GetPropTouchpadButton(const void* ptr, const void** exc
 
 void* GCDualShockGamepad_GetPropTouchpadPrimary(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        GCDualShockGamepad* iGCDualShockGamepad = (__bridge GCDualShockGamepad*) ptr;
-        GCControllerDirectionPad* touchpadPrimary = [iGCDualShockGamepad touchpadPrimary];
-        return (__bridge void*) touchpadPrimary;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCDualShockGamepad* iGCDualShockGamepad = (__bridge GCDualShockGamepad*) ptr;
+            GCControllerDirectionPad* touchpadPrimary = [iGCDualShockGamepad touchpadPrimary];
+            return (__bridge void*) touchpadPrimary;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -54,15 +60,18 @@ void* GCDualShockGamepad_GetPropTouchpadPrimary(const void* ptr, const void** ex
 
 void* GCDualShockGamepad_GetPropTouchpadSecondary(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        GCDualShockGamepad* iGCDualShockGamepad = (__bridge GCDualShockGamepad*) ptr;
-        GCControllerDirectionPad* touchpadSecondary = [iGCDualShockGamepad touchpadSecondary];
-        return (__bridge void*) touchpadSecondary;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCDualShockGamepad* iGCDualShockGamepad = (__bridge GCDualShockGamepad*) ptr;
+            GCControllerDirectionPad* touchpadSecondary = [iGCDualShockGamepad touchpadSecondary];
+            return (__bridge void*) touchpadSecondary;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -73,12 +82,15 @@ void* GCDualShockGamepad_GetPropTouchpadSecondary(const void* ptr, const void** 
 
 void GCDualShockGamepad_Dispose(void* ptr)
 {
-    GCDualShockGamepad* val = (__bridge GCDualShockGamepad*) ptr;
-    if(val != nil)
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        CFRelease(ptr);
+        GCDualShockGamepad* val = (__bridge GCDualShockGamepad*) ptr;
+        if(val != nil)
+        {
+            CFRelease(ptr);
+        }
+        //NSLog(@"Dispose...GCDualShockGamepad");
     }
-    NSLog(@"Dispose...GCDualShockGamepad");
 }
 
 }

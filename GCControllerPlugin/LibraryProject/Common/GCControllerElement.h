@@ -10,7 +10,9 @@
 #import <Foundation/Foundation.h>
 #import "Callbacks.h"
 
-// Class Methods 
+// Class Methods
+
+extern "C" bool GCControllerElement_SupportsSFSymbols();
 
 // Init Methods 
 

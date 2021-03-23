@@ -45,35 +45,55 @@ void GCExtendedGamepad_SetPropValueChangedHandler(const void* ptr, GCExtendedGam
                                                      GCControllerElement* element)
         {
             long elementClassType = 0;
-            if([element isKindOfClass:[GCControllerButtonInput class]])
-            {
-                elementClassType = 1;
-            }
-            else if([element isKindOfClass:[GCControllerAxisInput class]])
-            {
-                elementClassType = 2;
-            }
-            else if([element isKindOfClass:[GCDeviceCursor class]])
-            {
-                elementClassType = 3;
-            }
-            else if([element isKindOfClass:[GCControllerDirectionPad class]])
-            {
-                elementClassType = 4;
-            }
-            else if([element isKindOfClass:[GCControllerTouchpad class]])
-            {
-                elementClassType = 5;
-            }
-            
             long gamepadClassType = 0;
-            if([gamepad isKindOfClass:[GCDualShockGamepad class]])
+            
+            if(@available(macOS 11, iOS 14, tvOS 14, *))
             {
-                gamepadClassType = 1;
+                if([element isKindOfClass:[GCControllerButtonInput class]])
+                {
+                    elementClassType = 1;
+                }
+                else if([element isKindOfClass:[GCControllerAxisInput class]])
+                {
+                    elementClassType = 2;
+                }
+                else if([element isKindOfClass:[GCDeviceCursor class]])
+                {
+                    elementClassType = 3;
+                }
+                else if([element isKindOfClass:[GCControllerDirectionPad class]])
+                {
+                    elementClassType = 4;
+                }
+                else if([element isKindOfClass:[GCControllerTouchpad class]])
+                {
+                    elementClassType = 5;
+                }
+                
+                long gamepadClassType = 0;
+                if([gamepad isKindOfClass:[GCDualShockGamepad class]])
+                {
+                    gamepadClassType = 1;
+                }
+                else if([gamepad isKindOfClass:[GCXboxGamepad class]])
+                {
+                    gamepadClassType = 2;
+                }
             }
-            else if([gamepad isKindOfClass:[GCXboxGamepad class]])
+            else
             {
-                gamepadClassType = 2;
+                if([element isKindOfClass:[GCControllerButtonInput class]])
+                {
+                    elementClassType = 1;
+                }
+                else if([element isKindOfClass:[GCControllerAxisInput class]])
+                {
+                    elementClassType = 2;
+                }
+                else if([element isKindOfClass:[GCControllerDirectionPad class]])
+                {
+                    elementClassType = 4;
+                }
             }
         
             // default case - type token = 0 means that the element is of the base-class type GCControllerElement
@@ -277,15 +297,18 @@ void* GCExtendedGamepad_GetPropRightTrigger(const void* ptr, const void** except
 
 void* GCExtendedGamepad_GetPropButtonHome(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
-        GCControllerButtonInput* buttonHome = [iGCExtendedGamepad buttonHome];
-        return (__bridge void*) buttonHome;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
+            GCControllerButtonInput* buttonHome = [iGCExtendedGamepad buttonHome];
+            return (__bridge void*) buttonHome;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -294,15 +317,18 @@ void* GCExtendedGamepad_GetPropButtonHome(const void* ptr, const void** exceptio
 
 void* GCExtendedGamepad_GetPropButtonMenu(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 11, iOS 14, tvOS 14, *))
     {
-        GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
-        GCControllerButtonInput* buttonMenu = [iGCExtendedGamepad buttonMenu];
-        return (__bridge void*) buttonMenu;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
+            GCControllerButtonInput* buttonMenu = [iGCExtendedGamepad buttonMenu];
+            return (__bridge void*) buttonMenu;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -311,15 +337,18 @@ void* GCExtendedGamepad_GetPropButtonMenu(const void* ptr, const void** exceptio
 
 void* GCExtendedGamepad_GetPropButtonOptions(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.15, iOS 13, tvOS 13, *))
     {
-        GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
-        GCControllerButtonInput* buttonOptions = [iGCExtendedGamepad buttonOptions];
-        return (__bridge void*) buttonOptions;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
+            GCControllerButtonInput* buttonOptions = [iGCExtendedGamepad buttonOptions];
+            return (__bridge void*) buttonOptions;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -369,7 +398,7 @@ void GCExtendedGamepad_Dispose(void* ptr)
     {
         CFRelease(ptr);
     }
-    NSLog(@"Dispose...GCExtendedGamepad");
+    //NSLog(@"Dispose...GCExtendedGamepad");
 }
 
 }

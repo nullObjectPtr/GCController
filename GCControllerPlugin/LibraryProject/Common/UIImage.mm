@@ -24,20 +24,23 @@ void* UIImage_systemImageNamed(
 	void** exception
     )
 {
-	@try {
-#if TARGET_OS_IOS || TARGET_OS_TV
-	    UIImage* val = [UIImage systemImageNamed:[NSString stringWithUTF8String:name]];
-        // Tint it white because black is useless in Unity
-        val = [val imageWithTintColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-#else
-        NSImage* val = [NSImage imageWithSystemSymbolName:[NSString stringWithUTF8String:name] accessibilityDescription:@""];
-#endif
-		return (__bridge_retained void*) val;
-	}
-	@catch(NSException* ex)
-	{
-		*exception = (__bridge_retained void*) ex;
-	}
+    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    {
+        @try {
+    #if TARGET_OS_IOS || TARGET_OS_TV
+            UIImage* val = [UIImage systemImageNamed:[NSString stringWithUTF8String:name]];
+            // Tint it white because black is useless in Unity
+            val = [val imageWithTintColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    #else
+            NSImage* val = [NSImage imageWithSystemSymbolName:[NSString stringWithUTF8String:name] accessibilityDescription:@""];
+    #endif
+            return (__bridge_retained void*) val;
+        }
+        @catch(NSException* ex)
+        {
+            *exception = (__bridge_retained void*) ex;
+        }
+    }
 
 	return nil;
 }
@@ -49,23 +52,26 @@ void* UIImage_systemImageNamed_compatibleWithTraitCollection(
 	void** exception
     )
 {
-	@try {
-#if TARGET_OS_IOS || TARGET_OS_TV
-	    id val = [UIImage systemImageNamed:[NSString stringWithUTF8String:name] compatibleWithTraitCollection:(__bridge UITraitCollection*) traitCollection];
-        
-        // Tint it white because black is useless in Unity
-        val = [val imageWithTintColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-        
-		return (__bridge_retained void*) val;
-#else
-        NSLog(@"UIImage_systemImageNamed_campatibleWithTraitCollection is not implemented");
-        return nil;
-#endif
-	}
-	@catch(NSException* ex)
-	{
-		*exception = (__bridge_retained void*) ex;
-	}
+    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    {
+        @try {
+    #if TARGET_OS_IOS || TARGET_OS_TV
+            id val = [UIImage systemImageNamed:[NSString stringWithUTF8String:name] compatibleWithTraitCollection:(__bridge UITraitCollection*) traitCollection];
+            
+            // Tint it white because black is useless in Unity
+            val = [val imageWithTintColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+            
+            return (__bridge_retained void*) val;
+    #else
+            NSLog(@"UIImage_systemImageNamed_campatibleWithTraitCollection is not implemented");
+            return nil;
+    #endif
+        }
+        @catch(NSException* ex)
+        {
+            *exception = (__bridge_retained void*) ex;
+        }
+    }
 
 	return nil;
 }
@@ -76,38 +82,37 @@ void* UIImage_systemImageNamed_withConfiguration(
 	void** exception
     )
 {
-	@try {
-#if TARGET_OS_IOS || TARGET_OS_TV
-	    id val = [UIImage systemImageNamed:[NSString stringWithUTF8String:name] withConfiguration:(__bridge UIImageConfiguration*) configuration];
-        
-        // Tint it white because black is useless in Unity
-        val = [val imageWithTintColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-#else
-        NSImage* val = [NSImage imageWithSystemSymbolName:[NSString stringWithUTF8String:name] accessibilityDescription:nil];
-        NSImageSymbolConfiguration* config = (__bridge NSImageSymbolConfiguration*)configuration;
-        NSLog(@"image config: %@", config);
-        NSLog(@"image size: %f x %f", [val size].width, [val size].height);
-        val = [val imageWithSymbolConfiguration:config];
-#endif
-		return (__bridge_retained void*) val;
-	}
-	@catch(NSException* ex)
-	{
-		*exception = (__bridge_retained void*) ex;
-	}
+    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    {
+        @try {
+    #if TARGET_OS_IOS || TARGET_OS_TV
+            id val = [UIImage systemImageNamed:[NSString stringWithUTF8String:name] withConfiguration:(__bridge UIImageConfiguration*) configuration];
+            
+            // Tint it white because black is useless in Unity
+            val = [val imageWithTintColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    #else
+            NSImage* val = [NSImage imageWithSystemSymbolName:[NSString stringWithUTF8String:name] accessibilityDescription:nil];
+            NSImageSymbolConfiguration* config = (__bridge NSImageSymbolConfiguration*)configuration;
+            val = [val imageWithSymbolConfiguration:config];
+    #endif
+            return (__bridge_retained void*) val;
+        }
+        @catch(NSException* ex)
+        {
+            *exception = (__bridge_retained void*) ex;
+        }
+    }
 
 	return nil;
 }
 
-void UIImage_PNGRepresentation(
+void* UIImage_PNGRepresentation_GetData(
     const void* image,
-    const void** buffer,
     long* const bufferLen,
 	void** exception
     )
 {
 	@try {
-		NSLog(@"UIImage_PNGRepresentation()");
 #if TARGET_OS_IOS || TARGET_OS_TV
         id uiImage = (__bridge UIImage*) image;
 	    NSData* val = UIImagePNGRepresentation(uiImage);
@@ -125,13 +130,12 @@ void UIImage_PNGRepresentation(
         // rasterize this
         CGImageRef cgRef = [nsImage CGImageForProposedRect:nil context:nil hints:nil];
         NSBitmapImageRep* bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:cgRef];
-        NSLog(@"ping size: %f x %f", [nsImage size].width, [nsImage size].height);
         [bitmapRep setSize:[nsImage size]];
         NSData* val = [bitmapRep representationUsingType:NSBitmapImageFileTypePNG properties:@{NSImageCompressionFactor:@1.0}];
 #endif
         
-        *buffer = [val bytes];
         *bufferLen = [val length];
+        return (__bridge_retained void*) val;
 	}
 	@catch(NSException* ex)
 	{
@@ -139,18 +143,14 @@ void UIImage_PNGRepresentation(
 	}
 }
 
-
-
-void UIImage_JPEGRepresentation(
-	void* image,
+void* UIImage_JPEGRepresentation_GetData(
+	const void* image,
     float compressionQuality,
-    const void** buffer,
     long* const bufferLen,
 	void** exception
     )
 {
 	@try {
-		NSLog(@"UIImage_JPEGRepresentation()");
 #if TARGET_OS_IOS || TARGET_OS_TV
 	    NSData* val = UIImageJPEGRepresentation((__bridge UIImage*) image, compressionQuality);
 #else
@@ -160,8 +160,8 @@ void UIImage_JPEGRepresentation(
         [bitmapRep setSize:[nsImage size]];
         NSData* val = [bitmapRep representationUsingType:NSBitmapImageFileTypeJPEG properties:@{NSImageCompressionFactor:@1.0}];
 #endif
-        *buffer = [val bytes];
         *bufferLen = [val length];
+        return (__bridge_retained void*) val;
 	}
 	@catch(NSException* ex)
 	{
@@ -169,9 +169,18 @@ void UIImage_JPEGRepresentation(
 	}
 }
 
+void UIImage_CopyBufferAndReleaseData(
+    const void* dataPtr,
+    Byte* managedBuffer
+    )
+{
+    NSData* val = (__bridge NSData*)dataPtr;
+    [val getBytes:managedBuffer length:[val length]];
+    CFRelease(dataPtr);
+}
+
 bool UIImage_SFSymbolsAreAvailable()
 {
-    NSLog(@"Are SFSymbols available?");
 #if TARGET_OS_IOS || TARGET_OS_TV
     return [UIImage respondsToSelector:@selector(systemImageNamed:)];
 #else
@@ -197,8 +206,6 @@ void UIImage_Dispose(void* ptr)
     {
         CFRelease(ptr);
     }
-    
-    NSLog(@"Dispose...UIImage");
 }
 
 }
