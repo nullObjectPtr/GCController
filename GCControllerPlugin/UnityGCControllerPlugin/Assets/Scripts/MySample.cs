@@ -81,9 +81,11 @@ public class MySample : MonoBehaviour
         if (UIImage.SFSymbolsAreAvailable())
         {
             var appleController = GCController.Controllers().FirstOrDefault();
+            foreach (var ctrl in GCController.Controllers())
+            {
+                Debug.Log($"got apple controller: {ctrl.VendorName}");
+            }
             
-            Debug.Log($"got apple controller: {appleController.VendorName}");
-        
             // Use the extended gamepad property to skip past physicalInputProfile
             // which was only added in macOS 11.0+
             var extendedGamepad = appleController.ExtendedGamepad;
@@ -100,7 +102,9 @@ public class MySample : MonoBehaviour
             }
             else if (microGamepad != null)
             {
+            #if UNITY_TVOS
                 UnityEngine.tvOS.Remote.allowExitToHome = false;
+            #endif
                 adapter = new RewiredSiriRemoteAdapter(appleController, 1, MicroGamepadElementMap);
             }
             

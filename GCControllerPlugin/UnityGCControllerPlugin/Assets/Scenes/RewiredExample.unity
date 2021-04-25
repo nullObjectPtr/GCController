@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80dd5d2bdeb3f43acbe361cd26fee23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlyphLoadMode: 0
+  GlyphLoadMode: 1
   anImage: {fileID: 945847116}
   statusTextMesh: {fileID: 1719348127}
   symbolPointSize: 150
