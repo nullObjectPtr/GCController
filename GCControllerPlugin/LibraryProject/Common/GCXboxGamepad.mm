@@ -20,7 +20,7 @@ extern "C" {
 //Properties
 void* GCXboxGamepad_GetPropPaddleButton1(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -40,7 +40,7 @@ void* GCXboxGamepad_GetPropPaddleButton1(const void* ptr, const void** exception
 
 void* GCXboxGamepad_GetPropPaddleButton2(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -60,7 +60,7 @@ void* GCXboxGamepad_GetPropPaddleButton2(const void* ptr, const void** exception
 
 void* GCXboxGamepad_GetPropPaddleButton3(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -80,7 +80,7 @@ void* GCXboxGamepad_GetPropPaddleButton3(const void* ptr, const void** exception
 
 void* GCXboxGamepad_GetPropPaddleButton4(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -102,7 +102,7 @@ void* GCXboxGamepad_GetPropPaddleButton4(const void* ptr, const void** exception
 
 void GCXboxGamepad_Dispose(void* ptr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCXboxGamepad* val = (__bridge GCXboxGamepad*) ptr;
         if(val != nil)

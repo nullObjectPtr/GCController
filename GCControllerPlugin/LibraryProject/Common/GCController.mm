@@ -189,7 +189,7 @@ void* GCController_GetPropExtendedGamepad(const void* ptr, long* const typeToken
         GCController* iGCController = (__bridge GCController*) ptr;
         id extendedGamepad = [iGCController extendedGamepad];
         
-        if(@available(iOS 14, macOS 11, tvOS 14, *))
+        if(@available(macOS 10.16, iOS 14, tvOS 14, *))
         {
             if([extendedGamepad isKindOfClass:[GCDualShockGamepad class]])
             {
@@ -198,6 +198,10 @@ void* GCController_GetPropExtendedGamepad(const void* ptr, long* const typeToken
             else if([extendedGamepad isKindOfClass:[GCXboxGamepad class]])
             {
                 *typeToken = 2;
+            }
+            else if([extendedGamepad isKindOfClass:[GCExtendedGamepad class]])
+            {
+                *typeToken = 4;
             }
         }
         else
@@ -275,7 +279,7 @@ const char* GCController_GetPropVendorName(const void* ptr, const void** excepti
 
 void* GCController_GetPropCurrent(const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {

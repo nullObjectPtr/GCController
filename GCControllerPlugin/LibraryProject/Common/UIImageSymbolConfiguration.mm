@@ -20,7 +20,7 @@ void* UIImageSymbolConfiguration_configurationWithPointSize_weight(
 	void** exception
     )
 {
-    if(@available(iOS 14, macOS 11, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try {
     #if TARGET_OS_IOS || TARGET_OS_TV
@@ -49,7 +49,7 @@ void* UIImageSymbolConfiguration_configurationWithPointSize_weight_scale(
 	void** exception
     )
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
         @try {
             
@@ -76,7 +76,7 @@ void* UIImageSymbolConfiguration_configurationWithScale(
 	void** exception
     )
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
         @try {
     #if TARGET_OS_IOS || TARGET_OS_TV
@@ -102,7 +102,7 @@ void* UIImageSymbolConfiguration_configurationWithTextStyle(
 	void** exception
     )
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
         @try {
     #if TARGET_OS_IOS || TARGET_OS_TV
@@ -129,7 +129,7 @@ void* UIImageSymbolConfiguration_configurationWithTextStyle_scale(
 	void** exception
     )
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
         @try {
             NSLog(@"UIImageSymbolConfiguration_configurationWithTextStyle_scale()");
@@ -160,7 +160,7 @@ void* UIImageSymbolConfiguration_configurationWithTextStyle_scale(
 
 void UIImageSymbolConfiguration_Dispose(void* ptr)
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
     #if TARGET_OS_IOS || TARGET_OS_TV
         id val = (__bridge UIImageSymbolConfiguration*) ptr;

@@ -20,7 +20,7 @@ extern "C" {
 //Properties
 void* GCDualShockGamepad_GetPropTouchpadButton(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -40,7 +40,7 @@ void* GCDualShockGamepad_GetPropTouchpadButton(const void* ptr, const void** exc
 
 void* GCDualShockGamepad_GetPropTouchpadPrimary(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -60,7 +60,7 @@ void* GCDualShockGamepad_GetPropTouchpadPrimary(const void* ptr, const void** ex
 
 void* GCDualShockGamepad_GetPropTouchpadSecondary(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -82,7 +82,7 @@ void* GCDualShockGamepad_GetPropTouchpadSecondary(const void* ptr, const void** 
 
 void GCDualShockGamepad_Dispose(void* ptr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCDualShockGamepad* val = (__bridge GCDualShockGamepad*) ptr;
         if(val != nil)

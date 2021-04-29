@@ -23,7 +23,7 @@ extern "C" {
 
 void GCDeviceCursor_Dispose(void* ptr)
 { 
-    if(@available(macOS 11.0, tvOS 14.0, iOS 14.0, * ))
+    if(@available(macOS 10.16, tvOS 14.0, iOS 14.0, * ))
     { 
         GCDeviceCursor* val = (__bridge GCDeviceCursor*) ptr;
         if(val != nil)

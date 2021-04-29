@@ -47,7 +47,7 @@ void GCExtendedGamepad_SetPropValueChangedHandler(const void* ptr, GCExtendedGam
             long elementClassType = 0;
             long gamepadClassType = 0;
             
-            if(@available(macOS 11, iOS 14, tvOS 14, *))
+            if(@available(macOS 10.16, iOS 14, tvOS 14, *))
             {
                 if([element isKindOfClass:[GCControllerButtonInput class]])
                 {
@@ -297,7 +297,7 @@ void* GCExtendedGamepad_GetPropRightTrigger(const void* ptr, const void** except
 
 void* GCExtendedGamepad_GetPropButtonHome(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {
@@ -317,7 +317,7 @@ void* GCExtendedGamepad_GetPropButtonHome(const void* ptr, const void** exceptio
 
 void* GCExtendedGamepad_GetPropButtonMenu(const void* ptr, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         @try
         {

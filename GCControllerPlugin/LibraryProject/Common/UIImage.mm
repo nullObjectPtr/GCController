@@ -24,7 +24,7 @@ void* UIImage_systemImageNamed(
 	void** exception
     )
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
         @try {
     #if TARGET_OS_IOS || TARGET_OS_TV
@@ -52,7 +52,7 @@ void* UIImage_systemImageNamed_compatibleWithTraitCollection(
 	void** exception
     )
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
         @try {
     #if TARGET_OS_IOS || TARGET_OS_TV
@@ -82,7 +82,7 @@ void* UIImage_systemImageNamed_withConfiguration(
 	void** exception
     )
 {
-    if(@available(macOS 11, iOS 13, tvOS 13, *))
+    if(@available(macOS 10.16, iOS 13, tvOS 13, *))
     {
         @try {
     #if TARGET_OS_IOS || TARGET_OS_TV

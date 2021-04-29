@@ -24,7 +24,7 @@ void GCPhysicalInputProfile_GetPropElements(
 	const void** valuesBuffer,
 	long* const bufferLen)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCPhysicalInputProfile* iGCPhysicalInputProfile = (__bridge GCPhysicalInputProfile*) ptr;
         NSDictionary<NSString*,GCControllerElement*>* val = [iGCPhysicalInputProfile elements];
@@ -56,7 +56,7 @@ void GCPhysicalInputProfile_GetPropElements(
 
 void GCPhysicalInputProfile_GetPropAllButtons(const void* ptr, const void** buffer, long* const count)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCPhysicalInputProfile* iGCPhysicalInputProfile = (__bridge GCPhysicalInputProfile*) ptr;
         NSSet<GCControllerButtonInput*>* val = [iGCPhysicalInputProfile allButtons];
@@ -73,7 +73,7 @@ void GCPhysicalInputProfile_GetPropAllButtons(const void* ptr, const void** buff
 
 void GCPhysicalInputProfile_GetPropAllDpads(const void* ptr, const void** buffer, long* const count)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCPhysicalInputProfile* iGCPhysicalInputProfile = (__bridge GCPhysicalInputProfile*) ptr;
         NSSet<GCControllerDirectionPad*>* val = [iGCPhysicalInputProfile allDpads];
@@ -90,7 +90,7 @@ void GCPhysicalInputProfile_GetPropAllDpads(const void* ptr, const void** buffer
 
 void GCPhysicalInputProfile_GetPropAllAxes(const void* ptr, const void** buffer, long* count)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCPhysicalInputProfile* iGCPhysicalInputProfile = (__bridge GCPhysicalInputProfile*) ptr;
         NSSet<GCControllerAxisInput*>* val = [iGCPhysicalInputProfile allAxes];
@@ -108,7 +108,7 @@ void GCPhysicalInputProfile_GetPropAllAxes(const void* ptr, const void** buffer,
 
 void GCPhysicalInputProfile_GetPropAllElements(const void* ptr, const void** buffer, long* count)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCPhysicalInputProfile* iGCPhysicalInputProfile = (__bridge GCPhysicalInputProfile*) ptr;
         NSSet<GCControllerElement*>* val = [iGCPhysicalInputProfile allElements];
@@ -128,7 +128,7 @@ const void* GCPhysicalInputProfile_ObjectForKeyedSubscript(
    const char* key,
    const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         try
         {
@@ -147,7 +147,7 @@ const void* GCPhysicalInputProfile_ObjectForKeyedSubscript(
 
 void GCPhysicalInputProfile_Dispose(void* ptr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14, *))
+    if(@available(macOS 10.16, iOS 14, tvOS 14, *))
     {
         GCPhysicalInputProfile* val = (__bridge GCPhysicalInputProfile*) ptr;
         if(val != nil)
