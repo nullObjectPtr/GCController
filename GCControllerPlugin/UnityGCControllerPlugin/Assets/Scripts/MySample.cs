@@ -96,15 +96,16 @@ public class MySample : MonoBehaviour
             
             IRewiredAppleControllerAdapter adapter = null;
             
+#if UNITY_TVOS
+            UnityEngine.tvOS.Remote.allowExitToHome = false;
+#endif
+            
             if (extendedGamepad != null)
             {
                 adapter = new RewiredExtendedGamepadAdapter(appleController, 0, ExtendedGamepadElementMap);
             }
             else if (microGamepad != null)
             {
-            #if UNITY_TVOS
-                UnityEngine.tvOS.Remote.allowExitToHome = false;
-            #endif
                 adapter = new RewiredSiriRemoteAdapter(appleController, 1, MicroGamepadElementMap);
             }
             
