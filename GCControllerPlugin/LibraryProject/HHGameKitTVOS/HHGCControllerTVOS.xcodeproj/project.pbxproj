@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB3FA364272EF34F00CD1309 /* GCDirectionalGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3FA362272EF34F00CD1309 /* GCDirectionalGamepad.h */; };
+		AB3FA367272EF93B00CD1309 /* GCControllerInitializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3FA365272EF93A00CD1309 /* GCControllerInitializer.h */; };
+		AB3FA368272EF93B00CD1309 /* GCControllerInitializer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB3FA366272EF93B00CD1309 /* GCControllerInitializer.mm */; };
 		AB55737025A4DA9400F177D7 /* libHHGCControllerTVOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3C646823F6F98800B20CC4 /* libHHGCControllerTVOS.a */; };
+		AB718DD5272D9C9C004B90BA /* GCDualSenseGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB718DD3272D9C9C004B90BA /* GCDualSenseGamepad.mm */; };
+		AB718DD6272D9C9C004B90BA /* GCDualSenseGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB718DD4272D9C9C004B90BA /* GCDualSenseGamepad.h */; };
+		AB718DD9272D9E37004B90BA /* GCDirectionalGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB718DD7272D9E37004B90BA /* GCDirectionalGamepad.mm */; };
+		AB718DE5272DA3D0004B90BA /* GCMouseInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB718DE3272DA3D0004B90BA /* GCMouseInput.mm */; };
+		AB718DE6272DA3D0004B90BA /* GCMouseInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB718DE4272DA3D0004B90BA /* GCMouseInput.h */; };
+		AB718DE9272DA3F6004B90BA /* GCKeyboardInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB718DE7272DA3F6004B90BA /* GCKeyboardInput.h */; };
+		AB718DEA272DA3F6004B90BA /* GCKeyboardInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB718DE8272DA3F6004B90BA /* GCKeyboardInput.mm */; };
 		ABC4297225B93314007A7148 /* GCControllerAxisInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABC4294925B93311007A7148 /* GCControllerAxisInput.mm */; };
 		ABC4297325B93314007A7148 /* GCControllerElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABC4294A25B93311007A7148 /* GCControllerElement.mm */; };
 		ABC4297425B93314007A7148 /* GCDeviceCursor.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABC4294B25B93311007A7148 /* GCDeviceCursor.mm */; };
@@ -66,6 +76,16 @@
 
 /* Begin PBXFileReference section */
 		AB3C646823F6F98800B20CC4 /* libHHGCControllerTVOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHHGCControllerTVOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB3FA362272EF34F00CD1309 /* GCDirectionalGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDirectionalGamepad.h; sourceTree = "<group>"; };
+		AB3FA365272EF93A00CD1309 /* GCControllerInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerInitializer.h; sourceTree = "<group>"; };
+		AB3FA366272EF93B00CD1309 /* GCControllerInitializer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerInitializer.mm; sourceTree = "<group>"; };
+		AB718DD3272D9C9C004B90BA /* GCDualSenseGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDualSenseGamepad.mm; sourceTree = "<group>"; };
+		AB718DD4272D9C9C004B90BA /* GCDualSenseGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDualSenseGamepad.h; sourceTree = "<group>"; };
+		AB718DD7272D9E37004B90BA /* GCDirectionalGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDirectionalGamepad.mm; sourceTree = "<group>"; };
+		AB718DE3272DA3D0004B90BA /* GCMouseInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCMouseInput.mm; sourceTree = "<group>"; };
+		AB718DE4272DA3D0004B90BA /* GCMouseInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMouseInput.h; sourceTree = "<group>"; };
+		AB718DE7272DA3F6004B90BA /* GCKeyboardInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCKeyboardInput.h; sourceTree = "<group>"; };
+		AB718DE8272DA3F6004B90BA /* GCKeyboardInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCKeyboardInput.mm; sourceTree = "<group>"; };
 		ABC4294925B93311007A7148 /* GCControllerAxisInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerAxisInput.mm; sourceTree = "<group>"; };
 		ABC4294A25B93311007A7148 /* GCControllerElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerElement.mm; sourceTree = "<group>"; };
 		ABC4294B25B93311007A7148 /* GCDeviceCursor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDeviceCursor.mm; sourceTree = "<group>"; };
@@ -140,6 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				ABC4296325B93313007A7148 /* Callbacks.h */,
+				AB3FA365272EF93A00CD1309 /* GCControllerInitializer.h */,
+				AB3FA366272EF93B00CD1309 /* GCControllerInitializer.mm */,
+				AB718DD4272D9C9C004B90BA /* GCDualSenseGamepad.h */,
+				AB718DD3272D9C9C004B90BA /* GCDualSenseGamepad.mm */,
 				ABC4295125B93312007A7148 /* GCControllerConverters.h */,
 				ABC4294C25B93311007A7148 /* GCControllerConverters.m */,
 				ABC4294E25B93312007A7148 /* GCController.h */,
@@ -154,16 +178,22 @@
 				ABC4294A25B93311007A7148 /* GCControllerElement.mm */,
 				ABC4295D25B93313007A7148 /* GCControllerTouchpad.h */,
 				ABC4296025B93313007A7148 /* GCControllerTouchpad.mm */,
+				AB3FA362272EF34F00CD1309 /* GCDirectionalGamepad.h */,
+				AB718DD7272D9E37004B90BA /* GCDirectionalGamepad.mm */,
 				ABC4295025B93312007A7148 /* GCDeviceCursor.h */,
 				ABC4294B25B93311007A7148 /* GCDeviceCursor.mm */,
 				ABC4296C25B93314007A7148 /* GCDualShockGamepad.h */,
 				ABC4295325B93312007A7148 /* GCDualShockGamepad.mm */,
 				ABC4294D25B93311007A7148 /* GCExtendedGamepad.h */,
 				ABC4296625B93313007A7148 /* GCExtendedGamepad.mm */,
+				AB718DE7272DA3F6004B90BA /* GCKeyboardInput.h */,
+				AB718DE8272DA3F6004B90BA /* GCKeyboardInput.mm */,
 				ABC4295F25B93313007A7148 /* GCMicroGamepad.h */,
 				ABC4296B25B93314007A7148 /* GCMicroGamepad.mm */,
 				ABC4296925B93313007A7148 /* GCMotion.h */,
 				ABC4295425B93312007A7148 /* GCMotion.mm */,
+				AB718DE4272DA3D0004B90BA /* GCMouseInput.h */,
+				AB718DE3272DA3D0004B90BA /* GCMouseInput.mm */,
 				ABC4295225B93312007A7148 /* GCPhysicalInputProfile.h */,
 				ABC4295C25B93312007A7148 /* GCPhysicalInputProfile.mm */,
 				ABC4295925B93312007A7148 /* GCXboxGamepad.h */,
@@ -197,11 +227,15 @@
 				ABC4298225B93314007A7148 /* GCXboxGamepad.h in Headers */,
 				ABC4298625B93314007A7148 /* GCControllerTouchpad.h in Headers */,
 				ABC4299625B93314007A7148 /* NSException.h in Headers */,
+				AB3FA367272EF93B00CD1309 /* GCControllerInitializer.h in Headers */,
 				ABC4298325B93314007A7148 /* UITraitCollection.h in Headers */,
+				AB718DE6272DA3D0004B90BA /* GCMouseInput.h in Headers */,
 				ABC4297725B93314007A7148 /* GCController.h in Headers */,
 				ABC4297B25B93314007A7148 /* GCPhysicalInputProfile.h in Headers */,
 				ABC4297E25B93314007A7148 /* NSError.h in Headers */,
 				ABC4298D25B93314007A7148 /* UIImageConfiguration.h in Headers */,
+				AB718DE9272DA3F6004B90BA /* GCKeyboardInput.h in Headers */,
+				AB3FA364272EF34F00CD1309 /* GCDirectionalGamepad.h in Headers */,
 				ABC4299025B93314007A7148 /* GCControllerDirectionPad.h in Headers */,
 				ABC4299225B93314007A7148 /* GCMotion.h in Headers */,
 				ABC4298125B93314007A7148 /* GCControllerElement.h in Headers */,
@@ -213,6 +247,7 @@
 				ABC4298C25B93314007A7148 /* Callbacks.h in Headers */,
 				ABC4298825B93314007A7148 /* GCMicroGamepad.h in Headers */,
 				ABC4297625B93314007A7148 /* GCExtendedGamepad.h in Headers */,
+				AB718DD6272D9C9C004B90BA /* GCDualSenseGamepad.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,13 +320,18 @@
 				ABC4299125B93314007A7148 /* NSError.mm in Sources */,
 				ABC4298025B93314007A7148 /* UIImage.mm in Sources */,
 				ABC4297525B93314007A7148 /* GCControllerConverters.m in Sources */,
+				AB718DE5272DA3D0004B90BA /* GCMouseInput.mm in Sources */,
 				ABC4298725B93314007A7148 /* GCXboxGamepad.mm in Sources */,
+				AB718DD9272D9E37004B90BA /* GCDirectionalGamepad.mm in Sources */,
 				ABC4297C25B93314007A7148 /* GCDualShockGamepad.mm in Sources */,
 				ABC4298925B93314007A7148 /* GCControllerTouchpad.mm in Sources */,
+				AB718DD5272D9C9C004B90BA /* GCDualSenseGamepad.mm in Sources */,
 				ABC4299425B93314007A7148 /* GCMicroGamepad.mm in Sources */,
 				ABC4297D25B93314007A7148 /* GCMotion.mm in Sources */,
 				ABC4298B25B93314007A7148 /* GCControllerDirectionPad.mm in Sources */,
+				AB3FA368272EF93B00CD1309 /* GCControllerInitializer.mm in Sources */,
 				ABC4299A25B93314007A7148 /* GCController.mm in Sources */,
+				AB718DEA272DA3F6004B90BA /* GCKeyboardInput.mm in Sources */,
 				ABC4297425B93314007A7148 /* GCDeviceCursor.mm in Sources */,
 				ABC4299925B93314007A7148 /* UIImageSymbolConfiguration.mm in Sources */,
 			);
@@ -423,7 +463,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				TVOS_DEPLOYMENT_TARGET = 12.0;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;
 		};
@@ -438,7 +478,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				TVOS_DEPLOYMENT_TARGET = 12.0;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Release;
 		};

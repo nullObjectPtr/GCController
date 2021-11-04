@@ -20,7 +20,7 @@ namespace HovelHouse.GameController
     /// <summary>
     /// 
     /// </summary>
-    public class GCDeviceCursor : UnmanagedObject, IDisposable
+    public class GCDeviceCursor : GCControllerElement, IDisposable
     {
         #region dll
         

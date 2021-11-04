@@ -124,17 +124,7 @@ void* UIImage_PNGRepresentation_GetData(
         [nsImage lockFocus];
         [glyph_color set];
         NSRect rect = {NSZeroPoint, [nsImage size]};
-        
-        // If we're on BigSur, some genius at apple broke the tinting operation,
-        // and the Compositing source copy can't be used to tint
-        if(@available(macOS 10.16, *))
-        {
-            NSRectFillUsingOperation(rect, NSCompositingOperationSourceAtop );
-        }
-        else
-        {
-            NSRectFillUsingOperation(rect, NSCompositingOperationCopy);
-        }
+        NSRectFillUsingOperation(rect, NSCompositingOperationCopy);
         [nsImage unlockFocus];
         
         // rasterize this

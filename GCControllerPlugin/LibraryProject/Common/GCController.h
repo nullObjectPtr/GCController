@@ -52,7 +52,7 @@ extern "C" bool GCController_GetPropSnapshot(const void* ptr, const void** excep
 extern "C" void* GCController_GetPropExtendedGamepad(const void* ptr, long* const typeToken, const void** exceptionPtr);
 
 
-extern "C" void* GCController_GetPropMicroGamepad(const void* ptr, const void** exceptionPtr);
+extern "C" void* GCController_GetPropMicroGamepad(const void* ptr, long* const typeToken, const void** exceptionPtr);
 
 
 extern "C" const char* GCController_GetPropProductCategory(const void* ptr, const void** exceptionPtr);
@@ -62,8 +62,6 @@ extern "C" const char* GCController_GetPropVendorName(const void* ptr, const voi
 
 
 extern "C" void* GCController_GetPropCurrent(const void** exceptionPtr);
-
-
 
 
 extern "C" void GCController_Dispose(void* ptr);

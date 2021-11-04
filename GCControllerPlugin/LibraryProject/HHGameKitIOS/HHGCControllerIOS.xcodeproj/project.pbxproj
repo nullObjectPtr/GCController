@@ -7,48 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB2E3E7A2607B66D006B446C /* GCControllerTouchpad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E512607B667006B446C /* GCControllerTouchpad.mm */; };
-		AB2E3E7B2607B66D006B446C /* GCControllerConverters.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E522607B667006B446C /* GCControllerConverters.m */; };
-		AB2E3E7C2607B66D006B446C /* GCXboxGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E532607B667006B446C /* GCXboxGamepad.h */; };
-		AB2E3E7D2607B66D006B446C /* GCControllerAxisInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E542607B667006B446C /* GCControllerAxisInput.mm */; };
-		AB2E3E7E2607B66D006B446C /* GCPhysicalInputProfile.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E552607B667006B446C /* GCPhysicalInputProfile.mm */; };
-		AB2E3E7F2607B66D006B446C /* GCDeviceCursor.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E562607B667006B446C /* GCDeviceCursor.h */; };
-		AB2E3E802607B66D006B446C /* UIImageSymbolConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E572607B667006B446C /* UIImageSymbolConfiguration.h */; };
-		AB2E3E812607B66D006B446C /* GCMicroGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E582607B668006B446C /* GCMicroGamepad.mm */; };
-		AB2E3E822607B66D006B446C /* GCPhysicalInputProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E592607B668006B446C /* GCPhysicalInputProfile.h */; };
-		AB2E3E832607B66D006B446C /* GCDualShockGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E5A2607B668006B446C /* GCDualShockGamepad.mm */; };
-		AB2E3E842607B66D006B446C /* GCXboxGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E5B2607B668006B446C /* GCXboxGamepad.mm */; };
-		AB2E3E852607B66D006B446C /* GCControllerTouchpad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E5C2607B668006B446C /* GCControllerTouchpad.h */; };
-		AB2E3E862607B66D006B446C /* GCController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E5D2607B668006B446C /* GCController.mm */; };
-		AB2E3E872607B66D006B446C /* GCControllerConverters.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E5E2607B668006B446C /* GCControllerConverters.h */; };
-		AB2E3E882607B66D006B446C /* GCMicroGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E5F2607B668006B446C /* GCMicroGamepad.h */; };
-		AB2E3E892607B66D006B446C /* GCControllerElement.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E602607B668006B446C /* GCControllerElement.h */; };
-		AB2E3E8A2607B66D006B446C /* GCControllerButtonInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E612607B668006B446C /* GCControllerButtonInput.mm */; };
-		AB2E3E8B2607B66D006B446C /* GCExtendedGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E622607B669006B446C /* GCExtendedGamepad.h */; };
-		AB2E3E8C2607B66D006B446C /* NSError.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E632607B669006B446C /* NSError.mm */; };
-		AB2E3E8D2607B66D006B446C /* NSError.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E642607B669006B446C /* NSError.h */; };
-		AB2E3E8E2607B66D006B446C /* GCMotion.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E652607B669006B446C /* GCMotion.h */; };
-		AB2E3E8F2607B66D006B446C /* UIImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E662607B669006B446C /* UIImage.mm */; };
-		AB2E3E902607B66D006B446C /* GCControllerDirectionPad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E672607B669006B446C /* GCControllerDirectionPad.h */; };
-		AB2E3E912607B66D006B446C /* GCControllerDirectionPad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E682607B66A006B446C /* GCControllerDirectionPad.mm */; };
-		AB2E3E922607B66D006B446C /* UIImageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E692607B66A006B446C /* UIImageConfiguration.h */; };
-		AB2E3E932607B66E006B446C /* UIImageConfiguration.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E6A2607B66A006B446C /* UIImageConfiguration.mm */; };
-		AB2E3E942607B66E006B446C /* UIImageSymbolConfiguration.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E6B2607B66A006B446C /* UIImageSymbolConfiguration.mm */; };
-		AB2E3E952607B66E006B446C /* GCMotion.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E6C2607B66A006B446C /* GCMotion.mm */; };
-		AB2E3E962607B66E006B446C /* GCExtendedGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E6D2607B66A006B446C /* GCExtendedGamepad.mm */; };
-		AB2E3E972607B66E006B446C /* GCController.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E6E2607B66A006B446C /* GCController.h */; };
-		AB2E3E982607B66E006B446C /* GCControllerElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E6F2607B66B006B446C /* GCControllerElement.mm */; };
-		AB2E3E992607B66E006B446C /* UIImage.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E702607B66B006B446C /* UIImage.h */; };
-		AB2E3E9A2607B66E006B446C /* GCDualShockGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E712607B66B006B446C /* GCDualShockGamepad.h */; };
-		AB2E3E9B2607B66E006B446C /* UITraitCollection.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E722607B66B006B446C /* UITraitCollection.mm */; };
-		AB2E3E9C2607B66E006B446C /* GCDeviceCursor.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E732607B66B006B446C /* GCDeviceCursor.mm */; };
-		AB2E3E9D2607B66E006B446C /* GCControllerAxisInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E742607B66B006B446C /* GCControllerAxisInput.h */; };
-		AB2E3E9E2607B66E006B446C /* GCControllerButtonInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E752607B66B006B446C /* GCControllerButtonInput.h */; };
-		AB2E3E9F2607B66E006B446C /* NSException.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E762607B66C006B446C /* NSException.h */; };
-		AB2E3EA02607B66E006B446C /* NSException.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3E772607B66C006B446C /* NSException.mm */; };
-		AB2E3EA12607B66E006B446C /* Callbacks.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E782607B66D006B446C /* Callbacks.h */; };
-		AB2E3EA22607B66E006B446C /* UITraitCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2E3E792607B66D006B446C /* UITraitCollection.h */; };
 		AB81C33F248D42F70003242F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB81C33D248D42AB0003242F /* UIKit.framework */; };
+		AB8370F9273215FB00A409FD /* GCControllerTouchpad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370CF273215F700A409FD /* GCControllerTouchpad.h */; };
+		AB8370FA273215FB00A409FD /* GCController.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370D0273215F800A409FD /* GCController.h */; };
+		AB8370FB273215FB00A409FD /* GCDirectionalGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370D1273215F800A409FD /* GCDirectionalGamepad.h */; };
+		AB8370FC273215FB00A409FD /* GCDeviceCursor.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370D2273215F800A409FD /* GCDeviceCursor.h */; };
+		AB8370FD273215FB00A409FD /* GCControllerElement.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370D3273215F800A409FD /* GCControllerElement.h */; };
+		AB8370FE273215FB00A409FD /* GCMouseInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370D4273215F800A409FD /* GCMouseInput.mm */; };
+		AB8370FF273215FB00A409FD /* NSError.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370D5273215F800A409FD /* NSError.h */; };
+		AB837100273215FB00A409FD /* GCControllerInitializer.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370D6273215F800A409FD /* GCControllerInitializer.h */; };
+		AB837101273215FB00A409FD /* GCMicroGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370D7273215F800A409FD /* GCMicroGamepad.h */; };
+		AB837102273215FB00A409FD /* GCDualSenseGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370D8273215F800A409FD /* GCDualSenseGamepad.mm */; };
+		AB837103273215FB00A409FD /* GCControllerTouchpad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370D9273215F800A409FD /* GCControllerTouchpad.mm */; };
+		AB837104273215FB00A409FD /* GCControllerDirectionPad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370DA273215F800A409FD /* GCControllerDirectionPad.mm */; };
+		AB837105273215FB00A409FD /* GCControllerConverters.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370DB273215F900A409FD /* GCControllerConverters.h */; };
+		AB837106273215FB00A409FD /* GCControllerElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370DC273215F900A409FD /* GCControllerElement.mm */; };
+		AB837107273215FB00A409FD /* GCControllerAxisInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370DD273215F900A409FD /* GCControllerAxisInput.h */; };
+		AB837108273215FB00A409FD /* GCKeyboardInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370DE273215F900A409FD /* GCKeyboardInput.h */; };
+		AB837109273215FB00A409FD /* GCMotion.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370DF273215F900A409FD /* GCMotion.mm */; };
+		AB83710A273215FB00A409FD /* NSError.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370E0273215F900A409FD /* NSError.mm */; };
+		AB83710B273215FB00A409FD /* GCControllerButtonInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370E1273215F900A409FD /* GCControllerButtonInput.h */; };
+		AB83710C273215FB00A409FD /* GCDeviceCursor.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370E2273215F900A409FD /* GCDeviceCursor.mm */; };
+		AB83710D273215FB00A409FD /* GCDualShockGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370E3273215F900A409FD /* GCDualShockGamepad.h */; };
+		AB83710E273215FB00A409FD /* GCControllerButtonInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370E4273215F900A409FD /* GCControllerButtonInput.mm */; };
+		AB83710F273215FB00A409FD /* GCKeyboardInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370E5273215FA00A409FD /* GCKeyboardInput.mm */; };
+		AB837110273215FB00A409FD /* GCControllerInitializer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370E6273215FA00A409FD /* GCControllerInitializer.mm */; };
+		AB837111273215FB00A409FD /* NSException.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370E7273215FA00A409FD /* NSException.h */; };
+		AB837112273215FB00A409FD /* GCXboxGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370E8273215FA00A409FD /* GCXboxGamepad.mm */; };
+		AB837113273215FB00A409FD /* GCControllerConverters.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8370E9273215FA00A409FD /* GCControllerConverters.m */; };
+		AB837114273215FB00A409FD /* Callbacks.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370EA273215FA00A409FD /* Callbacks.h */; };
+		AB837115273215FB00A409FD /* GCDualShockGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370EB273215FA00A409FD /* GCDualShockGamepad.mm */; };
+		AB837116273215FB00A409FD /* GCMotion.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370EC273215FA00A409FD /* GCMotion.h */; };
+		AB837117273215FB00A409FD /* GCMicroGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370ED273215FA00A409FD /* GCMicroGamepad.mm */; };
+		AB837118273215FB00A409FD /* GCPhysicalInputProfile.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370EE273215FA00A409FD /* GCPhysicalInputProfile.mm */; };
+		AB837119273215FB00A409FD /* GCXboxGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370EF273215FA00A409FD /* GCXboxGamepad.h */; };
+		AB83711A273215FB00A409FD /* GCExtendedGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370F0273215FA00A409FD /* GCExtendedGamepad.mm */; };
+		AB83711B273215FB00A409FD /* GCPhysicalInputProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370F1273215FA00A409FD /* GCPhysicalInputProfile.h */; };
+		AB83711C273215FB00A409FD /* GCDirectionalGamepad.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370F2273215FB00A409FD /* GCDirectionalGamepad.mm */; };
+		AB83711D273215FB00A409FD /* GCControllerAxisInput.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370F3273215FB00A409FD /* GCControllerAxisInput.mm */; };
+		AB83711E273215FB00A409FD /* GCExtendedGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370F4273215FB00A409FD /* GCExtendedGamepad.h */; };
+		AB83711F273215FB00A409FD /* GCController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AB8370F5273215FB00A409FD /* GCController.mm */; };
+		AB837120273215FB00A409FD /* GCMouseInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370F6273215FB00A409FD /* GCMouseInput.h */; };
+		AB837121273215FB00A409FD /* GCControllerDirectionPad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370F7273215FB00A409FD /* GCControllerDirectionPad.h */; };
+		AB837122273215FB00A409FD /* GCDualSenseGamepad.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8370F8273215FB00A409FD /* GCDualSenseGamepad.h */; };
 		ABAE4F4625A4DB0700F51AF2 /* libHHGCControllerIOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB37EC4823F49B440000F92E /* libHHGCControllerIOS.a */; };
 		ABAE4F4925A4DB2900F51AF2 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABAE4F4825A4DB2900F51AF2 /* GameController.framework */; };
 /* End PBXBuildFile section */
@@ -67,49 +68,50 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AB2E3E512607B667006B446C /* GCControllerTouchpad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerTouchpad.mm; sourceTree = "<group>"; };
-		AB2E3E522607B667006B446C /* GCControllerConverters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCControllerConverters.m; sourceTree = "<group>"; };
-		AB2E3E532607B667006B446C /* GCXboxGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCXboxGamepad.h; sourceTree = "<group>"; };
-		AB2E3E542607B667006B446C /* GCControllerAxisInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerAxisInput.mm; sourceTree = "<group>"; };
-		AB2E3E552607B667006B446C /* GCPhysicalInputProfile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCPhysicalInputProfile.mm; sourceTree = "<group>"; };
-		AB2E3E562607B667006B446C /* GCDeviceCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDeviceCursor.h; sourceTree = "<group>"; };
-		AB2E3E572607B667006B446C /* UIImageSymbolConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageSymbolConfiguration.h; sourceTree = "<group>"; };
-		AB2E3E582607B668006B446C /* GCMicroGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCMicroGamepad.mm; sourceTree = "<group>"; };
-		AB2E3E592607B668006B446C /* GCPhysicalInputProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPhysicalInputProfile.h; sourceTree = "<group>"; };
-		AB2E3E5A2607B668006B446C /* GCDualShockGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDualShockGamepad.mm; sourceTree = "<group>"; };
-		AB2E3E5B2607B668006B446C /* GCXboxGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCXboxGamepad.mm; sourceTree = "<group>"; };
-		AB2E3E5C2607B668006B446C /* GCControllerTouchpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerTouchpad.h; sourceTree = "<group>"; };
-		AB2E3E5D2607B668006B446C /* GCController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCController.mm; sourceTree = "<group>"; };
-		AB2E3E5E2607B668006B446C /* GCControllerConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerConverters.h; sourceTree = "<group>"; };
-		AB2E3E5F2607B668006B446C /* GCMicroGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMicroGamepad.h; sourceTree = "<group>"; };
-		AB2E3E602607B668006B446C /* GCControllerElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerElement.h; sourceTree = "<group>"; };
-		AB2E3E612607B668006B446C /* GCControllerButtonInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerButtonInput.mm; sourceTree = "<group>"; };
-		AB2E3E622607B669006B446C /* GCExtendedGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCExtendedGamepad.h; sourceTree = "<group>"; };
-		AB2E3E632607B669006B446C /* NSError.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSError.mm; sourceTree = "<group>"; };
-		AB2E3E642607B669006B446C /* NSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSError.h; sourceTree = "<group>"; };
-		AB2E3E652607B669006B446C /* GCMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMotion.h; sourceTree = "<group>"; };
-		AB2E3E662607B669006B446C /* UIImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImage.mm; sourceTree = "<group>"; };
-		AB2E3E672607B669006B446C /* GCControllerDirectionPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerDirectionPad.h; sourceTree = "<group>"; };
-		AB2E3E682607B66A006B446C /* GCControllerDirectionPad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerDirectionPad.mm; sourceTree = "<group>"; };
-		AB2E3E692607B66A006B446C /* UIImageConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageConfiguration.h; sourceTree = "<group>"; };
-		AB2E3E6A2607B66A006B446C /* UIImageConfiguration.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageConfiguration.mm; sourceTree = "<group>"; };
-		AB2E3E6B2607B66A006B446C /* UIImageSymbolConfiguration.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageSymbolConfiguration.mm; sourceTree = "<group>"; };
-		AB2E3E6C2607B66A006B446C /* GCMotion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCMotion.mm; sourceTree = "<group>"; };
-		AB2E3E6D2607B66A006B446C /* GCExtendedGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCExtendedGamepad.mm; sourceTree = "<group>"; };
-		AB2E3E6E2607B66A006B446C /* GCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCController.h; sourceTree = "<group>"; };
-		AB2E3E6F2607B66B006B446C /* GCControllerElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerElement.mm; sourceTree = "<group>"; };
-		AB2E3E702607B66B006B446C /* UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage.h; sourceTree = "<group>"; };
-		AB2E3E712607B66B006B446C /* GCDualShockGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDualShockGamepad.h; sourceTree = "<group>"; };
-		AB2E3E722607B66B006B446C /* UITraitCollection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UITraitCollection.mm; sourceTree = "<group>"; };
-		AB2E3E732607B66B006B446C /* GCDeviceCursor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDeviceCursor.mm; sourceTree = "<group>"; };
-		AB2E3E742607B66B006B446C /* GCControllerAxisInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerAxisInput.h; sourceTree = "<group>"; };
-		AB2E3E752607B66B006B446C /* GCControllerButtonInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerButtonInput.h; sourceTree = "<group>"; };
-		AB2E3E762607B66C006B446C /* NSException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSException.h; sourceTree = "<group>"; };
-		AB2E3E772607B66C006B446C /* NSException.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSException.mm; sourceTree = "<group>"; };
-		AB2E3E782607B66D006B446C /* Callbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callbacks.h; sourceTree = "<group>"; };
-		AB2E3E792607B66D006B446C /* UITraitCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITraitCollection.h; sourceTree = "<group>"; };
 		AB37EC4823F49B440000F92E /* libHHGCControllerIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHHGCControllerIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB81C33D248D42AB0003242F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.5.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		AB8370CF273215F700A409FD /* GCControllerTouchpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerTouchpad.h; sourceTree = "<group>"; };
+		AB8370D0273215F800A409FD /* GCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCController.h; sourceTree = "<group>"; };
+		AB8370D1273215F800A409FD /* GCDirectionalGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDirectionalGamepad.h; sourceTree = "<group>"; };
+		AB8370D2273215F800A409FD /* GCDeviceCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDeviceCursor.h; sourceTree = "<group>"; };
+		AB8370D3273215F800A409FD /* GCControllerElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerElement.h; sourceTree = "<group>"; };
+		AB8370D4273215F800A409FD /* GCMouseInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCMouseInput.mm; sourceTree = "<group>"; };
+		AB8370D5273215F800A409FD /* NSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSError.h; sourceTree = "<group>"; };
+		AB8370D6273215F800A409FD /* GCControllerInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerInitializer.h; sourceTree = "<group>"; };
+		AB8370D7273215F800A409FD /* GCMicroGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMicroGamepad.h; sourceTree = "<group>"; };
+		AB8370D8273215F800A409FD /* GCDualSenseGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDualSenseGamepad.mm; sourceTree = "<group>"; };
+		AB8370D9273215F800A409FD /* GCControllerTouchpad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerTouchpad.mm; sourceTree = "<group>"; };
+		AB8370DA273215F800A409FD /* GCControllerDirectionPad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerDirectionPad.mm; sourceTree = "<group>"; };
+		AB8370DB273215F900A409FD /* GCControllerConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerConverters.h; sourceTree = "<group>"; };
+		AB8370DC273215F900A409FD /* GCControllerElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerElement.mm; sourceTree = "<group>"; };
+		AB8370DD273215F900A409FD /* GCControllerAxisInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerAxisInput.h; sourceTree = "<group>"; };
+		AB8370DE273215F900A409FD /* GCKeyboardInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCKeyboardInput.h; sourceTree = "<group>"; };
+		AB8370DF273215F900A409FD /* GCMotion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCMotion.mm; sourceTree = "<group>"; };
+		AB8370E0273215F900A409FD /* NSError.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSError.mm; sourceTree = "<group>"; };
+		AB8370E1273215F900A409FD /* GCControllerButtonInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerButtonInput.h; sourceTree = "<group>"; };
+		AB8370E2273215F900A409FD /* GCDeviceCursor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDeviceCursor.mm; sourceTree = "<group>"; };
+		AB8370E3273215F900A409FD /* GCDualShockGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDualShockGamepad.h; sourceTree = "<group>"; };
+		AB8370E4273215F900A409FD /* GCControllerButtonInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerButtonInput.mm; sourceTree = "<group>"; };
+		AB8370E5273215FA00A409FD /* GCKeyboardInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCKeyboardInput.mm; sourceTree = "<group>"; };
+		AB8370E6273215FA00A409FD /* GCControllerInitializer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerInitializer.mm; sourceTree = "<group>"; };
+		AB8370E7273215FA00A409FD /* NSException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSException.h; sourceTree = "<group>"; };
+		AB8370E8273215FA00A409FD /* GCXboxGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCXboxGamepad.mm; sourceTree = "<group>"; };
+		AB8370E9273215FA00A409FD /* GCControllerConverters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCControllerConverters.m; sourceTree = "<group>"; };
+		AB8370EA273215FA00A409FD /* Callbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callbacks.h; sourceTree = "<group>"; };
+		AB8370EB273215FA00A409FD /* GCDualShockGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDualShockGamepad.mm; sourceTree = "<group>"; };
+		AB8370EC273215FA00A409FD /* GCMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMotion.h; sourceTree = "<group>"; };
+		AB8370ED273215FA00A409FD /* GCMicroGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCMicroGamepad.mm; sourceTree = "<group>"; };
+		AB8370EE273215FA00A409FD /* GCPhysicalInputProfile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCPhysicalInputProfile.mm; sourceTree = "<group>"; };
+		AB8370EF273215FA00A409FD /* GCXboxGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCXboxGamepad.h; sourceTree = "<group>"; };
+		AB8370F0273215FA00A409FD /* GCExtendedGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCExtendedGamepad.mm; sourceTree = "<group>"; };
+		AB8370F1273215FA00A409FD /* GCPhysicalInputProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPhysicalInputProfile.h; sourceTree = "<group>"; };
+		AB8370F2273215FB00A409FD /* GCDirectionalGamepad.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDirectionalGamepad.mm; sourceTree = "<group>"; };
+		AB8370F3273215FB00A409FD /* GCControllerAxisInput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCControllerAxisInput.mm; sourceTree = "<group>"; };
+		AB8370F4273215FB00A409FD /* GCExtendedGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCExtendedGamepad.h; sourceTree = "<group>"; };
+		AB8370F5273215FB00A409FD /* GCController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCController.mm; sourceTree = "<group>"; };
+		AB8370F6273215FB00A409FD /* GCMouseInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMouseInput.h; sourceTree = "<group>"; };
+		AB8370F7273215FB00A409FD /* GCControllerDirectionPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCControllerDirectionPad.h; sourceTree = "<group>"; };
+		AB8370F8273215FB00A409FD /* GCDualSenseGamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDualSenseGamepad.h; sourceTree = "<group>"; };
 		ABA351402519059500BC964C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		ABAE4F4825A4DB2900F51AF2 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/System/iOSSupport/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -157,47 +159,48 @@
 		ABDEA8A22571C593008EB04E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				AB2E3E782607B66D006B446C /* Callbacks.h */,
-				AB2E3E6E2607B66A006B446C /* GCController.h */,
-				AB2E3E5D2607B668006B446C /* GCController.mm */,
-				AB2E3E742607B66B006B446C /* GCControllerAxisInput.h */,
-				AB2E3E542607B667006B446C /* GCControllerAxisInput.mm */,
-				AB2E3E752607B66B006B446C /* GCControllerButtonInput.h */,
-				AB2E3E612607B668006B446C /* GCControllerButtonInput.mm */,
-				AB2E3E5E2607B668006B446C /* GCControllerConverters.h */,
-				AB2E3E522607B667006B446C /* GCControllerConverters.m */,
-				AB2E3E672607B669006B446C /* GCControllerDirectionPad.h */,
-				AB2E3E682607B66A006B446C /* GCControllerDirectionPad.mm */,
-				AB2E3E602607B668006B446C /* GCControllerElement.h */,
-				AB2E3E6F2607B66B006B446C /* GCControllerElement.mm */,
-				AB2E3E5C2607B668006B446C /* GCControllerTouchpad.h */,
-				AB2E3E512607B667006B446C /* GCControllerTouchpad.mm */,
-				AB2E3E562607B667006B446C /* GCDeviceCursor.h */,
-				AB2E3E732607B66B006B446C /* GCDeviceCursor.mm */,
-				AB2E3E712607B66B006B446C /* GCDualShockGamepad.h */,
-				AB2E3E5A2607B668006B446C /* GCDualShockGamepad.mm */,
-				AB2E3E622607B669006B446C /* GCExtendedGamepad.h */,
-				AB2E3E6D2607B66A006B446C /* GCExtendedGamepad.mm */,
-				AB2E3E5F2607B668006B446C /* GCMicroGamepad.h */,
-				AB2E3E582607B668006B446C /* GCMicroGamepad.mm */,
-				AB2E3E652607B669006B446C /* GCMotion.h */,
-				AB2E3E6C2607B66A006B446C /* GCMotion.mm */,
-				AB2E3E592607B668006B446C /* GCPhysicalInputProfile.h */,
-				AB2E3E552607B667006B446C /* GCPhysicalInputProfile.mm */,
-				AB2E3E532607B667006B446C /* GCXboxGamepad.h */,
-				AB2E3E5B2607B668006B446C /* GCXboxGamepad.mm */,
-				AB2E3E642607B669006B446C /* NSError.h */,
-				AB2E3E632607B669006B446C /* NSError.mm */,
-				AB2E3E762607B66C006B446C /* NSException.h */,
-				AB2E3E772607B66C006B446C /* NSException.mm */,
-				AB2E3E702607B66B006B446C /* UIImage.h */,
-				AB2E3E662607B669006B446C /* UIImage.mm */,
-				AB2E3E692607B66A006B446C /* UIImageConfiguration.h */,
-				AB2E3E6A2607B66A006B446C /* UIImageConfiguration.mm */,
-				AB2E3E572607B667006B446C /* UIImageSymbolConfiguration.h */,
-				AB2E3E6B2607B66A006B446C /* UIImageSymbolConfiguration.mm */,
-				AB2E3E792607B66D006B446C /* UITraitCollection.h */,
-				AB2E3E722607B66B006B446C /* UITraitCollection.mm */,
+				AB8370EA273215FA00A409FD /* Callbacks.h */,
+				AB8370D0273215F800A409FD /* GCController.h */,
+				AB8370F5273215FB00A409FD /* GCController.mm */,
+				AB8370DD273215F900A409FD /* GCControllerAxisInput.h */,
+				AB8370F3273215FB00A409FD /* GCControllerAxisInput.mm */,
+				AB8370E1273215F900A409FD /* GCControllerButtonInput.h */,
+				AB8370E4273215F900A409FD /* GCControllerButtonInput.mm */,
+				AB8370DB273215F900A409FD /* GCControllerConverters.h */,
+				AB8370E9273215FA00A409FD /* GCControllerConverters.m */,
+				AB8370F7273215FB00A409FD /* GCControllerDirectionPad.h */,
+				AB8370DA273215F800A409FD /* GCControllerDirectionPad.mm */,
+				AB8370D3273215F800A409FD /* GCControllerElement.h */,
+				AB8370DC273215F900A409FD /* GCControllerElement.mm */,
+				AB8370D6273215F800A409FD /* GCControllerInitializer.h */,
+				AB8370E6273215FA00A409FD /* GCControllerInitializer.mm */,
+				AB8370CF273215F700A409FD /* GCControllerTouchpad.h */,
+				AB8370D9273215F800A409FD /* GCControllerTouchpad.mm */,
+				AB8370D2273215F800A409FD /* GCDeviceCursor.h */,
+				AB8370E2273215F900A409FD /* GCDeviceCursor.mm */,
+				AB8370D1273215F800A409FD /* GCDirectionalGamepad.h */,
+				AB8370F2273215FB00A409FD /* GCDirectionalGamepad.mm */,
+				AB8370F8273215FB00A409FD /* GCDualSenseGamepad.h */,
+				AB8370D8273215F800A409FD /* GCDualSenseGamepad.mm */,
+				AB8370E3273215F900A409FD /* GCDualShockGamepad.h */,
+				AB8370EB273215FA00A409FD /* GCDualShockGamepad.mm */,
+				AB8370F4273215FB00A409FD /* GCExtendedGamepad.h */,
+				AB8370F0273215FA00A409FD /* GCExtendedGamepad.mm */,
+				AB8370DE273215F900A409FD /* GCKeyboardInput.h */,
+				AB8370E5273215FA00A409FD /* GCKeyboardInput.mm */,
+				AB8370D7273215F800A409FD /* GCMicroGamepad.h */,
+				AB8370ED273215FA00A409FD /* GCMicroGamepad.mm */,
+				AB8370EC273215FA00A409FD /* GCMotion.h */,
+				AB8370DF273215F900A409FD /* GCMotion.mm */,
+				AB8370F6273215FB00A409FD /* GCMouseInput.h */,
+				AB8370D4273215F800A409FD /* GCMouseInput.mm */,
+				AB8370F1273215FA00A409FD /* GCPhysicalInputProfile.h */,
+				AB8370EE273215FA00A409FD /* GCPhysicalInputProfile.mm */,
+				AB8370EF273215FA00A409FD /* GCXboxGamepad.h */,
+				AB8370E8273215FA00A409FD /* GCXboxGamepad.mm */,
+				AB8370D5273215F800A409FD /* NSError.h */,
+				AB8370E0273215F900A409FD /* NSError.mm */,
+				AB8370E7273215FA00A409FD /* NSException.h */,
 			);
 			name = Common;
 			path = ../Common;
@@ -210,27 +213,28 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB2E3E7F2607B66D006B446C /* GCDeviceCursor.h in Headers */,
-				AB2E3E9F2607B66E006B446C /* NSException.h in Headers */,
-				AB2E3E9E2607B66E006B446C /* GCControllerButtonInput.h in Headers */,
-				AB2E3E9A2607B66E006B446C /* GCDualShockGamepad.h in Headers */,
-				AB2E3EA22607B66E006B446C /* UITraitCollection.h in Headers */,
-				AB2E3E8E2607B66D006B446C /* GCMotion.h in Headers */,
-				AB2E3E9D2607B66E006B446C /* GCControllerAxisInput.h in Headers */,
-				AB2E3E992607B66E006B446C /* UIImage.h in Headers */,
-				AB2E3E872607B66D006B446C /* GCControllerConverters.h in Headers */,
-				AB2E3E922607B66D006B446C /* UIImageConfiguration.h in Headers */,
-				AB2E3E8B2607B66D006B446C /* GCExtendedGamepad.h in Headers */,
-				AB2E3E902607B66D006B446C /* GCControllerDirectionPad.h in Headers */,
-				AB2E3E7C2607B66D006B446C /* GCXboxGamepad.h in Headers */,
-				AB2E3E892607B66D006B446C /* GCControllerElement.h in Headers */,
-				AB2E3E822607B66D006B446C /* GCPhysicalInputProfile.h in Headers */,
-				AB2E3E852607B66D006B446C /* GCControllerTouchpad.h in Headers */,
-				AB2E3E802607B66D006B446C /* UIImageSymbolConfiguration.h in Headers */,
-				AB2E3E8D2607B66D006B446C /* NSError.h in Headers */,
-				AB2E3EA12607B66E006B446C /* Callbacks.h in Headers */,
-				AB2E3E972607B66E006B446C /* GCController.h in Headers */,
-				AB2E3E882607B66D006B446C /* GCMicroGamepad.h in Headers */,
+				AB837116273215FB00A409FD /* GCMotion.h in Headers */,
+				AB837108273215FB00A409FD /* GCKeyboardInput.h in Headers */,
+				AB83710B273215FB00A409FD /* GCControllerButtonInput.h in Headers */,
+				AB837120273215FB00A409FD /* GCMouseInput.h in Headers */,
+				AB83711E273215FB00A409FD /* GCExtendedGamepad.h in Headers */,
+				AB8370FA273215FB00A409FD /* GCController.h in Headers */,
+				AB837101273215FB00A409FD /* GCMicroGamepad.h in Headers */,
+				AB8370FB273215FB00A409FD /* GCDirectionalGamepad.h in Headers */,
+				AB8370FF273215FB00A409FD /* NSError.h in Headers */,
+				AB837107273215FB00A409FD /* GCControllerAxisInput.h in Headers */,
+				AB837119273215FB00A409FD /* GCXboxGamepad.h in Headers */,
+				AB837105273215FB00A409FD /* GCControllerConverters.h in Headers */,
+				AB83711B273215FB00A409FD /* GCPhysicalInputProfile.h in Headers */,
+				AB837121273215FB00A409FD /* GCControllerDirectionPad.h in Headers */,
+				AB8370FD273215FB00A409FD /* GCControllerElement.h in Headers */,
+				AB8370FC273215FB00A409FD /* GCDeviceCursor.h in Headers */,
+				AB83710D273215FB00A409FD /* GCDualShockGamepad.h in Headers */,
+				AB837111273215FB00A409FD /* NSException.h in Headers */,
+				AB837114273215FB00A409FD /* Callbacks.h in Headers */,
+				AB837100273215FB00A409FD /* GCControllerInitializer.h in Headers */,
+				AB8370F9273215FB00A409FD /* GCControllerTouchpad.h in Headers */,
+				AB837122273215FB00A409FD /* GCDualSenseGamepad.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,26 +296,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB2E3E812607B66D006B446C /* GCMicroGamepad.mm in Sources */,
-				AB2E3E8C2607B66D006B446C /* NSError.mm in Sources */,
-				AB2E3E932607B66E006B446C /* UIImageConfiguration.mm in Sources */,
-				AB2E3E7B2607B66D006B446C /* GCControllerConverters.m in Sources */,
-				AB2E3E942607B66E006B446C /* UIImageSymbolConfiguration.mm in Sources */,
-				AB2E3E842607B66D006B446C /* GCXboxGamepad.mm in Sources */,
-				AB2E3EA02607B66E006B446C /* NSException.mm in Sources */,
-				AB2E3E962607B66E006B446C /* GCExtendedGamepad.mm in Sources */,
-				AB2E3E7E2607B66D006B446C /* GCPhysicalInputProfile.mm in Sources */,
-				AB2E3E7A2607B66D006B446C /* GCControllerTouchpad.mm in Sources */,
-				AB2E3E862607B66D006B446C /* GCController.mm in Sources */,
-				AB2E3E8A2607B66D006B446C /* GCControllerButtonInput.mm in Sources */,
-				AB2E3E9C2607B66E006B446C /* GCDeviceCursor.mm in Sources */,
-				AB2E3E832607B66D006B446C /* GCDualShockGamepad.mm in Sources */,
-				AB2E3E982607B66E006B446C /* GCControllerElement.mm in Sources */,
-				AB2E3E8F2607B66D006B446C /* UIImage.mm in Sources */,
-				AB2E3E9B2607B66E006B446C /* UITraitCollection.mm in Sources */,
-				AB2E3E7D2607B66D006B446C /* GCControllerAxisInput.mm in Sources */,
-				AB2E3E912607B66D006B446C /* GCControllerDirectionPad.mm in Sources */,
-				AB2E3E952607B66E006B446C /* GCMotion.mm in Sources */,
+				AB837106273215FB00A409FD /* GCControllerElement.mm in Sources */,
+				AB83710F273215FB00A409FD /* GCKeyboardInput.mm in Sources */,
+				AB83710C273215FB00A409FD /* GCDeviceCursor.mm in Sources */,
+				AB83710A273215FB00A409FD /* NSError.mm in Sources */,
+				AB837110273215FB00A409FD /* GCControllerInitializer.mm in Sources */,
+				AB837117273215FB00A409FD /* GCMicroGamepad.mm in Sources */,
+				AB83711A273215FB00A409FD /* GCExtendedGamepad.mm in Sources */,
+				AB837103273215FB00A409FD /* GCControllerTouchpad.mm in Sources */,
+				AB837112273215FB00A409FD /* GCXboxGamepad.mm in Sources */,
+				AB837102273215FB00A409FD /* GCDualSenseGamepad.mm in Sources */,
+				AB837118273215FB00A409FD /* GCPhysicalInputProfile.mm in Sources */,
+				AB837115273215FB00A409FD /* GCDualShockGamepad.mm in Sources */,
+				AB8370FE273215FB00A409FD /* GCMouseInput.mm in Sources */,
+				AB83710E273215FB00A409FD /* GCControllerButtonInput.mm in Sources */,
+				AB83711C273215FB00A409FD /* GCDirectionalGamepad.mm in Sources */,
+				AB837104273215FB00A409FD /* GCControllerDirectionPad.mm in Sources */,
+				AB83711D273215FB00A409FD /* GCControllerAxisInput.mm in Sources */,
+				AB83711F273215FB00A409FD /* GCController.mm in Sources */,
+				AB837109273215FB00A409FD /* GCMotion.mm in Sources */,
+				AB837113273215FB00A409FD /* GCControllerConverters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

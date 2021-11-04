@@ -20,7 +20,7 @@ namespace HovelHouse.GameController
     /// <summary>
     /// 
     /// </summary>
-    public class GCControllerTouchpad : UnmanagedObject, IDisposable
+    public class GCControllerTouchpad : GCControllerElement, IDisposable
     {
         #region dll
         
