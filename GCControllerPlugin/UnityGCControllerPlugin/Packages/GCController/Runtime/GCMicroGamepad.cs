@@ -127,7 +127,6 @@ namespace HovelHouse.GameController
             }
         }
 
-        
         /// <value>Dpad</value>
         private GCControllerDirectionPad _dpad;
         public GCControllerDirectionPad Dpad
@@ -150,8 +149,31 @@ namespace HovelHouse.GameController
                 return _dpad;
             }
         }
-
         
+        private GCControllerDirectionPad _dpadRing;
+
+        /**
+         * returns the dPad ring controller element if this is a 2nd gen siri remote
+         * if it's not, this will return null;
+         */
+        public GCControllerDirectionPad DpadRing
+        {
+            get
+            {
+                if (_dpadRing == null)
+                {
+                    // The apple API has no hardreference to the new controller elements on the
+                    // 2ndgen siri remote, so we need to retrieve them by name, we use the 
+                    // const string from the API to do this
+                    _dpadRing = (GCControllerDirectionPad) Elements
+                        .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalCardinalDpad)
+                        ?.Item2;
+                }
+
+                return _dpadRing;
+            }
+        }
+
         /// <value>ReportsAbsoluteDpadValues</value>
         public bool ReportsAbsoluteDpadValues
         {
