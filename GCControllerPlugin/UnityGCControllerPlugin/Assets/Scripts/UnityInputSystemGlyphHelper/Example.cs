@@ -50,7 +50,7 @@ public class Example : MonoBehaviour
                     if(Helpers.TryGetValue(control.device, out var helper))
                     {
                         var symbol = helper.GetSymbolNameForUnityElement(control);
-                        Debug.Log($"{GlyphHelper.GetUnityInputControlPath(control)}{symbol}");
+                        Debug.Log($"{GlyphHelper.GetUnityInputControlPath(control)}-{symbol}");
                         var sprite = _glyphProvider.GetSprite(symbol, false);
 
                         if (sprite != null)

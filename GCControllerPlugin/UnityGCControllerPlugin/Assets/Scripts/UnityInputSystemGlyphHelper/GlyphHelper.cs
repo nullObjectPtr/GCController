@@ -48,8 +48,10 @@ public class GlyphHelper : Object
         return GetSymbolNameForAppleElement(element);
     }
  
-    public string GetSymbolNameForAppleElement(GCControllerElement element) 
-    { 
+    public string GetSymbolNameForAppleElement([NotNull] GCControllerElement element) 
+    {
+        if (element == null) throw new ArgumentNullException(nameof(element));
+        
         var symbolName = element.SfSymbolsName; 
         
         var symbol = symbolName;
@@ -83,22 +85,28 @@ public class GlyphHelper : Object
             if (element == extendedGamepad.Dpad.Up) 
             { 
                 return "dpad.up.fill"; 
-            } 
-             
-            if (element == extendedGamepad.LeftThumbstick.XAxis || element == extendedGamepad.LeftThumbstick.YAxis) 
+            }
+
+            if (element == extendedGamepad.LeftThumbstick.XAxis 
+                || element == extendedGamepad.LeftThumbstick.YAxis
+                || element == extendedGamepad.LeftThumbstick.Left
+                || element == extendedGamepad.LeftThumbstick.Right) 
             { 
                 return "l.joystick"; 
             } 
  
-            if (element == extendedGamepad.RightThumbstick.XAxis || element == extendedGamepad.RightThumbstick.YAxis) 
+            if (element == extendedGamepad.RightThumbstick.XAxis 
+                || element == extendedGamepad.RightThumbstick.YAxis
+                || element == extendedGamepad.RightThumbstick.Left
+                || element == extendedGamepad.RightThumbstick.Right) 
             { 
                 return "r.joystick"; 
-            } 
- 
-            Debug.LogWarning("no sf symbol is available for element"); 
-            return null; 
+            }
+            
+            // Fallthrough to the microgamepad case
         } 
  
+        
         var microGamepad = controller.MicroGamepad; 
         if (microGamepad != null) 
         { 
@@ -121,9 +129,9 @@ public class GlyphHelper : Object
             { 
                 return "dpad"; 
             } 
-        } 
+        }
  
-        Debug.LogWarning("no sf symbol is available for element"); 
+        Debug.LogWarning($"no sf symbol is available for element: {element.LocalizedName}"); 
         return null; 
     }
 
