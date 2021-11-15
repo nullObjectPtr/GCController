@@ -22,58 +22,50 @@ public class AppleControllerGlyphHelper : AppleControllerGlyphHelperBase
 
         if (string.IsNullOrEmpty(symbol) == false)
             return symbol;
-        
+
         var parentSymbol = element.Collection != null ? (element.Collection.SfSymbolsName ?? element.Collection.UnmappedSfSymbolsName) : "";
         Debug.Log($"parent symbol '{parentSymbol}'");
 
-        if (parentSymbol != null)
+        if (string.IsNullOrEmpty(parentSymbol) == false)
             return parentSymbol;
         
-        // Workaround for a bug where BigSur does not return the d-pad
+        Debug.LogWarning($"OS reports no symbol available for element {element.LocalizedName}. Attempting fallback behavior");
+        
+        // Workaround for a bug where the API does not return
         // symbols for the d-pad elements, 
         // this is future-proofed a bit, if they ever patch this later
         // this block of code won't be hit
 
         var extendedGamepad = _adapter.AppleController.ExtendedGamepad;
-        if (extendedGamepad != null)
+        var microGamepad = _adapter.AppleController.MicroGamepad;
+
+        if (microGamepad != null)
         {
-            if (element == extendedGamepad.Dpad.Down)
+            if (element == microGamepad.Dpad || element == microGamepad.DpadRing || element == microGamepad.Dpad.XAxis || element == microGamepad.Dpad.YAxis)
+            {
+                return "dpad";
+            }
+
+            if (element == microGamepad.Dpad.Down || element == microGamepad.DpadRing.Down)
             {
                 return "dpad.down.fill";
             }
 
-            if (element == extendedGamepad.Dpad.Left)
+            if (element == microGamepad.Dpad.Left || element == microGamepad.DpadRing.Left)
             {
                 return "dpad.left.fill";
             }
 
-            if (element == extendedGamepad.Dpad.Right)
+            if (element == microGamepad.Dpad.Right || element == microGamepad.DpadRing.Right)
             {
                 return "dpad.right.fill";
             }
 
-            if (element == extendedGamepad.Dpad.Up)
+            if (element == microGamepad.Dpad.Up || element == microGamepad.DpadRing.Up)
             {
                 return "dpad.up.fill";
             }
             
-            if (element == extendedGamepad.LeftThumbstick.XAxis || element == extendedGamepad.LeftThumbstick.YAxis)
-            {
-                return "l.joystick";
-            }
-
-            if (element == extendedGamepad.RightThumbstick.XAxis || element == extendedGamepad.RightThumbstick.YAxis)
-            {
-                return "r.joystick";
-            }
-
-            Debug.LogWarning("no sf symbol is available for element");
-            return null;
-        }
-
-        var microGamepad = _adapter.AppleController.MicroGamepad;
-        if (microGamepad != null)
-        {
             if (element == microGamepad.ButtonA)
             {
                 return "a.circle";
@@ -88,14 +80,22 @@ public class AppleControllerGlyphHelper : AppleControllerGlyphHelperBase
             {
                 return "line.horizontal.3.circle";
             }
+        }
 
-            if (element == microGamepad.Dpad.XAxis || element == microGamepad.Dpad.YAxis)
+        if(extendedGamepad != null)
+        {
+            if (element == extendedGamepad.LeftThumbstick.XAxis || element == extendedGamepad.LeftThumbstick.YAxis)
             {
-                return "dpad";
+                return "l.joystick";
+            }
+
+            if (element == extendedGamepad.RightThumbstick.XAxis || element == extendedGamepad.RightThumbstick.YAxis)
+            {
+                return "r.joystick";
             }
         }
 
-        Debug.LogWarning("no sf symbol is available for element");
+        Debug.LogWarning($"no sf symbol is available for element {element.LocalizedName}");
         return null;
     }
 }

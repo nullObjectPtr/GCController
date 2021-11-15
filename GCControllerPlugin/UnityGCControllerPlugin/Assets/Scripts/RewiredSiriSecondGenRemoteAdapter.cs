@@ -1,26 +1,18 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using HovelHouse.GameController;
+using Rewired;
+using UnityEngine;
 
-public class RewiredSiriRemoteAdapter : AbstractSiriRemoteAdapter
+public class RewiredSiriSecondGenRemoteAdapter : AbstractSiriRemoteAdapter
 {
-    public event Action<GCControllerButtonInput, bool> OnButtonValueChanged;
-    public event Action<GCControllerAxisInput, float> OnAxisValueChanged;
-    
-    private readonly GCMicroGamepad _microGamepad;
-    
-    private readonly RewiredToGCMicroGamepadElementMap ElementConverterMap;
-
-    private bool MenuButtonWasPressedThisUpdate;
-    private bool MenuButtonIsPressed;
-
-    public RewiredSiriRemoteAdapter(
+    public RewiredSiriSecondGenRemoteAdapter(
         GCController controller, 
         int profileId, 
         RewiredToGCMicroGamepadElementMap elementConverterMap)
     : base(controller, profileId, elementConverterMap)
     {
-        
     }
 
     protected override void OnInputSourceUpdated()
@@ -31,7 +23,11 @@ public class RewiredSiriRemoteAdapter : AbstractSiriRemoteAdapter
         UpdateButton(GCMicroGamepadElementType.DPadRight);
         UpdateButton(GCMicroGamepadElementType.DPadUp);
         UpdateButton(GCMicroGamepadElementType.DPadDown);
-
+        UpdateButton(GCMicroGamepadElementType.DPadRingLeft);
+        UpdateButton(GCMicroGamepadElementType.DPadRingRight);
+        UpdateButton(GCMicroGamepadElementType.DPadRingUp);
+        UpdateButton(GCMicroGamepadElementType.DPadRingDown);
+        
         // Special handling for the menuButton
         var record =
             ElementConverterMap.Records.FirstOrDefault(r => r.microGamepadElementType == GCMicroGamepadElementType.ButtonMenu);

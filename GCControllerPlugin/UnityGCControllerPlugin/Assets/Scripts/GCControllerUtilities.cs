@@ -55,6 +55,10 @@ public class OnDemandGlyphProvider : IGlyphProvider
     {
         UIImage image;
         
+        // If user wants the filled version of this glyph, attempt to provide it by looking up the filled variant
+        // for it. If it exists, well use the filled variant, if it doesn't we'll fall back to the symbol name
+        // if you pass in a filled variant directly, this lookup will return false, but the fallback behavior
+        // should load it
         if (filled && SymbolInfoCollection.AllControllerSymbols.TryGetFilledVariant(name, out var filledName))
         {
             image = UIImage.SystemImageNamed(filledName, _traits);
@@ -70,7 +74,7 @@ public class OnDemandGlyphProvider : IGlyphProvider
             return null;
         }
             
-        //Debug.Log($"loaded image for id: {name}");
+        Debug.Log($"loaded image for id: {name}");
 
         var texture = new Texture2D(1, 1);
         texture.LoadImage(UIImage.PNGRepresentation(image));

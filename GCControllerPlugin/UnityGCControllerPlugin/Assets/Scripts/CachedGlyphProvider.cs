@@ -60,10 +60,14 @@ public class CachedGlyphProvider : IGlyphProvider
             id = filledId;
         }
 
-        if (_sprites.TryGetValue(id, out var sprite))
+        if (_sprites.TryGetValue(id, out _) == false)
         {
-            Debug.Log($"Got sprite {id}");
-            return sprite;
+            LoadTexture(id, LoadMode.Append);
+        }
+
+        if (_sprites.ContainsKey(id))
+        {
+            return _sprites[id];
         }
 
         Debug.LogError($"could not find sprite with id '{id}'");
@@ -74,29 +78,34 @@ public class CachedGlyphProvider : IGlyphProvider
     {
         foreach (var id in textureIds)
         {
-            // In append mode - skip over any images that are already loaded
-            if (mode == LoadMode.Append && _sprites[id] != null)
-				continue;
-            
-            var image = UIImage.SystemImageNamed(id, _traits);
-            if (image == null)
-            {
-                Debug.LogWarning($"no glyph found for name '{id}'");
-                continue;
-            }
-            
-            Debug.Log($"loaded image for id: {id}");
-
-            var texture = new Texture2D(1, 1);
-            texture.LoadImage(UIImage.PNGRepresentation(image));
-
-            _sprites[id]  = Sprite.Create(
-                texture,
-                new Rect(0, 0, texture.width, texture.height), 
-                new Vector2(0.5f, 0.5f));
-            
-            image.Dispose();
+            LoadTexture(id, mode);
         }
+    }
+
+    private void LoadTexture(string id, LoadMode mode)
+    {
+        // In append mode - skip over any images that are already loaded
+        if (mode == LoadMode.Append && _sprites.ContainsKey(id))
+            return;
+            
+        var image = UIImage.SystemImageNamed(id, _traits);
+        if (image == null)
+        {
+            Debug.LogWarning($"no glyph found for name '{id}'");
+            return;
+        }
+            
+        Debug.Log($"loaded image for id: {id}");
+
+        var texture = new Texture2D(1, 1);
+        texture.LoadImage(UIImage.PNGRepresentation(image));
+
+        _sprites[id]  = Sprite.Create(
+            texture,
+            new Rect(0, 0, texture.width, texture.height), 
+            new Vector2(0.5f, 0.5f));
+            
+        image.Dispose();
     }
 
     /// <summary>

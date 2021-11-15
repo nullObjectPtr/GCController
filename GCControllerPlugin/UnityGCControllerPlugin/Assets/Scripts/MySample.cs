@@ -14,7 +14,7 @@ public class MySample : MonoBehaviour
         OnDemand
     };
 
-    public EGlyphLoadMode GlyphLoadMode;
+    public EGlyphLoadMode GlyphLoadMode = EGlyphLoadMode.OnDemand;
     public UnityEngine.UI.Image anImage;
     public TMP_Text statusTextMesh;
 
@@ -24,7 +24,8 @@ public class MySample : MonoBehaviour
     public CachedGlyphProvider.LoadFillOption LoadFillOption;
 
     // These define how we map the rewired custom controller elements to the adapters
-    public RewiredToGCMicroGamepadElementMap MicroGamepadElementMap;
+    public RewiredToGCMicroGamepadElementMap SecondGenSiriRemoteElementMap;
+    public RewiredToGCMicroGamepadElementMap FirstGenSiriRemoteElementMap;
     public RewiredToGCExtendedGamepadElementMap ExtendedGamepadElementMap;
     
     // This maps the GCController element name to a SFSymbol name for the fallback glyph helper
@@ -49,9 +50,7 @@ public class MySample : MonoBehaviour
 
         if (GlyphLoadMode == EGlyphLoadMode.Precached)
         {
-            // Load symbols early - it's an expensive process
             var symbolSet = new CachedGlyphProvider(symbolPointSize, symbolWeight);
-            symbolSet.LoadAllControllerGlyphs(LoadFillOption);
             _glyphProvider = symbolSet;
         }
         else
@@ -81,11 +80,9 @@ public class MySample : MonoBehaviour
         if (UIImage.SFSymbolsAreAvailable())
         {
             var appleController = GCController.Controllers().FirstOrDefault();
-            foreach (var ctrl in GCController.Controllers())
-            {
-                Debug.Log($"got apple controller: {ctrl.VendorName}");
-            }
             
+            Debug.Log($"got apple controller: {appleController.VendorName}");
+        
             // Use the extended gamepad property to skip past physicalInputProfile
             // which was only added in macOS 11.0+
             var extendedGamepad = appleController.ExtendedGamepad;
@@ -96,17 +93,30 @@ public class MySample : MonoBehaviour
             
             IRewiredAppleControllerAdapter adapter = null;
             
-#if UNITY_TVOS
-            UnityEngine.tvOS.Remote.allowExitToHome = false;
-#endif
-            
             if (extendedGamepad != null)
             {
                 adapter = new RewiredExtendedGamepadAdapter(appleController, 0, ExtendedGamepadElementMap);
             }
             else if (microGamepad != null)
             {
-                adapter = new RewiredSiriRemoteAdapter(appleController, 1, MicroGamepadElementMap);
+#if UNITY_TVOS
+                UnityEngine.tvOS.Remote.allowExitToHome = false;
+#endif
+                // check if the siri remote that was connected is second gen or not...
+                bool isSecondGen = microGamepad.DpadRing != null;
+                if (isSecondGen)
+                {
+                    // we need to use a different element map, because if we're using the 2nd gen
+                    // remote we do NOT want to use the dPad for input, we want the cardinal dPad
+                    // instead
+                    Debug.Log("Creating second gen siri remote adapter");
+                    adapter = new RewiredSiriSecondGenRemoteAdapter(appleController, 1, SecondGenSiriRemoteElementMap);
+                }
+                else
+                {
+                    Debug.Log("Creating first gen siri remote adapter");
+                    adapter = new RewiredSiriRemoteAdapter(appleController, 1, FirstGenSiriRemoteElementMap);
+                }
             }
             
             // Debug log the controller map, in case there is a misconfiguration
@@ -194,11 +204,8 @@ public class MySample : MonoBehaviour
             glyph = glyphs[Random.Range(0, glyphs.Count)];
             anImage.sprite = glyph;
         }
-        else
-        {
-            anImage.sprite = null;
-        }
 
+        // Just some debug stuff
         // Print the name of the glyph we want to display
         string glyphMsg;
         

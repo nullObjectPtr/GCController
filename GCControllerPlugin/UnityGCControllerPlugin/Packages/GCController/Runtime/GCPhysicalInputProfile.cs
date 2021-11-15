@@ -36,6 +36,14 @@ namespace HovelHouse.GameController
         
 
         
+        
+        [DllImport(dll)]
+        private static extern IntPtr GCPhysicalInputProfile_mappedElementAliasForPhysicalInputName(
+            HandleRef ptr, 
+            string inputName,
+            out IntPtr exceptionPtr);
+
+        
 
         
 
@@ -46,6 +54,7 @@ namespace HovelHouse.GameController
             HandleRef ptr,
             ref IntPtr keysPtr,
             ref IntPtr valuesPtr,
+            ref IntPtr typeTokenPtr,
             ref long count,
             ref IntPtr exceptionPtr);
         
@@ -71,6 +80,7 @@ namespace HovelHouse.GameController
         private static extern void GCPhysicalInputProfile_GetPropAllElements(
             HandleRef ptr,
             ref IntPtr buffer,
+            ref IntPtr tokenTypes,
             ref long count);
 
         [DllImport(dll)]
@@ -89,6 +99,30 @@ namespace HovelHouse.GameController
 
 
         
+        /// <summary>
+        /// </summary>
+        /// <param name="inputName"></param>
+        /// <returns>val</returns>
+        public string MappedElementAliasForPhysicalInputName(
+            string inputName)
+        { 
+            
+            var val = GCPhysicalInputProfile_mappedElementAliasForPhysicalInputName(
+                Handle,
+                inputName,
+                out var exceptionPtr);
+
+            if(exceptionPtr != IntPtr.Zero)
+            {
+                var nativeException = new NSException(exceptionPtr);
+                throw new GameControllerException(nativeException, nativeException.Reason);
+            }
+            
+            return Marshal.PtrToStringAuto(val);
+        }
+        
+
+        
         
         
         /// <value>Elements</value>
@@ -98,10 +132,15 @@ namespace HovelHouse.GameController
             { 
                 var keysPtr = IntPtr.Zero;
                 var valuesPtr = IntPtr.Zero;
+                var typeTokenPtr = IntPtr.Zero;
                 var exceptionPtr = IntPtr.Zero;
                 long count = 0;
 
-                GCPhysicalInputProfile_GetPropElements(Handle, ref keysPtr, ref valuesPtr, ref count, ref exceptionPtr);
+                GCPhysicalInputProfile_GetPropElements(Handle, ref keysPtr, ref valuesPtr, ref typeTokenPtr, ref count, ref exceptionPtr);
+
+                byte[] typeTokens = new byte[count];
+                if(typeTokenPtr != IntPtr.Zero)
+                    Marshal.Copy(typeTokenPtr, typeTokens, 0, (int)count);
 
                 var keyValuePairs = new Tuple<string, GCControllerElement>[count];
                 for (int i = 0; i < count; i++)
@@ -109,15 +148,16 @@ namespace HovelHouse.GameController
                     //TODO - templates should distinguish between string keys, and pointer keys
                     var keyPtr = Marshal.ReadIntPtr(keysPtr + (i * IntPtr.Size));
                     var valuePtr = Marshal.ReadIntPtr(valuesPtr + (i * IntPtr.Size));
-
+                    
                     keyValuePairs[i] = new Tuple<string, GCControllerElement>(
                         Marshal.PtrToStringAuto(keyPtr),
-                        new GCControllerElement(valuePtr)
+                        MakeElement(valuePtr, typeTokens[i])
                     );
                 }
 
                 Marshal.FreeHGlobal(keysPtr);
                 Marshal.FreeHGlobal(valuesPtr);
+                Marshal.FreeHGlobal(typeTokenPtr);
 
                 return keyValuePairs;
             }
@@ -204,16 +244,21 @@ namespace HovelHouse.GameController
             get
             {
                 IntPtr bufferPtr = IntPtr.Zero;
+                IntPtr typeTokenPtr = IntPtr.Zero;
+                
                 long bufferLen = 0;
 
-                GCPhysicalInputProfile_GetPropAllElements(Handle, ref bufferPtr, ref bufferLen);
+                GCPhysicalInputProfile_GetPropAllElements(Handle, ref bufferPtr, ref typeTokenPtr, ref bufferLen);
 
                 var allElements = new GCControllerElement[bufferLen];
+                
+                byte[] typeTokens = new byte[bufferLen];
+                Marshal.Copy(typeTokenPtr, typeTokens, 0, (int)bufferLen);
 
-                for (int i = 0; i < bufferLen; i++)
+                for (var i = 0; i < bufferLen; i++)
                 {
                     IntPtr ptr2 = Marshal.ReadIntPtr(bufferPtr + (i * IntPtr.Size));
-                    allElements[i] = ptr2 == IntPtr.Zero ? null : new GCControllerElement(ptr2);
+                    allElements[i] = ptr2 == IntPtr.Zero ? null : MakeElement(ptr2, typeTokens[i]);
                 }
 
                 Marshal.FreeHGlobal(bufferPtr);
@@ -222,22 +267,55 @@ namespace HovelHouse.GameController
             }
         }
 
-        public GCControllerElement this[string key] 
+        
+        /// <value>HasRemappedElements</value>
+        public bool HasRemappedElements
         {
             get
             {
-                var ptr = GCPhysicalInputProfile_ObjectForKeyedSubscript(Handle, key, out var exceptionPtr);
-                
-                if (exceptionPtr != IntPtr.Zero)
+                bool hasRemappedElements = false; //GCPhysicalInputProfile_GetPropHasRemappedElements(Handle, out var exceptionPtr);
+                /*
+                if(exceptionPtr != IntPtr.Zero)
                 {
-                    var nsException = new NSException(exceptionPtr);
-                    throw new GameControllerException(nsException,nsException.Reason);
+                    var nsexception = new NSException(exceptionPtr);
+                    throw new GameControllerException(nsexception, nsexception.Reason);
                 }
-
-                return ptr == IntPtr.Zero ? null : new GCControllerElement(ptr);
+                */
+                
+                return hasRemappedElements;
             }
         }
 
+
+        private GCControllerElement MakeElement(IntPtr valuePtr, Byte typeToken)
+        {
+            if (valuePtr == IntPtr.Zero)
+                return null;
+            
+            GCControllerElement element = null;
+            switch (typeToken)
+            {
+                case 1:
+                    // TODO
+                    //return new GCDualSenseAdaptiveTrigger(valuePtr);
+                    return new GCControllerButtonInput(valuePtr);
+                case 2:
+                    return new GCDeviceCursor(valuePtr);
+                case 3:
+                    return new GCControllerDirectionPad(valuePtr);
+                case 4:
+                    return new GCControllerTouchpad(valuePtr);
+                case 5:
+                    return new GCControllerButtonInput(valuePtr);
+                case 6:
+                    return new GCControllerAxisInput(valuePtr);
+                default:
+                    return new GCControllerElement(valuePtr);
+            }
+        }
+        
+
+        
         #region IDisposable Support
         [DllImport(dll)]
         private static extern void GCPhysicalInputProfile_Dispose(HandleRef handle);

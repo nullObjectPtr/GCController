@@ -128,7 +128,9 @@ public abstract class AppleControllerGlyphHelperBase : IGlyphHelper
         }
 
         var symbolName = GetSymbolNameForElement(element);
-        
+        if(string.IsNullOrEmpty(symbolName) == false)
+            Debug.Log($"fetch sprite: '{symbolName}'");
+
         return string.IsNullOrEmpty(symbolName) 
             ? null 
             : _glyphProvider.GetSprite(symbolName, filled);

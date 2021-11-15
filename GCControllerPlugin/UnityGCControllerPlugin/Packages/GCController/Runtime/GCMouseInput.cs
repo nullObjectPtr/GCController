@@ -1,5 +1,5 @@
 //
-//  GCControllerTouchpad.cs
+//  GCMouseInput.cs
 //
 //  Created by Jonathan Culp <jonathanculp@gmail.com> on
 //  Copyright © 2021 HovelHouseApps. All rights reserved.
@@ -20,7 +20,7 @@ namespace HovelHouse.GameController
     /// <summary>
     /// 
     /// </summary>
-    public class GCControllerTouchpad : GCControllerElement, IDisposable
+    public class GCMouseInput : GCPhysicalInputProfile, IDisposable
     {
         #region dll
         
@@ -44,8 +44,8 @@ namespace HovelHouse.GameController
 
         #endregion
 
-        internal GCControllerTouchpad(IntPtr ptr) : base(ptr) {}
-        internal GCControllerTouchpad(IntPtr ptr, ERetainPolicy retainPolicy) : base(ptr, retainPolicy){}
+        internal GCMouseInput(IntPtr ptr) : base(ptr) {}
+        internal GCMouseInput(IntPtr ptr, ERetainPolicy retainPolicy) : base(ptr, retainPolicy){}
         
         
 
@@ -59,28 +59,28 @@ namespace HovelHouse.GameController
         
         #region IDisposable Support
         [DllImport(dll)]
-        private static extern void GCControllerTouchpad_Dispose(HandleRef handle);
+        private static extern void GCMouseInput_Dispose(HandleRef handle);
             
         private bool disposedValue = false; // To detect redundant calls
         
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
-                //Debug.Log("GCControllerTouchpad Dispose");
-                GCControllerTouchpad_Dispose(Handle);
+                //Debug.Log("GCMouseInput Dispose");
+                GCMouseInput_Dispose(Handle);
                 disposedValue = true;
             }
         }
 
-        ~GCControllerTouchpad()
+        ~GCMouseInput()
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(false);
         }
 
         // This code added to correctly implement the disposable pattern.
-        public void Dispose()
+        public new void Dispose()
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);

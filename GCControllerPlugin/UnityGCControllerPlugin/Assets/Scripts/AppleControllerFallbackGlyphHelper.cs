@@ -15,6 +15,6 @@ public class AppleControllerFallbackGlyphHelper : AppleControllerGlyphHelperBase
     {
         var elementName = _adapter.GetElementName(element);
         var entry = _symbolNameMap.Records.FirstOrDefault(r => r.elementType == elementName);
-        return entry.sfSymbolName;
+        return entry?.sfSymbolName;
     }
 }

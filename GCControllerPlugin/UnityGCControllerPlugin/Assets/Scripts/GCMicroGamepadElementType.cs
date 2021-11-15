@@ -10,4 +10,10 @@
     DPadRight,
     DPadUp,
     DPadDown,
+    DPadRingLeft,
+    DPadRingRight,
+    DPadRingUp,
+    DPadRingDown,
+    DPadRingX,
+    DPadRingY
 }
