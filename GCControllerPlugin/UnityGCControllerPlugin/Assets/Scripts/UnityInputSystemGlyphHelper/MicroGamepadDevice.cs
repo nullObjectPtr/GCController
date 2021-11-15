@@ -48,11 +48,21 @@ public struct MicroGamepadDeviceState : IInputStateTypeInfo
 
     // Create a floating-point axis. If a name is not supplied, it is taken
     // from the field.
-    //[InputControl(name = "xAxis", layout = "Axis")]
-    //public short xAxis;
+    [InputControl(name = "xAxis", layout = "Axis")]
+    [FieldOffset(0x01)]
+    public short xAxis;
 
-    //[InputControl(name = "yAxis", layout = "Axis")]
-    //public short yAxis;
+    [InputControl(name = "yAxis", layout = "Axis")]
+    [FieldOffset(0x02)]
+    public short yAxis;
+
+    [InputControl(name = "ringXAxis", layout = "Axis")] 
+    [FieldOffset(0x03)]
+    public short ringXAxis;
+    
+    [InputControl(name = "ringYAxis", layout = "Axis")] 
+    [FieldOffset(0x04)]
+    public short ringYAxis;
 }
 
 // InputControlLayoutAttribute attribute is only necessary if you want
@@ -92,8 +102,18 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
     [InputControl]
     public ButtonControl buttonDown { get; private set; }
 
+    [InputControl]
     public AxisControl xAxis { get; private set; }
+    
+    [InputControl]
     public AxisControl yAxis { get; private set; }
+    
+    [InputControl]
+    public AxisControl ringXAxis { get; private set; }
+    
+    [InputControl]
+    
+    public AxisControl ringYAxis { get; private set; }
 
     private GCMicroGamepad gcMicroGamepad;
     
@@ -131,8 +151,8 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
         buttonUp = GetChildControl<ButtonControl>("buttonUp");
         buttonDown = GetChildControl<ButtonControl>("buttonDown");
 
-        //xAxis = GetChildControl<AxisControl>("xAxis");
-        //yAxis = GetChildControl<AxisControl>("yAxis");
+        xAxis = GetChildControl<AxisControl>("xAxis");
+        yAxis = GetChildControl<AxisControl>("yAxis");
     }
 
     [UsedImplicitly]
@@ -147,10 +167,6 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
                 ((gcMicroGamepad.ButtonMenu.Pressed ? 1 : 0) << 3)
                 | ((gcMicroGamepad.ButtonA.Pressed ? 1 : 0) << 4)
                 | ((gcMicroGamepad.ButtonX.Pressed ? 1 : 0) << 5)
-                //| ((gcMicroGamepad.Dpad.Left.Pressed ? 1 : 0) << 4)
-                //| ((gcMicroGamepad.Dpad.Right.Pressed ? 1 : 0) << 5)
-                //| ((gcMicroGamepad.Dpad.Up.Pressed ? 1 : 0) << 6)
-                //| ((gcMicroGamepad.Dpad.Down.Pressed ? 1 : 0) << 7)
             );
 
             if (DPadRing != null)
@@ -161,12 +177,13 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
                     | ((DPadRing.Up.Pressed ? 1 : 0) << 8)
                     | ((DPadRing.Down.Pressed ? 1 : 0) << 9)
                     );
+
+                state.ringXAxis = (short) DPadRing.XAxis.Value;
+                state.ringYAxis = (short) DPadRing.YAxis.Value;
             }
 
-            if(state.buttons != 0)
-                Debug.Log($"state:{Convert.ToString(state.buttons, 2)}");
-            //state.xAxis = gcMicroGamepad.xAxis.value;
-            //state.yAxis = gcMicroGamepad.yAxis.value;
+            state.xAxis = (short) gcMicroGamepad.Dpad.XAxis.Value;
+            state.yAxis = (short) gcMicroGamepad.Dpad.YAxis.Value;
         }
         
         InputSystem.QueueStateEvent(this, state);
@@ -179,12 +196,6 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
         var elements = gcMicroGamepad.Elements;
         if (elements != null)
         {
-            foreach (var id in elements)
-            {
-                if(id != null)
-                    Debug.Log($"element '{id.Item1}'");
-            }
-            
             // Grab some specific elements that aren't part of the profile. ugh.
             DPadRing = elements
                 .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalCardinalDpad)

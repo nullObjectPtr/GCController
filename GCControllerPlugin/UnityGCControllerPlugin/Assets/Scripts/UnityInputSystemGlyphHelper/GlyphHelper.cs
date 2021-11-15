@@ -5,7 +5,7 @@ using HovelHouse.GameController;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.iOS;
+using UnityEngine.InputSystem.DualShock;
 using UnityEngine.InputSystem.XInput;
 using Object = UnityEngine.Object;
 
@@ -24,17 +24,14 @@ public class GlyphHelper : Object
 
         var device = inputControl.device;
         
-        if (device is XboxOneGampadiOS)
+        
+        if (device is XInputController)
         {
             element = GetGCElementForXInputController(inputControl);
         }
-        else if (device is DualShock4GampadiOS)
+        else if (device is DualShockGamepad)
         {
             element = GetGCElementForDualShock4(inputControl);
-        }
-        else if (device is iOSGameController)
-        {
-            element = GetGCElementForIOSGameController(inputControl);
         }
         else if (device is Gamepad)
         {
@@ -66,7 +63,8 @@ public class GlyphHelper : Object
  
         var extendedGamepad = controller.ExtendedGamepad; 
         if (extendedGamepad != null) 
-        { 
+        {
+            #region DPad
             if (element == extendedGamepad.Dpad.Down) 
             { 
                 return "dpad.down.fill"; 
@@ -86,24 +84,75 @@ public class GlyphHelper : Object
             { 
                 return "dpad.up.fill"; 
             }
+            #endregion
 
+            #region LeftThumbstick
+            if (element == extendedGamepad.LeftThumbstick.Left)
+            {
+                return "l.joystick.tilt.left.fill";
+            }
+
+            if (element == extendedGamepad.LeftThumbstick.Right)
+            {
+                return "l.joystick.tilt.right.fill";
+            }
+            
+            if (element == extendedGamepad.LeftThumbstick.Up)
+            {
+                return "l.joystick.tilt.up.fill";
+            }
+            
+            if (element == extendedGamepad.LeftThumbstick.Down)
+            {
+                return "l.joystick.tilt.down.fill";
+            }
+
+            if (element == extendedGamepad.LeftThumbstickButton)
+            {
+                return "l.joystick.press.down.fill";
+            }
+                
             if (element == extendedGamepad.LeftThumbstick.XAxis 
-                || element == extendedGamepad.LeftThumbstick.YAxis
-                || element == extendedGamepad.LeftThumbstick.Left
-                || element == extendedGamepad.LeftThumbstick.Right) 
+                || element == extendedGamepad.LeftThumbstick.YAxis) 
             { 
                 return "l.joystick"; 
-            } 
- 
+            }
+            #endregion
+
+            #region RightThumbstick
+            if (element == extendedGamepad.RightThumbstick.Left)
+            {
+                return "r.joystick.tilt.left.fill";
+            }
+
+            if (element == extendedGamepad.RightThumbstick.Right)
+            {
+                return "r.joystick.tilt.right.fill";
+            }
+            
+            if (element == extendedGamepad.RightThumbstick.Up)
+            {
+                return "r.joystick.tilt.up.fill";
+            }
+            
+            if (element == extendedGamepad.RightThumbstick.Down)
+            {
+                return "r.joystick.tilt.down.fill";
+            }
+
+            if (element == extendedGamepad.RightThumbstickButton)
+            {
+                return "r.joystick.press.down.fill";
+            }
+                
             if (element == extendedGamepad.RightThumbstick.XAxis 
-                || element == extendedGamepad.RightThumbstick.YAxis
-                || element == extendedGamepad.RightThumbstick.Left
-                || element == extendedGamepad.RightThumbstick.Right) 
+                || element == extendedGamepad.RightThumbstick.YAxis) 
             { 
                 return "r.joystick"; 
             }
+            #endregion
             
-            // Fallthrough to the microgamepad case
+            // Fallthrough to the micro-gamepad case
         } 
  
         
@@ -393,18 +442,16 @@ public class GlyphHelper : Object
 
         return null;
     }
-
-    GCControllerElement GetGCElementForIOSGameController(InputControl inputControl)
-    {
-        // Fallthrough to regular gamepad case
-        // there is nothing special to do here
-        return GetGCElementForExtendedGamepad(inputControl);
-    }
-
+    
     GCControllerElement GetGCElementForDualShock4(InputControl inputControl)
     {
-        DualShock4GampadiOS gamepad = inputControl.device as DualShock4GampadiOS;
-        GCDualShockGamepad gcDualShockGamepad = controller.PhysicalInputProfile as GCDualShockGamepad;
+        #if UNITY_IOS || UNITY_TVOS
+        var gamepad = inputControl.device as DualShock4GampadiOS;
+        #else
+        var gamepad = inputControl.device as DualShock4GamepadHID;
+        #endif
+        
+        var gcDualShockGamepad = controller.PhysicalInputProfile as GCDualShockGamepad;
 
         if (gcDualShockGamepad == null)
         {
