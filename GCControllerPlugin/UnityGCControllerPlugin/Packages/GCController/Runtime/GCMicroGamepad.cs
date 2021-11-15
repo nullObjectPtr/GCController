@@ -167,7 +167,7 @@ namespace HovelHouse.GameController
                     // const string from the API to do this
                     _dpadRing = (GCControllerDirectionPad) Elements
                         .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalCardinalDpad)
-                        .Item2;
+                        ?.Item2;
                 }
 
                 return _dpadRing;

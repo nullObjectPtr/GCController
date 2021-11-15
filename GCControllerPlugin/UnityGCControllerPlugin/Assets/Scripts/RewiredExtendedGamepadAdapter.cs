@@ -264,14 +264,14 @@ public class RewiredExtendedGamepadAdapter : AbstractRewiredAdapter
         var elementType = GetElementType(buttonInput);
         var record = ElementConverterMap.Records
             .FirstOrDefault( r => r.extendedGamepadElementType == elementType);
-        
-        if(record == null)
-            throw new Exception($"could not find an element map entry for controller element: {buttonInput.LocalizedName}");
-        
-        // hrm - apple buttons are also PRESSURE sensitive
-        // var value = buttonInput.Value; 
-        // is a float between 0 and 1 
-        // Interesting...
+
+        // If we can't find a rewired element in the converter map, then this element is not used by the rewired system, so we can skip the update for it.
+        if (record == null)
+        {
+            Debug.Log($"could not find an element map entry for controller element: {buttonInput.LocalizedName}");
+            return;
+        }
+
         var pressed = buttonInput.Pressed;
         VirtualController.SetButtonValue(record.RewiredElementName, pressed);
         OnButtonValueChanged?.Invoke(buttonInput, pressed);
