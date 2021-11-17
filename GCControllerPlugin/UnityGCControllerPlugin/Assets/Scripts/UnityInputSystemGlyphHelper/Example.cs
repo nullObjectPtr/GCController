@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using HovelHouse.GameController;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,7 @@ public class Example : MonoBehaviour
 
     private Gamepad lastSeenGamepad;
     private Dictionary<InputDevice,GlyphHelper> Helpers = new Dictionary<InputDevice, GlyphHelper>();
-    private HashSet<Gamepad> SeenGamepads = new HashSet<Gamepad>();
+    private HashSet<InputDevice> SeenInputDevices = new HashSet<InputDevice>();
     private GlyphProvider _glyphProvider;
     
     // Start is called before the first frame update
@@ -18,45 +19,80 @@ public class Example : MonoBehaviour
     {
         Debug.Log("Initialize");
         GameControllerPlugin.Initialize();
+        
+        // These events only fire for devices that are (dis)connected after the app launches
+        // So they're useless for detecting already connected controllers
+        GameControllerPlugin.SetControllerConnectedCallback(controller =>
+        {
+            Debug.Log("native controller connected");
+        });
+
+        GameControllerPlugin.SetControllerDisconnectedCallback(controller =>
+        {
+            Debug.Log("native controller disconnected");
+        });
+        
+        InputSystem.onDeviceChange += (device, change) =>
+        {
+            Debug.Log($"unity input device change: {device.displayName} {change}");
+            
+            if (change == InputDeviceChange.Added)
+            {
+                OnUnityInputDeviceAdded(device);
+            }
+        };
+        
         _glyphProvider = new GlyphProvider(100.0, UIImageSymbolWeight.Bold );
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Gamepad.current != lastSeenGamepad && SeenGamepads.Contains(Gamepad.current) == false)
+        // Whenever a new unity input gamepad becomes current
+        // set up it's glyph helper by trying to match it up with the
+        // current native GameKit gamepad
+        if (Gamepad.current != lastSeenGamepad && SeenInputDevices.Contains(Gamepad.current) == false)
         {
+            Debug.Log($"last seen gamepad: {Gamepad.current}");
             lastSeenGamepad = Gamepad.current;
             OnGamepadDetected(lastSeenGamepad);
         }
 
         foreach (var device in InputSystem.devices)
         {
-            foreach (var control in device.allControls)
+            if(Helpers.TryGetValue(device, out var helper))
             {
-                // Note that controls are hierarchical, so....sometimes we only
-                // want to respond to child most elements or certain button presses
-                // this is provided as an example only, you'll want to change this
-                
-                // Note that the parent elements will often actuate, and we usually don't
-                // want the glyphs for these
-                if (control.IsActuated())
+                foreach (var control in device.allControls)
                 {
-                    // Ignore certain parent controls....
-                    if (IgnoreGlyphForControl(control))
+                    // Note that controls are hierarchical, so....sometimes we only
+                    // want to respond to child most elements or certain button presses
+                    // this is provided as an example only, you'll want to change this
+                
+                    if (control.IsActuated())
                     {
-                        continue;
-                    }
-                    if(Helpers.TryGetValue(control.device, out var helper))
-                    {
-                        var symbol = helper.GetSymbolNameForUnityElement(control);
-                        Debug.Log($"{GlyphHelper.GetUnityInputControlPath(control)}-{symbol}");
-                        var sprite = _glyphProvider.GetSprite(symbol, false);
+                        Debug.Log($"{GlyphHelper.GetUnityInputControlPath(control)}");
 
-                        if (sprite != null)
+                        // Note that the parent elements actuate if their children do
+                        // and we usually don't want the glyphs for these
+                        // Ignore certain parent controls....
+                        // You'll want to make sure of this in your code too
+                        if (IgnoreGlyphForControl(control))
                         {
-                            Debug.Log(symbol);
-                            anImage.sprite = sprite;
+                            continue;
+                        }
+                        
+                        var symbol = helper.GetSymbolNameForUnityElement(control);
+                        Debug.Log($"-{symbol}-");
+                        
+                        if (string.IsNullOrEmpty(symbol) == false)
+                        {
+                            var sprite = _glyphProvider.GetSprite(symbol, false);
+
+                            if (sprite != null)
+                            {
+                                Debug.Log(symbol);
+                                anImage.sprite = sprite;
+                            }
                         }
                     }
                 }
@@ -70,12 +106,17 @@ public class Example : MonoBehaviour
         
         if (gamepad != null)
         {
-            if (control == gamepad.leftStick || control == gamepad.rightStick)
+            if (control == gamepad.leftStick 
+                || control == gamepad.rightStick 
+                || control == gamepad.leftStick.x
+                || control == gamepad.leftStick.y
+                || control == gamepad.rightStick.x
+                || control == gamepad.rightStick.y)
             {
                 return true;
             }
 
-            if (control == gamepad.dpad)
+            if (control == gamepad.dpad || control == gamepad.dpad.x || control == gamepad.dpad.y)
             {
                 return true;
             }
@@ -84,11 +125,17 @@ public class Example : MonoBehaviour
         return false;
     }
 
-    private void OnGamepadDetected(Gamepad gamepad)
+    private void OnGamepadDetected(InputDevice inputDevice)
     {
-        var desc = gamepad.description;
+        var desc = inputDevice.description;
         Debug.Log($"new gamepad detected: {desc.product} {desc.version}");
-        SeenGamepads.Add(gamepad);
+        Debug.Log($"matching with {GCController.Current.ProductCategory}");
+        
+        SeenInputDevices.Add(inputDevice);
+
+        // Don't create an adapter for 2nd gen remote here
+        if (desc.product.Contains("Remote"))
+            return;
         
         // Optionally - preload all the glyphs for this controller
         // (will probably result in a hitch)
@@ -100,6 +147,25 @@ public class Example : MonoBehaviour
         // that the current value from unity would match the current controller
         // reported from iOS. Depends on how these values are updated
         var helper = new GlyphHelper(GCController.Current);
-        Helpers[gamepad] = helper;
+        Helpers[inputDevice] = helper;
+    }
+
+    private void OnUnityInputDeviceAdded(InputDevice device)
+    {
+        Debug.Log("OnUnityInptDeviceAdded: " + device.description.product);
+        if (device is MicroGamepadDevice)
+        {
+            var first2ndGenSiriRemoteFound = GCController.Controllers().FirstOrDefault(
+                ctrl => ctrl.ExtendedGamepad == null
+                        && ctrl.MicroGamepad != null
+                        && ctrl.MicroGamepad.DpadRing != null);
+
+            if (first2ndGenSiriRemoteFound != null)
+            {
+                var helper = new GlyphHelper(first2ndGenSiriRemoteFound);
+                Helpers[device] = helper;
+                SeenInputDevices.Add(device);
+            }
+        }
     }
 }
