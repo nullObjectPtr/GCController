@@ -49,20 +49,20 @@ public struct MicroGamepadDeviceState : IInputStateTypeInfo
     // Create a floating-point axis. If a name is not supplied, it is taken
     // from the field.
     [InputControl(name = "xAxis", layout = "Axis")]
-    [FieldOffset(0x01)]
-    public short xAxis;
+    [FieldOffset(2)]
+    public float xAxis;
 
     [InputControl(name = "yAxis", layout = "Axis")]
-    [FieldOffset(0x02)]
-    public short yAxis;
+    [FieldOffset(6)]
+    public float yAxis;
 
     [InputControl(name = "ringXAxis", layout = "Axis")] 
-    [FieldOffset(0x03)]
-    public short ringXAxis;
+    [FieldOffset(10)]
+    public float ringXAxis;
     
     [InputControl(name = "ringYAxis", layout = "Axis")] 
-    [FieldOffset(0x04)]
-    public short ringYAxis;
+    [FieldOffset(14)]
+    public float ringYAxis;
 }
 
 // InputControlLayoutAttribute attribute is only necessary if you want
@@ -153,6 +153,8 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
 
         xAxis = GetChildControl<AxisControl>("xAxis");
         yAxis = GetChildControl<AxisControl>("yAxis");
+        ringXAxis = GetChildControl<AxisControl>("ringXAxis");
+        ringYAxis = GetChildControl<AxisControl>("ringYAxis");
     }
 
     [UsedImplicitly]
@@ -165,10 +167,16 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
         {
             state.buttons |= (ushort) (
                 ((gcMicroGamepad.ButtonMenu.Pressed ? 1 : 0) << 3)
-                | ((gcMicroGamepad.ButtonA.Pressed ? 1 : 0) << 4)
                 | ((gcMicroGamepad.ButtonX.Pressed ? 1 : 0) << 5)
             );
 
+            // Well that's insane, buttonA any press on the touchpad
+            // we don't want that. Use just the center button as the 'A' button
+            if (CenterButton != null)
+            {
+                state.buttons |= (ushort) ((CenterButton.Pressed ? 1 : 0) << 4);
+            }
+            
             if (DPadRing != null)
             {
                 state.buttons |=
@@ -178,12 +186,15 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
                     | ((DPadRing.Down.Pressed ? 1 : 0) << 9)
                     );
 
-                state.ringXAxis = (short) DPadRing.XAxis.Value;
-                state.ringYAxis = (short) DPadRing.YAxis.Value;
+                //Debug.Log(DPadRing.XAxis.Value);
+                //Debug.Log(DPadRing.YAxis.Value);
+                
+                state.ringXAxis = DPadRing.XAxis.Value;
+                state.ringYAxis = DPadRing.YAxis.Value;
             }
 
-            state.xAxis = (short) gcMicroGamepad.Dpad.XAxis.Value;
-            state.yAxis = (short) gcMicroGamepad.Dpad.YAxis.Value;
+            state.xAxis = gcMicroGamepad.Dpad.XAxis.Value;
+            state.yAxis = gcMicroGamepad.Dpad.YAxis.Value;
         }
         
         InputSystem.QueueStateEvent(this, state);

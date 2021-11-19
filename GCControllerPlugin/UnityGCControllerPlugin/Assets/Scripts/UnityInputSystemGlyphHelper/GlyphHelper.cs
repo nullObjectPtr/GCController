@@ -24,7 +24,6 @@ public class GlyphHelper : Object
 
         var device = inputControl.device;
         
-        
         if (device is XInputController)
         {
             element = GetGCElementForXInputController(inputControl);
@@ -33,13 +32,19 @@ public class GlyphHelper : Object
         {
             element = GetGCElementForDualShock4(inputControl);
         }
+        else if (device is MicroGamepadDevice)
+        {
+            element = GetGCElementForMicroGamepad(inputControl);
+        }
         else if (device is Gamepad)
         {
             element = GetGCElementForExtendedGamepad(inputControl);
         }
-        else if (device is MicroGamepadDevice)
+
+        // Nothing found
+        if (element == null)
         {
-            element = GetGCElementForMicroGamepad(inputControl);
+            return "";
         }
 
         return GetSymbolNameForAppleElement(element);
@@ -172,9 +177,55 @@ public class GlyphHelper : Object
             if (element == microGamepad.ButtonMenu) 
             { 
                 return "line.horizontal.3.circle"; 
-            } 
+            }
+
+            if (element == microGamepad.Dpad.Down)
+            {
+                return "dpad.down.fill";
+            }
+
+            if (element == microGamepad.Dpad.Up)
+            {
+                return "dpad.up.fill";
+            }
+
+            if (element == microGamepad.Dpad.Left)
+            {
+                return "dpad.left.fill";
+            }
+
+            if (element == microGamepad.Dpad.Right)
+            {
+                return "dpad.right.fill";
+            }
+
+            if (microGamepad.DpadRing != null)
+            {
+                if (element == microGamepad.DpadRing.Down)
+                {
+                    return "dpad.down.fill";
+                }
+
+                if (element == microGamepad.DpadRing.Up)
+                {
+                    return "dpad.up.fill";
+                }
+
+                if (element == microGamepad.DpadRing.Left)
+                {
+                    return "dpad.left.fill";
+                }
+
+                if (element == microGamepad.DpadRing.Right)
+                {
+                    return "dpad.right.fill";
+                }
+            }
  
-            if (element == microGamepad.Dpad.XAxis || element == microGamepad.Dpad.YAxis) 
+            if (element == microGamepad.Dpad.XAxis 
+                || element == microGamepad.Dpad.YAxis 
+                || element == microGamepad.DpadRing.XAxis
+                || element == microGamepad.DpadRing.YAxis)
             { 
                 return "dpad"; 
             } 
@@ -194,7 +245,7 @@ public class GlyphHelper : Object
 
         if (microGamepad == null)
         {
-            throw new InvalidProgramException("Unity Input Device is mapped to incorrect type");
+            throw new InvalidProgramException("Unity Input device is not a MicroGamepadDevice");
         }
 
         if (inputControl == device.buttonA)
@@ -227,9 +278,116 @@ public class GlyphHelper : Object
             return microGamepad.Dpad.Right;
         }
 
+        if (inputControl == device.xAxis)
+        {
+            return microGamepad.Dpad.XAxis;
+        }
+
+        if (inputControl == device.yAxis)
+        {
+            return microGamepad.Dpad.YAxis;
+        }
+
+        if (inputControl == device.ringXAxis)
+        {
+            return microGamepad.DpadRing.XAxis;
+        }
+
+        if (inputControl == device.ringYAxis)
+        {
+            return microGamepad.DpadRing.YAxis;
+        }
+
         Debug.LogWarning(
             $"could not find apple controller element for unity element with name {GetUnityInputControlPath(inputControl)}");
         
+        return null;
+    }
+
+    GCControllerElement GetGCElementForWhatIsProbablyASecondGenSiriRemote(InputControl inputControl)
+    {
+        if (inputControl == null) throw new ArgumentNullException(nameof(inputControl));
+        
+        var gamepad = inputControl.device as Gamepad;
+        var extendedGamepad = controller.PhysicalInputProfile as GCMicroGamepad;
+
+        if (extendedGamepad == null)
+        {
+            throw new InvalidProgramException("helper is not mapped to correct controller type");
+        }
+
+        #region Dpad
+        if (inputControl == gamepad.dpad)
+        {
+            return extendedGamepad.Dpad;
+        }
+        
+        // Fix for nimbus controller which does not report dPad.left/right
+        // but dPad.x and dPad.y as axis values
+        if (inputControl == gamepad.dpad.x)
+        {
+            return extendedGamepad.Dpad.XAxis;
+        }
+
+        if (inputControl == gamepad.dpad.y)
+        {
+            return extendedGamepad.Dpad.YAxis;
+        }
+
+        if (inputControl == gamepad.dpad.up)
+        {
+            return extendedGamepad.Dpad.Up;
+        }
+
+        if (inputControl == gamepad.dpad.down)
+        {
+            return extendedGamepad.Dpad.Down;
+        }
+
+        if (inputControl == gamepad.dpad.left)
+        {
+            return extendedGamepad.Dpad.Left;
+        }
+
+        if (inputControl == gamepad.dpad.right)
+        {
+            return extendedGamepad.Dpad.Right;
+        }
+        #endregion
+
+        #region FaceButtons
+
+        if (inputControl == gamepad.buttonSouth || inputControl == gamepad.crossButton || inputControl == gamepad.aButton)
+        {
+            return extendedGamepad.DpadRing.Down;
+        }
+
+        if (inputControl == gamepad.buttonEast || inputControl == gamepad.circleButton || inputControl == gamepad.bButton)
+        {
+            return extendedGamepad.DpadRing.Right;
+        }
+
+        if (inputControl == gamepad.buttonNorth || inputControl == gamepad.triangleButton || inputControl == gamepad.yButton)
+        {
+            return extendedGamepad.DpadRing.Up;
+        }
+
+        if (inputControl == gamepad.buttonWest || inputControl == gamepad.squareButton || inputControl == gamepad.xButton)
+        {
+            return extendedGamepad.DpadRing.Left;
+        }
+        #endregion
+        
+        #region MenuButtons
+        if (inputControl == gamepad.startButton)
+        {
+            return extendedGamepad.ButtonMenu;
+        }
+        #endregion
+        
+        Debug.LogWarning(
+            $"could not find apple controller element for unity element with name {GetUnityInputControlPath(inputControl)}");
+
         return null;
     }
     
@@ -445,12 +603,7 @@ public class GlyphHelper : Object
     
     GCControllerElement GetGCElementForDualShock4(InputControl inputControl)
     {
-        #if UNITY_IOS || UNITY_TVOS
-        var gamepad = inputControl.device as DualShock4GampadiOS;
-        #else
-        var gamepad = inputControl.device as DualShock4GamepadHID;
-        #endif
-        
+        var gamepad = inputControl.device as DualShockGamepad;
         var gcDualShockGamepad = controller.PhysicalInputProfile as GCDualShockGamepad;
 
         if (gcDualShockGamepad == null)
