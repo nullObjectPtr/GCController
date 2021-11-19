@@ -57,14 +57,16 @@ public class GlyphHelper : Object
         var symbolName = element.SfSymbolsName; 
         
         var symbol = symbolName;
- 
+        
         if (string.IsNullOrEmpty(symbol) == false) 
             return symbol; 
         
-        // Workaround for a bug where BigSur does not return the d-pad 
-        // symbols for the d-pad elements,  
-        // this is future-proofed a bit, if they ever patch this later 
-        // this block of code won't be hit 
+        Debug.Log("element returned no sfSymbolName from controller framework. Looking up fallback");
+        
+        // Fallback behavior for iOS 13.x
+        // the SfSymbolsName property was not added to the GCController API until
+        // iOS 14.0 and the plugin will return null for it
+        // So we have to hardcode some behaviors
  
         var extendedGamepad = controller.ExtendedGamepad; 
         if (extendedGamepad != null) 
@@ -91,6 +93,8 @@ public class GlyphHelper : Object
             }
             #endregion
 
+            // TODO - thumbsticks, are the symbols you're attempting to dig up
+            // around in iOS 13 or not?
             #region LeftThumbstick
             if (element == extendedGamepad.LeftThumbstick.Left)
             {
@@ -156,9 +160,75 @@ public class GlyphHelper : Object
                 return "r.joystick"; 
             }
             #endregion
+
+            if (element == extendedGamepad.LeftTrigger)
+            {
+                return "lt.rectangle.roundedtop.fill";
+            }
+
+            if (element == extendedGamepad.LeftShoulder)
+            {
+                return "lb.rectangle.roundedbottom.fill";
+            }
+
+            if (element == extendedGamepad.RightTrigger)
+            {
+                return "rt.rectangle.roundedtop.fill";
+            }
+
+            if (element == extendedGamepad.RightShoulder)
+            {
+                return "rb.rectangle.roundedbottom.fill";
+            }
+
+            #region FaceButtons
+
+            // We don't know if we've got an xbox or a ps4 style controller
+            // so show the generic compass orientation style buttons
+            if (element == extendedGamepad.ButtonA)
+            {
+                return "circle.grid.cross.left.fill";
+            }
             
+            if (element == extendedGamepad.ButtonB)
+            {
+                return "circle.grid.cross.up.fill";
+            }
+
+            if (element == extendedGamepad.ButtonX)
+            {
+                return "circle.grid.cross.down.fill";
+            }
+
+            if (element == extendedGamepad.ButtonY)
+            {
+                return "circle.grid.cross.right.fill";
+            }
+
+            #endregion
+            
+            #region CenterButtons
+
+            if (element == extendedGamepad.ButtonHome)
+            {
+                return "house";
+            }
+
+            if (element == extendedGamepad.ButtonMenu)
+            {
+                return "line.horizontal.3.circle";
+            }
+
+            if (element == extendedGamepad.ButtonOptions)
+            {
+                return "rectangle.on.rectangle";
+            }
+            #endregion
+
+            // TODO
+
             // Fallthrough to the micro-gamepad case
-        } 
+        }
  
         
         var microGamepad = controller.MicroGamepad; 

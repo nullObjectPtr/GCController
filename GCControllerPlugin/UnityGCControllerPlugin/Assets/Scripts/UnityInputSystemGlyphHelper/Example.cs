@@ -1,8 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using HovelHouse.GameController;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class Example : MonoBehaviour
@@ -48,16 +51,6 @@ public class Example : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Whenever a new unity input gamepad becomes current
-        // set up it's glyph helper by trying to match it up with the
-        // current native GameKit gamepad
-        if (Gamepad.current != lastSeenGamepad && SeenInputDevices.Contains(Gamepad.current) == false)
-        {
-            Debug.Log($"last seen gamepad: {Gamepad.current}");
-            lastSeenGamepad = Gamepad.current;
-            OnGamepadDetected(lastSeenGamepad);
-        }
-
         foreach (var device in InputSystem.devices)
         {
             if(Helpers.TryGetValue(device, out var helper))
@@ -121,51 +114,94 @@ public class Example : MonoBehaviour
                 return true;
             }
         }
+
+        var microGamepad = control.device as MicroGamepadDevice;
+        if (microGamepad != null)
+        {
+            if (control == microGamepad.ringXAxis || control == microGamepad.ringYAxis)
+            {
+                return true;
+            }
+        }
+            
         
         return false;
     }
 
-    private void OnGamepadDetected(InputDevice inputDevice)
-    {
-        var desc = inputDevice.description;
-        Debug.Log($"new gamepad detected: {desc.product} {desc.version}");
-        Debug.Log($"matching with {GCController.Current.ProductCategory}");
-        
-        SeenInputDevices.Add(inputDevice);
-
-        // Don't create an adapter for 2nd gen remote here
-        if (desc.product.Contains("Remote"))
-            return;
-        
-        // Optionally - preload all the glyphs for this controller
-        // (will probably result in a hitch)
-        // Otherwise the glyphs will be loaded as they are requested
-        //_glyphProvider.LoadTexturesForController(GCController.Current);
-        
-        // Match it up...these should be the same...but I can't say for 100%
-        // sure that if two controllers were pressed at roughly the same time
-        // that the current value from unity would match the current controller
-        // reported from iOS. Depends on how these values are updated
-        var helper = new GlyphHelper(GCController.Current);
-        Helpers[inputDevice] = helper;
-    }
-
     private void OnUnityInputDeviceAdded(InputDevice device)
     {
+        // We need to match the unity device to a native gamekit device
+        // (which may not be available yet) so run an async task to match them
+        
         Debug.Log("OnUnityInptDeviceAdded: " + device.description.product);
-        if (device is MicroGamepadDevice)
-        {
-            var first2ndGenSiriRemoteFound = GCController.Controllers().FirstOrDefault(
-                ctrl => ctrl.ExtendedGamepad == null
-                        && ctrl.MicroGamepad != null
-                        && ctrl.MicroGamepad.DpadRing != null);
+        
+        // There may be some unity controllers we don't want to match
+        // Don't match the HID best-guess version of the SiriRemote
+        // We wrote a custom virtual controller for this, and we don't want to double
+        // process it
+        // That controller is NOT a gamepad, it inherits from input device
+        var shouldIgnoreMatchingThisDevice = device is Gamepad 
+                                     && device.description.product.Contains("Remote");
 
-            if (first2ndGenSiriRemoteFound != null)
+        if (shouldIgnoreMatchingThisDevice) return;
+        
+        // Otherwise, we should create a glyph helper for it
+        StartCoroutine(MatchDeviceCo(device));
+    }
+
+    private IEnumerator MatchDeviceCo(InputDevice device)
+    {
+        var allGamekitControllers = GCController.Controllers();
+        while (Helpers.ContainsKey(device) == false)
+        {
+            GCController nativeController = null;
+
+            if (device is MicroGamepadDevice)
             {
-                var helper = new GlyphHelper(first2ndGenSiriRemoteFound);
+                Debug.Log("matched device to micro gamepad profile");
+                nativeController = allGamekitControllers.FirstOrDefault(
+                    ctrl => ctrl.ExtendedGamepad == null
+                            && ctrl.MicroGamepad != null
+                            && ctrl.MicroGamepad.DpadRing != null);
+            }
+            // IOS 14.0+ check, will fail on 13.x
+            else if (device is XInputController)
+            {
+                Debug.Log("matched device to xbox profile");
+                nativeController = allGamekitControllers.FirstOrDefault(
+                    ctrl => ctrl.PhysicalInputProfile is GCXboxGamepad);
+            }
+            // IOS 14.0+ check, will fail on 13.x
+            else if (device is DualShockGamepad)
+            {
+                Debug.Log("matched device to dual shock profile");
+                nativeController = allGamekitControllers.FirstOrDefault(
+                    ctrl => ctrl.PhysicalInputProfile is GCDualShockGamepad);
+            }
+            // Check for generic gamepad...
+            // IOS 13.0+ check. On iOS 13.0 the SSFSymbolPropery of the controller elements is not
+            // there, and returns null from the plugin
+            else if (device is Gamepad)
+            {
+                Debug.Log("matched device to extended gamepad profile");
+                nativeController = allGamekitControllers.First(
+                    ctrl => ctrl.ExtendedGamepad != null);
+            }
+            else
+            {
+                Debug.Log($"Could not match unknown device: {device.shortDisplayName}");
+            }
+
+            // Matched our device
+            if (nativeController != null)
+            {
+                var helper = new GlyphHelper(nativeController);
                 Helpers[device] = helper;
                 SeenInputDevices.Add(device);
+                yield break;
             }
+            
+            yield return new WaitForFixedUpdate();
         }
     }
 }

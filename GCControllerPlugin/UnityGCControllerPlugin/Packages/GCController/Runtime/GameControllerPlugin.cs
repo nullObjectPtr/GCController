@@ -43,9 +43,6 @@ namespace HovelHouse.GameController
         private static ExecutionContext<GCController> ConnectedCallbackContext;
         private static ExecutionContext<GCController> DisconnectedCallbackContext;
         
-        public static Action<GCController> OnControllerConnected;
-        public static Action<GCController> OnControllerDisconnected;
-
         // TODO should you get these from the API? They may be const but the value
         // could change between API releases, and these could be outdated
         public const string GCInputDirectionalDpad = "Direction Pad";
@@ -55,26 +52,49 @@ namespace HovelHouse.GameController
 
         public static void Initialize()
         {
-            ConnectedCallbackContext = new ExecutionContext<GCController>(OnControllerConnected);
-            DisconnectedCallbackContext = new ExecutionContext<GCController>(OnControllerDisconnected);
-            
             GCControllerPluignInit();
-            //RegisterDelegateFor_GCController_ControllerConnected(ControllerConnectedNativeCallback);
-            //RegisterDelegateFor_GCController_ControllerDisconnected(ControllerDisconnectedNativeCallback);
+            RegisterDelegateFor_GCController_ControllerConnected(ControllerConnectedNativeCallback);
+            RegisterDelegateFor_GCController_ControllerDisconnected(ControllerDisconnectedNativeCallback);
+        }
+
+        public static void SetControllerConnectedCallback(Action<GCController> OnControllerConnected)
+        {
+            ConnectedCallbackContext = new ExecutionContext<GCController>(OnControllerConnected);
+        }
+
+        public static void SetControllerDisconnectedCallback(Action<GCController> OnControllerDisconnected)
+        {
+            DisconnectedCallbackContext = new ExecutionContext<GCController>(OnControllerDisconnected);
         }
 
         [MonoPInvokeCallback(typeof(GCControllerDelegate))]
         public static void ControllerConnectedNativeCallback(IntPtr controllerPtr)
         {
-            ConnectedCallbackContext?.Invoke(
+            Debug.Log("A");
+            try
+            {
+                ConnectedCallbackContext?.Invoke(
                     controllerPtr != IntPtr.Zero ? new GCController(controllerPtr) : null);
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("managed callback threw an exception: " + ex.ToString());
+            }
         }
 
         [MonoPInvokeCallback(typeof(GCControllerDelegate))]
         public static void ControllerDisconnectedNativeCallback(IntPtr controllerPtr)
         {
-            ConnectedCallbackContext?.Invoke(
-                controllerPtr != IntPtr.Zero ? new GCController(controllerPtr) : null);
+            Debug.Log("B");
+            try
+            {
+                DisconnectedCallbackContext?.Invoke(
+                    controllerPtr != IntPtr.Zero ? new GCController(controllerPtr) : null);
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("managed callback threw an exception: " + ex.ToString());
+            }
         }
     }
 }
