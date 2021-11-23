@@ -239,39 +239,8 @@ namespace HovelHouse.GameController
                 if (_physicalInputProfile != null && profilePtr == (IntPtr) _physicalInputProfile.Handle)
                     return _physicalInputProfile;
 
-                switch (typeToken)
-                {
-                    case 1:
-                        _physicalInputProfile = new GCDualSenseGamepad(profilePtr);
-                        break;
-                    case 2:
-                        _physicalInputProfile = new GCDualShockGamepad(profilePtr);
-                        break;
-                    case 3:
-                        _physicalInputProfile = new GCXboxGamepad(profilePtr);
-                        break;
-                    case 4:
-                        _physicalInputProfile = new GCExtendedGamepad(profilePtr);
-                        break;
-                    case 5:
-                        _physicalInputProfile = new GCDirectionalGamepad(profilePtr);
-                        break;
-                    case 6:
-                        _physicalInputProfile = new GCMicroGamepad(profilePtr);
-                        break;
-                    case 7:
-                        _physicalInputProfile = new GCPhysicalInputProfile(profilePtr);
-                        break;
-                    case 8:
-                        _physicalInputProfile = new GCKeyboardInput(profilePtr);
-                        break;
-                    case 9:
-                        _physicalInputProfile = new GCMouseInput(profilePtr);
-                        break;
-                    case 10:
-                        throw new NotSupportedException("the GCMotion profile is not supported");
-                }
-                
+                _physicalInputProfile = GetProfileForTypeToken(typeToken, profilePtr);
+
                 return _physicalInputProfile;
             }
         }
@@ -338,23 +307,7 @@ namespace HovelHouse.GameController
                 }
                 else
                 {
-                    switch (typeToken)
-                    {
-                        case 1:
-                            _extendedGamepad = new GCDualSenseGamepad(extendedGamepad);
-                            break;
-                        case 2:
-                            _extendedGamepad = new GCDualShockGamepad(extendedGamepad);
-                            break;
-                        case 3:
-                            _extendedGamepad = new GCXboxGamepad(extendedGamepad);
-                            break;
-                        case 4:
-                            _extendedGamepad = new GCExtendedGamepad(extendedGamepad);
-                            break;
-                        default:
-                            throw new InvalidProgramException("unsupported extended gamepad type");
-                    }
+                    _extendedGamepad = GetProfileForTypeToken(typeToken, extendedGamepad) as GCExtendedGamepad;
                 }
 
                 return _extendedGamepad;
@@ -377,7 +330,6 @@ namespace HovelHouse.GameController
                 }
                 
                 // pointer value has not changed, send cached version
-                // Pointer value has not changed, send cached version
                 if (microGamepad == (_microGamepad == null ? IntPtr.Zero : (IntPtr) _microGamepad.Handle))
                     return _microGamepad;
                 
@@ -387,17 +339,7 @@ namespace HovelHouse.GameController
                 }
                 else
                 {
-                    switch (typeToken)
-                    {
-                        case 5:
-                            _microGamepad = new GCDirectionalGamepad(microGamepad);
-                            break;
-                        case 6:
-                            _microGamepad = new GCMicroGamepad(microGamepad);
-                            break;
-                        default:
-                            throw new InvalidProgramException("unsupported extended gamepad type");
-                    }
+                    _microGamepad = GetProfileForTypeToken(typeToken, microGamepad) as GCMicroGamepad;
                 }
 
                 return _microGamepad;
@@ -464,11 +406,37 @@ namespace HovelHouse.GameController
             }
         }
 
-        
 
-        
+        private static GCPhysicalInputProfile GetProfileForTypeToken(long typeToken, IntPtr profilePtr)
+        {
+            switch (typeToken)
+            {
+                case 1:
+                    return new GCDualSenseGamepad(profilePtr);
+                case 2:
+                    return new GCDualShockGamepad(profilePtr);
+                case 3:
+                    return new GCXboxGamepad(profilePtr);
+                case 4:
+                    return new GCExtendedGamepad(profilePtr);
+                case 5:
+                    return new GCDirectionalGamepad(profilePtr);
+                case 6:
+                    return new GCMicroGamepad(profilePtr);
+                case 7:
+                    return new GCPhysicalInputProfile(profilePtr);
+                case 8:
+                    return new GCKeyboardInput(profilePtr);
+                case 9:
+                    return new GCMouseInput(profilePtr);
+                case 10:
+                    throw new NotSupportedException("the GCMotion profile is not supported");
+            }
 
-        
+            return null;
+        }
+
+
         #region IDisposable Support
         [DllImport(dll)]
         private static extern void GCController_Dispose(HandleRef handle);
