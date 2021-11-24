@@ -25,15 +25,18 @@ bool GCControllerElement_SupportsSFSymbols()
 //Properties
 const char* GCControllerElement_GetPropLocalizedName(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.16, iOS 14.0, tvOS 14.0, *))
     {
-        GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
-        NSString* localizedName = [iGCControllerElement localizedName];
-        return [localizedName UTF8String];
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
+            NSString* localizedName = [iGCControllerElement localizedName];
+            return [localizedName UTF8String];
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -55,15 +58,18 @@ void GCControllerElement_SetPropLocalizedName(const void* ptr, const char* local
 
 const char* GCControllerElement_GetPropSfSymbolsName(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.16, iOS 14.0, tvOS 14.0, *))
     {
-        GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
-        NSString* sfSymbolsName = [iGCControllerElement sfSymbolsName];
-        return [sfSymbolsName UTF8String];
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
+            NSString* sfSymbolsName = [iGCControllerElement sfSymbolsName];
+            return [sfSymbolsName UTF8String];
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -85,15 +91,18 @@ void GCControllerElement_SetPropSfSymbolsName(const void* ptr, const char* sfSym
 
 const char* GCControllerElement_GetPropUnmappedLocalizedName(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.16, iOS 14.0, tvOS 14.2, *))
     {
-        GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
-        NSString* unmappedLocalizedName = [iGCControllerElement unmappedLocalizedName];
-        return [unmappedLocalizedName UTF8String];
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
+            NSString* unmappedLocalizedName = [iGCControllerElement unmappedLocalizedName];
+            return [unmappedLocalizedName UTF8String];
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -115,15 +124,18 @@ void GCControllerElement_SetPropUnmappedLocalizedName(const void* ptr, const cha
 
 const char* GCControllerElement_GetPropUnmappedSfSymbolsName(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.16, iOS 14.0, tvOS 14.2, *))
     {
-        GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
-        NSString* unmappedSfSymbolsName = [iGCControllerElement unmappedSfSymbolsName];
-        return [unmappedSfSymbolsName UTF8String];
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
+            NSString* unmappedSfSymbolsName = [iGCControllerElement unmappedSfSymbolsName];
+            return [unmappedSfSymbolsName UTF8String];
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;
@@ -145,15 +157,18 @@ void GCControllerElement_SetPropUnmappedSfSymbolsName(const void* ptr, const cha
 
 bool GCControllerElement_GetPropBoundToSystemGesture(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.16, iOS 14.0, tvOS 14.0, *))
     {
-        GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
-        BOOL boundToSystemGesture = [iGCControllerElement isBoundToSystemGesture];
-        return boundToSystemGesture;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCControllerElement* iGCControllerElement = (__bridge GCControllerElement*) ptr;
+            BOOL boundToSystemGesture = [iGCControllerElement isBoundToSystemGesture];
+            return boundToSystemGesture;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return NO;

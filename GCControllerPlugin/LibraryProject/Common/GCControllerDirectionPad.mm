@@ -6,10 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GameKit/GameKit.h>
 #import "GCControllerDirectionPad.h"
 #import "GCControllerConverters.h"
-
+#import <GameKit/GameKit.h>
 
 extern "C" {
 

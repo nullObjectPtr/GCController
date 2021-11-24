@@ -15,6 +15,12 @@
 // Init Methods 
 
 // Instance methods 
+extern "C" const char* GCPhysicalInputProfile_mappedElementAliasForPhysicalInputName(
+	void* ptr,
+	const char* inputName,
+    void** exception
+    );
+
 
 // Void methods 
 
@@ -24,7 +30,9 @@ extern "C" void GCPhysicalInputProfile_GetPropElements(
     const void* ptr,
     const void** keysBuffer,
     const void** valuesBuffer,
-    long* const bufferLen);
+    const void** typeTokenBuffer,
+    long* const bufferLen,
+    const void** exception);
 
 
 extern "C" void GCPhysicalInputProfile_GetPropAllButtons(const void* ptr, const void** buffer, long* const count);
@@ -36,7 +44,10 @@ extern "C" void GCPhysicalInputProfile_GetPropAllDpads(const void* ptr, const vo
 extern "C" void GCPhysicalInputProfile_GetPropAllAxes(const void* ptr, const void** buffer, long* const count);
 
 
-extern "C" void GCPhysicalInputProfile_GetPropAllElements(const void* ptr, const void** buffer, long* const count);
+extern "C" void GCPhysicalInputProfile_GetPropAllElements(const void* ptr, const void** buffer, const void** typeTokenBuffer, long* const count);
+
+
+extern "C" bool GCPhysicalInputProfile_GetPropHasRemappedElements(const void* ptr, const void** exceptionPtr);
 
 
 

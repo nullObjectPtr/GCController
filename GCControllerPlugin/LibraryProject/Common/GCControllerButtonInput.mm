@@ -54,15 +54,18 @@ float GCControllerButtonInput_GetPropValue(const void* ptr, const void** excepti
 
 bool GCControllerButtonInput_GetPropTouched(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.16, iOS 14.0, tvOS 14.0, *))
     {
-        GCControllerButtonInput* iGCControllerButtonInput = (__bridge GCControllerButtonInput*) ptr;
-        BOOL touched = [iGCControllerButtonInput isTouched];
-        return touched;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCControllerButtonInput* iGCControllerButtonInput = (__bridge GCControllerButtonInput*) ptr;
+            BOOL touched = [iGCControllerButtonInput isTouched];
+            return touched;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return NO;
