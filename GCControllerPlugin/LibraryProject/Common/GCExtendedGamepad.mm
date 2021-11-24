@@ -20,15 +20,18 @@ extern "C" {
 //Properties
 void* GCExtendedGamepad_GetPropController(const void* ptr, const void** exceptionPtr)
 {
-    @try
+    if(@available(macOS 10.16, iOS 14.0, tvOS 14.0, *))
     {
-        GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
-        GCController* controller = [iGCExtendedGamepad controller];
-        return (__bridge void*) controller;
-    }
-    @catch(NSException* ex)
-    {
-        *exceptionPtr = (__bridge_retained void*) ex;
+        @try
+        {
+            GCExtendedGamepad* iGCExtendedGamepad = (__bridge GCExtendedGamepad*) ptr;
+            GCController* controller = [iGCExtendedGamepad controller];
+            return (__bridge void*) controller;
+        }
+        @catch(NSException* ex)
+        {
+            *exceptionPtr = (__bridge_retained void*) ex;
+        }
     }
     
     return nil;

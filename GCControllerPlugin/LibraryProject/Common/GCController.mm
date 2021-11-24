@@ -238,7 +238,7 @@ void* GCController_capture(
 //Properties
 void* GCController_GetPropPhysicalInputProfile(const void* ptr, long* const typeToken, const void** exceptionPtr)
 {
-    if(@available(macOS 11, iOS 14, tvOS 14.5,*))
+    if(@available(macOS 10.16, iOS 14, tvOS 14.0, *))
     {
         @try
         {
