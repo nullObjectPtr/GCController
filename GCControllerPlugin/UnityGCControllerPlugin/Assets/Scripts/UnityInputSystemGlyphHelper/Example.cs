@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,36 +6,48 @@ using HovelHouse.GameController;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class Example : MonoBehaviour
 {
     public Image anImage;
-
-    private Gamepad lastSeenGamepad;
     private Dictionary<InputDevice,GlyphHelper> Helpers = new Dictionary<InputDevice, GlyphHelper>();
-    private HashSet<InputDevice> SeenInputDevices = new HashSet<InputDevice>();
     private GlyphProvider _glyphProvider;
     
+    private const string INTERFACE_NAME = "MicroGamepad";
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Initialize");
+        
+        #if UNITY_TVOS
+        UnityEngine.tvOS.Remote.allowExitToHome = false;
+        #endif
+        
+        // Register our custom virtual controller for the second gen siri remote
+        InputSystem.RegisterLayout<MicroGamepadDevice>(
+            matches: new InputDeviceMatcher()
+                .WithInterface(INTERFACE_NAME));
+        
         GameControllerPlugin.Initialize();
-        
-        // These events only fire for devices that are (dis)connected after the app launches
-        // So they're useless for detecting already connected controllers
-        GameControllerPlugin.SetControllerConnectedCallback(controller =>
-        {
-            Debug.Log("native controller connected");
-        });
 
-        GameControllerPlugin.SetControllerDisconnectedCallback(controller =>
-        {
-            Debug.Log("native controller disconnected");
-        });
+        // Start the device matching process. For every unity input system device
+        // we need to match it up with a native device from the GCController framework
+        // to get the glyphs working
+        // 1. Process any already connected devices
+        // 2. Add a listener to newly connected devices
+        // 3. Some additional setup for the siri remote
         
+        // Matching unity input devices
+        foreach (var inputDevice in InputSystem.devices)
+        {
+            Debug.Log($"adding already connected input device: {inputDevice.displayName}");
+            OnUnityInputDeviceAdded(inputDevice);
+        }
+
         InputSystem.onDeviceChange += (device, change) =>
         {
             Debug.Log($"unity input device change: {device.displayName} {change}");
@@ -44,6 +57,14 @@ public class Example : MonoBehaviour
                 OnUnityInputDeviceAdded(device);
             }
         };
+
+        // Set up siri remotes
+        foreach (var nativeDevice in GCController.Controllers())
+        {
+            OnNativeInputDeviceAdded(nativeDevice);
+        }
+        
+        GameControllerPlugin.SetControllerConnectedCallback(OnNativeInputDeviceAdded);
         
         _glyphProvider = new GlyphProvider(100.0, UIImageSymbolWeight.Bold );
     }
@@ -133,7 +154,7 @@ public class Example : MonoBehaviour
         // We need to match the unity device to a native gamekit device
         // (which may not be available yet) so run an async task to match them
         
-        Debug.Log("OnUnityInptDeviceAdded: " + device.description.product);
+        Debug.Log("OnUnityInputDeviceAdded: " + device.description.product);
         
         // There may be some unity controllers we don't want to match
         // Don't match the HID best-guess version of the SiriRemote
@@ -147,6 +168,38 @@ public class Example : MonoBehaviour
         
         // Otherwise, we should create a glyph helper for it
         StartCoroutine(MatchDeviceCo(device));
+    }
+
+    private void OnNativeInputDeviceAdded(GCController nativeController)
+    {
+        // Additional setup is needed for the 2nd gen sire remote
+        // Check for it here...
+                
+        // Keep in mind that extended gamepads are ALSO micro gamepads
+        // so when we want to detect if a siri remote was connected
+        // we should rule out that a controller was connected first
+        
+        var microGamepadConnected = nativeController.ExtendedGamepad == null 
+                                    && nativeController.MicroGamepad != null;
+        
+        if (microGamepadConnected)
+        {
+            Debug.Log("MicroGamepadConnected");
+            var device = InputSystem.AddDevice(
+                new InputDeviceDescription
+                {
+                    interfaceName = INTERFACE_NAME,
+                    product = nativeController.ProductCategory,
+                });
+
+            if (device is MicroGamepadDevice microGamepad)
+            {
+                microGamepad.SetNativeController(nativeController);
+            }
+        }
+        
+        Debug.Log("Device Connected: " + nativeController.VendorName);
+
     }
 
     private IEnumerator MatchDeviceCo(InputDevice device)
@@ -164,23 +217,28 @@ public class Example : MonoBehaviour
                             && ctrl.MicroGamepad != null
                             && ctrl.MicroGamepad.DpadRing != null);
             }
-            // IOS 14.0+ check, will fail on 13.x
             else if (device is XInputController)
             {
                 Debug.Log("matched device to xbox profile");
+
+                // the GCXBoxGamepad is not available to check on iOS 13.x...
+                // so fallback to checking if the inputProfileIs null and the vendor name for a substring to match
                 nativeController = allGamekitControllers.FirstOrDefault(
-                    ctrl => ctrl.PhysicalInputProfile is GCXboxGamepad);
+                    ctrl => (ctrl.PhysicalInputProfile is GCXboxGamepad) 
+                        || (ctrl.PhysicalInputProfile == null && ctrl.VendorName.IndexOf("xbox", StringComparison.OrdinalIgnoreCase) > 0)
+                    );
             }
-            // IOS 14.0+ check, will fail on 13.x
             else if (device is DualShockGamepad)
             {
                 Debug.Log("matched device to dual shock profile");
+                
+                // the GCDualShockGamepad profile is not available to check on iOS 13.x...
+                // so fallback to checking if the inputProfileIs null and the vendor name for a substring to match
                 nativeController = allGamekitControllers.FirstOrDefault(
-                    ctrl => ctrl.PhysicalInputProfile is GCDualShockGamepad);
+                    ctrl => (ctrl.PhysicalInputProfile is GCDualShockGamepad) 
+                        || (ctrl.PhysicalInputProfile == null && ctrl.VendorName.IndexOf("dualshock", StringComparison.OrdinalIgnoreCase) >0 )
+                    );
             }
-            // Check for generic gamepad...
-            // IOS 13.0+ check. On iOS 13.0 the SSFSymbolPropery of the controller elements is not
-            // there, and returns null from the plugin
             else if (device is Gamepad)
             {
                 Debug.Log("matched device to extended gamepad profile");
@@ -190,6 +248,7 @@ public class Example : MonoBehaviour
             else
             {
                 Debug.Log($"Could not match unknown device: {device.shortDisplayName}");
+                yield break;
             }
 
             // Matched our device
@@ -197,7 +256,6 @@ public class Example : MonoBehaviour
             {
                 var helper = new GlyphHelper(nativeController);
                 Helpers[device] = helper;
-                SeenInputDevices.Add(device);
                 yield break;
             }
             

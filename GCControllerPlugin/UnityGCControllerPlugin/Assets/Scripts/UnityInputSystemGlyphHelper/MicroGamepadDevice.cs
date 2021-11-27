@@ -119,6 +119,8 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
     
     // Cached pointer to certain elements
     private GCControllerDirectionPad DPadRing { get; set; }
+    
+    private GCControllerDirectionPad DPad { get; set; }
     private GCControllerButtonInput CenterButton { get; set; }
     private GCControllerButtonInput TouchSurfaceButton { get; set; }
 
@@ -139,7 +141,6 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
     protected override void FinishSetup()
     {
         base.FinishSetup();
-
         // NOTE: The Input System creates the Controls automatically.
         //       This is why don't do `new` here but rather just look
         //       the Controls up.
@@ -186,11 +187,17 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
                     | ((DPadRing.Down.Pressed ? 1 : 0) << 9)
                     );
 
-                //Debug.Log(DPadRing.XAxis.Value);
-                //Debug.Log(DPadRing.YAxis.Value);
-                
                 state.ringXAxis = DPadRing.XAxis.Value;
                 state.ringYAxis = DPadRing.YAxis.Value;
+            }
+            else
+            {
+                state.buttons |=
+                    (ushort) (((DPad.Left.Pressed ? 1 : 0) << 6)
+                              | ((DPad.Right.Pressed ? 1 : 0) << 7)
+                              | ((DPad.Up.Pressed ? 1 : 0) << 8)
+                              | ((DPad.Down.Pressed ? 1 : 0) << 9)
+                    );
             }
 
             state.xAxis = gcMicroGamepad.Dpad.XAxis.Value;
@@ -205,13 +212,14 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
         Debug.Log("Set native controller");
         gcMicroGamepad = controller.MicroGamepad;
         var elements = gcMicroGamepad.Elements;
+
         if (elements != null)
         {
             // Grab some specific elements that aren't part of the profile. ugh.
             DPadRing = elements
                 .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalCardinalDpad)
                 ?.Item2 as GCControllerDirectionPad;
-
+            
             TouchSurfaceButton = elements
                 .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalTouchSurfaceButton)
                 ?.Item2 as GCControllerButtonInput;
@@ -220,5 +228,7 @@ public class MicroGamepadDevice : InputDevice, IInputUpdateCallbackReceiver
                 .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalCenterButton)
                 ?.Item2 as GCControllerButtonInput;
         }
+
+        DPad = gcMicroGamepad.Dpad;
     }
 }
