@@ -155,7 +155,7 @@ namespace HovelHouse.GameController
         
         protected override void Dispose(bool disposing)
         {
-            if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
+            if (GetType() == typeof(GCDualShockGamepad) && _retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
                 //Debug.Log("GCDualShockGamepad Dispose");
                 GCDualShockGamepad_Dispose(Handle);

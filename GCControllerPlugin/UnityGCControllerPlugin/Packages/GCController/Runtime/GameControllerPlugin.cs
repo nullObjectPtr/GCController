@@ -66,15 +66,29 @@ namespace HovelHouse.GameController
         [MonoPInvokeCallback(typeof(GCControllerDelegate))]
         public static void ControllerConnectedNativeCallback(IntPtr controllerPtr)
         {
-            ConnectedCallbackContext?.Invoke(
+            try
+            {
+                ConnectedCallbackContext?.Invoke(
                     controllerPtr != IntPtr.Zero ? new GCController(controllerPtr) : null);
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("managed callback threw an exception: " + ex.ToString());
+            }
         }
 
         [MonoPInvokeCallback(typeof(GCControllerDelegate))]
         public static void ControllerDisconnectedNativeCallback(IntPtr controllerPtr)
         {
-            ConnectedCallbackContext?.Invoke(
-                controllerPtr != IntPtr.Zero ? new GCController(controllerPtr) : null);
+            try
+            {
+                DisconnectedCallbackContext?.Invoke(
+                    controllerPtr != IntPtr.Zero ? new GCController(controllerPtr) : null);
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("managed callback threw an exception: " + ex.ToString());
+            }
         }
     }
 }

@@ -8,11 +8,7 @@
 //
 
 using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using AOT;
 using UnityEngine;
 
 namespace HovelHouse.GameController
@@ -63,11 +59,11 @@ namespace HovelHouse.GameController
             
         private bool disposedValue = false; // To detect redundant calls
         
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-            if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
+            if (GetType() == typeof(GCControllerTouchpad) && _retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
-                //Debug.Log("GCControllerTouchpad Dispose");
+                Debug.Log("GCControllerTouchpad Dispose");
                 GCControllerTouchpad_Dispose(Handle);
                 disposedValue = true;
             }

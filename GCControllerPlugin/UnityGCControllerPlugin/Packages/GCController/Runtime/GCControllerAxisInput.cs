@@ -8,12 +8,9 @@
 //
 
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using AOT;
-using HovelHouse.GameKit;
 using UnityEngine;
 
 namespace HovelHouse.GameController
@@ -140,9 +137,9 @@ namespace HovelHouse.GameController
             
         private bool disposedValue = false; // To detect redundant calls
         
-        protected override void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-            if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
+            if (GetType() == typeof(GCControllerAxisInput) && _retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
                 //Debug.Log("GCControllerAxisInput Dispose");
                 GCControllerAxisInput_Dispose(Handle);

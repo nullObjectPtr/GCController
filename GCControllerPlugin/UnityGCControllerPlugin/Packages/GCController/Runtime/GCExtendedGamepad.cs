@@ -237,28 +237,7 @@ namespace HovelHouse.GameController
                 
                 if (elementPtr != IntPtr.Zero && elementCache.TryGetValue(elementPtr, out element) == false)
                 {
-                    switch (elementType)
-                    {
-                        case 1:
-                            element = new GCControllerButtonInput(elementPtr, ERetainPolicy.Unretained);
-                            break;
-                        case 2:
-                            element = new GCControllerAxisInput(elementPtr, ERetainPolicy.Unretained);
-                            break;
-                        case 3:
-                            // element = new GCDeviceCursor(elementPtr);
-                            break;
-                        case 4:
-                            element = new GCControllerDirectionPad(elementPtr, ERetainPolicy.Unretained);
-                            break;
-                        case 5:
-                            // element = new GCControllerTouchpad(elementPtr, RetainPolicy.Unretained);
-                            break;
-                        default:
-                            element = new GCControllerElement(elementPtr, ERetainPolicy.Unretained);
-                            break;
-                    }
-
+                    element = GetElementOfType(elementPtr, elementType, ERetainPolicy.Unretained);
                     elementCache[elementPtr] = element;
                 }
 
@@ -668,11 +647,27 @@ namespace HovelHouse.GameController
             }
         }
 
-        
+        private static GCControllerElement GetElementOfType(IntPtr elementPtr, long elementType, ERetainPolicy retainPolicy)
+        {
+            switch (elementType)
+            {
+                case 1:
+                    return new GCControllerButtonInput(elementPtr, retainPolicy);
+                case 2:
+                    return new GCControllerAxisInput(elementPtr, retainPolicy);
+                case 3:
+                    // TODO
+                    // element = new GCDeviceCursor(elementPtr);
+                    return new GCControllerElement(elementPtr, retainPolicy);
+                case 4:
+                    return new GCControllerDirectionPad(elementPtr, retainPolicy);
+                case 5:
+                    return new GCControllerTouchpad(elementPtr, retainPolicy);
+                default:
+                    return new GCControllerElement(elementPtr, retainPolicy);
+            }
+        }
 
-        
-
-        
         #region IDisposable Support
         [DllImport(dll)]
         private static extern void GCExtendedGamepad_Dispose(HandleRef handle);
@@ -681,7 +676,8 @@ namespace HovelHouse.GameController
         
         protected override void Dispose(bool disposing)
         {
-            if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
+            // Only dispose if we are exactly of this type to avoid double-releasing the pointer
+            if (GetType() == typeof(GCExtendedGamepad) && _retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
                 //Debug.Log("GCExtendedGamepad Dispose");
                 GCExtendedGamepad_Dispose(Handle);

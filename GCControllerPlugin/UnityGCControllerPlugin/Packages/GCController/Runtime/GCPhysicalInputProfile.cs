@@ -324,7 +324,7 @@ namespace HovelHouse.GameController
         
         protected virtual void Dispose(bool disposing)
         {
-            if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
+            if (GetType() == typeof(GCPhysicalInputProfile) && _retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
                 //Debug.Log("GCPhysicalInputProfile Dispose");
                 GCPhysicalInputProfile_Dispose(Handle);
