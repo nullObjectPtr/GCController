@@ -162,12 +162,12 @@ namespace HovelHouse.GameController
             {
                 if (_dpadRing == null)
                 {
-                    // The apple API has no hardreference to the new controller elements on the
-                    // 2ndgen siri remote, so we need to retrieve them by name, we use the 
+                    // The apple API has no hard reference to the new controller elements on the
+                    // 2nd gen siri remote, so we need to retrieve them by name, we use the 
                     // const string from the API to do this
-                    _dpadRing = (GCControllerDirectionPad) Elements
+                    _dpadRing = Elements
                         .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalCardinalDpad)
-                        ?.Item2;
+                        ?.Item2 as GCControllerDirectionPad;
                 }
 
                 return _dpadRing;

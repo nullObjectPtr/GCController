@@ -70,7 +70,6 @@ namespace HovelHouse.GameController
         [MonoPInvokeCallback(typeof(GCControllerDelegate))]
         public static void ControllerConnectedNativeCallback(IntPtr controllerPtr)
         {
-            Debug.Log("A");
             try
             {
                 ConnectedCallbackContext?.Invoke(
@@ -85,7 +84,6 @@ namespace HovelHouse.GameController
         [MonoPInvokeCallback(typeof(GCControllerDelegate))]
         public static void ControllerDisconnectedNativeCallback(IntPtr controllerPtr)
         {
-            Debug.Log("B");
             try
             {
                 DisconnectedCallbackContext?.Invoke(

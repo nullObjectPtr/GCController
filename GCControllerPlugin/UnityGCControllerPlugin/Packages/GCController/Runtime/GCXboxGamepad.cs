@@ -185,7 +185,7 @@ namespace HovelHouse.GameController
         
         protected override void Dispose(bool disposing)
         {
-            if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
+            if (GetType() == typeof(GCXboxGamepad) && _retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
                 //Debug.Log("GCXboxGamepad Dispose");
                 GCXboxGamepad_Dispose(Handle);

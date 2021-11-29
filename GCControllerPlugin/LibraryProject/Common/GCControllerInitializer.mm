@@ -72,7 +72,7 @@ extern "C"
     if(KGCController_ControllerDisconnected != nil)
     {
         void* controllerPtr = (__bridge void*) [Notification object];
-        KGCController_ControllerConnected(controllerPtr);
+        KGCController_ControllerDisconnected(controllerPtr);
     }
     else
     {

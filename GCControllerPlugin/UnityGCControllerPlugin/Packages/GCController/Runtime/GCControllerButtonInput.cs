@@ -241,9 +241,9 @@ namespace HovelHouse.GameController
             
         private bool disposedValue = false; // To detect redundant calls
         
-        protected override void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-            if (_retainPolicy == ERetainPolicy.Retained && !disposedValue)
+            if (GetType() == typeof(GCControllerButtonInput) && _retainPolicy == ERetainPolicy.Retained && !disposedValue)
             {
                 //Debug.Log("GCControllerButtonInput Dispose");
                 GCControllerButtonInput_Dispose(Handle);
