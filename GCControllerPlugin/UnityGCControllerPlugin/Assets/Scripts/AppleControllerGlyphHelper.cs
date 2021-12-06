@@ -1,4 +1,5 @@
-﻿using HovelHouse.GameController;
+using System;
+using HovelHouse.GameController;
 using UnityEngine;
 
 public class AppleControllerGlyphHelper : AppleControllerGlyphHelperBase
@@ -12,6 +13,8 @@ public class AppleControllerGlyphHelper : AppleControllerGlyphHelperBase
 
     protected override string GetSymbolNameForElement(GCControllerElement element)
     {
+        if (element == null) throw new ArgumentNullException(nameof(element));
+        
         var symbolName = element.SfSymbolsName;
         var unmappedSymbolName = element.UnmappedSfSymbolsName;
 
@@ -41,27 +44,30 @@ public class AppleControllerGlyphHelper : AppleControllerGlyphHelperBase
 
         if (microGamepad != null)
         {
-            if (element == microGamepad.Dpad || element == microGamepad.DpadRing || element == microGamepad.Dpad.XAxis || element == microGamepad.Dpad.YAxis)
+            if (element == microGamepad.Dpad 
+                || element == microGamepad.DpadRing 
+                || element == microGamepad.Dpad.XAxis 
+                || element == microGamepad.Dpad.YAxis)
             {
                 return "dpad";
             }
 
-            if (element == microGamepad.Dpad.Down || element == microGamepad.DpadRing.Down)
+            if (element == microGamepad.Dpad.Down || element == microGamepad.DpadRing?.Down)
             {
                 return "dpad.down.fill";
             }
 
-            if (element == microGamepad.Dpad.Left || element == microGamepad.DpadRing.Left)
+            if (element == microGamepad.Dpad.Left || element == microGamepad.DpadRing?.Left)
             {
                 return "dpad.left.fill";
             }
 
-            if (element == microGamepad.Dpad.Right || element == microGamepad.DpadRing.Right)
+            if (element == microGamepad.Dpad.Right || element == microGamepad.DpadRing?.Right)
             {
                 return "dpad.right.fill";
             }
 
-            if (element == microGamepad.Dpad.Up || element == microGamepad.DpadRing.Up)
+            if (element == microGamepad.Dpad.Up || element == microGamepad.DpadRing?.Up)
             {
                 return "dpad.up.fill";
             }

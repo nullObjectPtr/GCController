@@ -9,11 +9,9 @@
 
 using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using AOT;
-using UnityEngine;
 
 namespace HovelHouse.GameController
 {
@@ -143,13 +141,14 @@ namespace HovelHouse.GameController
                 
                 if(_dpad == null || dpad != (IntPtr)_dpad.Handle)
                 {
-                    _dpad = dpad == IntPtr.Zero ? null : new GCControllerDirectionPad(dpad, ERetainPolicy.Unretained);
+                    _dpad = dpad == IntPtr.Zero ? null : new GCControllerDirectionPad(dpad);
                 }
                 
                 return _dpad;
             }
         }
-        
+
+        private bool _bDpadRingWasInitted;
         private GCControllerDirectionPad _dpadRing;
 
         /**
@@ -160,7 +159,7 @@ namespace HovelHouse.GameController
         {
             get
             {
-                if (_dpadRing == null)
+                if (_bDpadRingWasInitted == false)
                 {
                     // The apple API has no hard reference to the new controller elements on the
                     // 2nd gen siri remote, so we need to retrieve them by name, we use the 
@@ -168,6 +167,7 @@ namespace HovelHouse.GameController
                     _dpadRing = Elements
                         .FirstOrDefault(x => x.Item1 == GameControllerPlugin.GCInputDirectionalCardinalDpad)
                         ?.Item2 as GCControllerDirectionPad;
+                    _bDpadRingWasInitted = true;
                 }
 
                 return _dpadRing;
@@ -245,6 +245,7 @@ namespace HovelHouse.GameController
                 if(_buttonA == null || buttonA != (IntPtr)_buttonA.Handle)
                 {
                     _buttonA = buttonA == IntPtr.Zero ? null : new GCControllerButtonInput(buttonA, ERetainPolicy.Unretained);
+                    _buttonA = buttonA == IntPtr.Zero ? null : new GCControllerButtonInput(buttonA);
                 }
                 
                 return _buttonA;
@@ -268,7 +269,7 @@ namespace HovelHouse.GameController
                 
                 if(_buttonX == null || buttonX != (IntPtr)_buttonX.Handle)
                 {
-                    _buttonX = buttonX == IntPtr.Zero ? null : new GCControllerButtonInput(buttonX, ERetainPolicy.Unretained);
+                    _buttonX = buttonX == IntPtr.Zero ? null : new GCControllerButtonInput(buttonX);
                 }
                 
                 return _buttonX;
@@ -292,7 +293,7 @@ namespace HovelHouse.GameController
                 
                 if(_buttonMenu == null || buttonMenu != (IntPtr)_buttonMenu.Handle)
                 {
-                    _buttonMenu = buttonMenu == IntPtr.Zero ? null : new GCControllerButtonInput(buttonMenu, ERetainPolicy.Unretained);
+                    _buttonMenu = buttonMenu == IntPtr.Zero ? null : new GCControllerButtonInput(buttonMenu);
                 }
                 
                 return _buttonMenu;
