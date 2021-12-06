@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using HovelHouse.GameController;
 
@@ -9,8 +9,6 @@ public class RewiredSiriRemoteAdapter : AbstractSiriRemoteAdapter
     
     private readonly GCMicroGamepad _microGamepad;
     
-    private readonly RewiredToGCMicroGamepadElementMap ElementConverterMap;
-
     private bool MenuButtonWasPressedThisUpdate;
     private bool MenuButtonIsPressed;
 
