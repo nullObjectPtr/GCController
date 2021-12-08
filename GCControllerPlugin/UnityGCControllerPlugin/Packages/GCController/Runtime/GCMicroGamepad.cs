@@ -141,7 +141,7 @@ namespace HovelHouse.GameController
                 
                 if(_dpad == null || dpad != (IntPtr)_dpad.Handle)
                 {
-                    _dpad = dpad == IntPtr.Zero ? null : new GCControllerDirectionPad(dpad);
+                    _dpad = dpad == IntPtr.Zero ? null : new GCControllerDirectionPad(dpad, ERetainPolicy.Unretained);
                 }
                 
                 return _dpad;
@@ -245,7 +245,6 @@ namespace HovelHouse.GameController
                 if(_buttonA == null || buttonA != (IntPtr)_buttonA.Handle)
                 {
                     _buttonA = buttonA == IntPtr.Zero ? null : new GCControllerButtonInput(buttonA, ERetainPolicy.Unretained);
-                    _buttonA = buttonA == IntPtr.Zero ? null : new GCControllerButtonInput(buttonA);
                 }
                 
                 return _buttonA;
@@ -269,7 +268,7 @@ namespace HovelHouse.GameController
                 
                 if(_buttonX == null || buttonX != (IntPtr)_buttonX.Handle)
                 {
-                    _buttonX = buttonX == IntPtr.Zero ? null : new GCControllerButtonInput(buttonX);
+                    _buttonX = buttonX == IntPtr.Zero ? null : new GCControllerButtonInput(buttonX, ERetainPolicy.Unretained);
                 }
                 
                 return _buttonX;
@@ -293,7 +292,7 @@ namespace HovelHouse.GameController
                 
                 if(_buttonMenu == null || buttonMenu != (IntPtr)_buttonMenu.Handle)
                 {
-                    _buttonMenu = buttonMenu == IntPtr.Zero ? null : new GCControllerButtonInput(buttonMenu);
+                    _buttonMenu = buttonMenu == IntPtr.Zero ? null : new GCControllerButtonInput(buttonMenu, ERetainPolicy.Unretained);
                 }
                 
                 return _buttonMenu;
