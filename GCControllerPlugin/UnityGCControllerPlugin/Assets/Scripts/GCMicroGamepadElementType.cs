@@ -10,6 +10,7 @@
     DPadRight,
     DPadUp,
     DPadDown,
+    DPadRing,
     DPadRingLeft,
     DPadRingRight,
     DPadRingUp,

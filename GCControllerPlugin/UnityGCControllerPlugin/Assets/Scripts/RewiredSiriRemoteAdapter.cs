@@ -8,9 +8,6 @@ public class RewiredSiriRemoteAdapter : AbstractSiriRemoteAdapter
     public event Action<GCControllerAxisInput, float> OnAxisValueChanged;
     
     private readonly GCMicroGamepad _microGamepad;
-    
-    private bool MenuButtonWasPressedThisUpdate;
-    private bool MenuButtonIsPressed;
 
     public RewiredSiriRemoteAdapter(
         GCController controller, 
@@ -34,8 +31,11 @@ public class RewiredSiriRemoteAdapter : AbstractSiriRemoteAdapter
         var record =
             ElementConverterMap.Records.FirstOrDefault(r => r.microGamepadElementType == GCMicroGamepadElementType.ButtonMenu);
 
-        if (record == null) { return; }
-        VirtualController.SetButtonValue(record.RewiredElementName, MenuButtonWasPressedThisUpdate || MenuButtonIsPressed);
-        MenuButtonWasPressedThisUpdate = false;
+        if (record != null)
+        {
+            VirtualController.SetButtonValue(record.RewiredElementName,
+                MenuButtonWasPressedThisUpdate || MenuButtonIsPressed);
+            MenuButtonWasPressedThisUpdate = false;
+        }
     }
 }

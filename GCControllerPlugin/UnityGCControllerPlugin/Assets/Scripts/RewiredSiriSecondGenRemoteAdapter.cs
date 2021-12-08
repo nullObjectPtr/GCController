@@ -1,9 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 using HovelHouse.GameController;
-using Rewired;
-using UnityEngine;
 
 public class RewiredSiriSecondGenRemoteAdapter : AbstractSiriRemoteAdapter
 {
