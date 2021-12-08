@@ -105,7 +105,7 @@ namespace HovelHouse.GameController
                 
                 if(_up == null || up != (IntPtr)_up.Handle)
                 {
-                    _up = up == IntPtr.Zero ? null : new GCControllerButtonInput(up);
+                    _up = up == IntPtr.Zero ? null : new GCControllerButtonInput(up, ERetainPolicy.Unretained);
                 }
                 
                 return _up;
@@ -129,7 +129,7 @@ namespace HovelHouse.GameController
                 
                 if(_down == null || down != (IntPtr)_down.Handle)
                 {
-                    _down = down == IntPtr.Zero ? null : new GCControllerButtonInput(down);
+                    _down = down == IntPtr.Zero ? null : new GCControllerButtonInput(down, ERetainPolicy.Unretained);
                 }
                 
                 return _down;
@@ -153,7 +153,7 @@ namespace HovelHouse.GameController
                 
                 if(_left == null || left != (IntPtr)_left.Handle)
                 {
-                    _left = left == IntPtr.Zero ? null : new GCControllerButtonInput(left);
+                    _left = left == IntPtr.Zero ? null : new GCControllerButtonInput(left, ERetainPolicy.Unretained);
                 }
                 
                 return _left;
@@ -177,7 +177,7 @@ namespace HovelHouse.GameController
                 
                 if(_right == null || right != (IntPtr)_right.Handle)
                 {
-                    _right = right == IntPtr.Zero ? null : new GCControllerButtonInput(right);
+                    _right = right == IntPtr.Zero ? null : new GCControllerButtonInput(right, ERetainPolicy.Unretained);
                 }
                 
                 return _right;
@@ -201,7 +201,7 @@ namespace HovelHouse.GameController
                 
                 if(_xAxis == null || xAxis != (IntPtr)_xAxis.Handle)
                 {
-                    _xAxis = xAxis == IntPtr.Zero ? null : new GCControllerAxisInput(xAxis);
+                    _xAxis = xAxis == IntPtr.Zero ? null : new GCControllerAxisInput(xAxis, ERetainPolicy.Unretained);
                 }
                 
                 return _xAxis;
@@ -225,7 +225,7 @@ namespace HovelHouse.GameController
                 
                 if(_yAxis == null || yAxis != (IntPtr)_yAxis.Handle)
                 {
-                    _yAxis = yAxis == IntPtr.Zero ? null : new GCControllerAxisInput(yAxis);
+                    _yAxis = yAxis == IntPtr.Zero ? null : new GCControllerAxisInput(yAxis, ERetainPolicy.Unretained);
                 }
                 
                 return _yAxis;
