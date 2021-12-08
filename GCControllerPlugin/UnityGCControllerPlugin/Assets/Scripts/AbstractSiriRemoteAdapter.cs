@@ -161,19 +161,23 @@ public abstract class AbstractSiriRemoteAdapter : AbstractRewiredAdapter
             return GCMicroGamepadElementType.DPadUp;
         if (element == _microGamepad.Dpad.Down)
             return GCMicroGamepadElementType.DPadDown;
-        if (element == _microGamepad.DpadRing.Left)
-            return GCMicroGamepadElementType.DPadRingLeft;
-        if (element == _microGamepad.DpadRing.Right)
-            return GCMicroGamepadElementType.DPadRingRight;
-        if (element == _microGamepad.DpadRing.Up)
-            return GCMicroGamepadElementType.DPadRingUp;
-        if (element == _microGamepad.DpadRing.Down)
-            return GCMicroGamepadElementType.DPadRingDown;
-        if (element == _microGamepad.DpadRing.XAxis)
-            return GCMicroGamepadElementType.DPadRingX;
-        if (element == _microGamepad.DpadRing.YAxis)
-            return GCMicroGamepadElementType.DPadRingY;
-        
+
+        if (_microGamepad.DpadRing != null)
+        {
+            if (element == _microGamepad.DpadRing.Left)
+                return GCMicroGamepadElementType.DPadRingLeft;
+            if (element == _microGamepad.DpadRing.Right)
+                return GCMicroGamepadElementType.DPadRingRight;
+            if (element == _microGamepad.DpadRing.Up)
+                return GCMicroGamepadElementType.DPadRingUp;
+            if (element == _microGamepad.DpadRing.Down)
+                return GCMicroGamepadElementType.DPadRingDown;
+            if (element == _microGamepad.DpadRing.XAxis)
+                return GCMicroGamepadElementType.DPadRingX;
+            if (element == _microGamepad.DpadRing.YAxis)
+                return GCMicroGamepadElementType.DPadRingY;
+        }
+
         throw new ArgumentException($"unhandled element: {element}");
     }
     
